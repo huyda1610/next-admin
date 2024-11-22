@@ -1,19 +1,20 @@
-'use client';
-import React from 'react';
-import LayoutHeader from '@components/layout/header/page';
-
+import type { Metadata } from 'next';
 import '../styles/globals.scss';
+import React from 'react';
 
-type PropsType = {
-  children: React.ReactNode;
+export const metadata: Metadata = {
+  title: '',
+  description: '',
 };
 
-export default function Layout({ children }: Readonly<PropsType>) {
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body className="bg-layoutBg">
-        <LayoutHeader />
-
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-gray-400 font-plus-jakarta text-sm/[22px] font-normal text-gray antialiased">
         {children}
       </body>
     </html>

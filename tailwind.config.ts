@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 
 export default {
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -27,16 +28,17 @@ export default {
       current: 'currentColor',
       white: '#FFFFFF',
       black: '#171718',
+      'black-background': '#3C3C3D',
       primary: '#335CFF',
       gray: {
+        '100': '#FAFBFC',
+        '200': '#F9FAFB',
+        '300': '#E2E8F0',
+        '400': '#F5F7FA',
+        '500': '#B9BEC6',
+        '600': '#9CA3AF',
+        '700': '#6B7280',
         DEFAULT: '#525866',
-        100: '#FAFBFC',
-        200: '#F9FAFB',
-        300: '#E2E8F0',
-        400: '#F5F7FA',
-        500: '#B9BEC6',
-        600: '#9CA3AF',
-        700: '#6B7280',
       },
       danger: {
         DEFAULT: '#EF4444',
@@ -57,25 +59,48 @@ export default {
         '3xl': '0 1px 2px 0 rgba(95,74,46,0.08), 0 0 0 1px rgba(227,225,222,0.4)',
         sm: '0 1px 2px 0 rgba(113,116,152,0.1)',
       },
-
       keyframes: {
         'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
         },
         'caret-blink': {
-          '0%,70%,100%': { opacity: '1' },
-          '20%,50%': { opacity: '0' },
+          '0%,70%,100%': {
+            opacity: '1',
+          },
+          '20%,50%': {
+            opacity: '0',
+          },
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.3s ease-out',
-        'accordion-up': 'accordion-up 0.3s ease-out',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
+      },
+      colors: {
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
       },
     },
   },

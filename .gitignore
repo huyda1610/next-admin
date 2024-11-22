@@ -6,6 +6,7 @@
 /.pnp
 .pnp.*
 .yarn/*
+yarn.lock
 
 # testing
 /coverage

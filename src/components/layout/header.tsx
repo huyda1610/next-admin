@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import {
   Bell,
-  CalendarCheck,
   ChevronDown,
   CircleX,
   Headphones,
@@ -15,8 +14,6 @@ import {
   UserCog,
 } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@components/shadcn/popover';
-import { Calendar } from '@components/shadcn/calendar';
-import { format } from 'date-fns';
 import { Badge } from '@components/shadcn/badge';
 import {
   DropdownMenu,
@@ -28,8 +25,6 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@components/shadcn/button';
 
 const Header = () => {
-  const [date, setDate] = useState<Date>();
-
   const pathName = usePathname();
 
   const toggleSidebar = () => {
@@ -74,17 +69,9 @@ const Header = () => {
   };
 
   return (
-    <header className="relative inset-x-0 top-0 bg-white px-4 py-[15px] shadow-sm lg:px-5">
+    <header className="relative inset-x-0 top-0 bg-white px-4 py-[8px] shadow-sm lg:px-5">
       <div className="flex items-center justify-between gap-5">
-        <Link href="/" className="inline-block shrink-0 lg:ml-2.5">
-          <Image
-            src="/images/logo.svg"
-            width={145}
-            height={34}
-            alt="Logo"
-            className="h-auto w-32 lg:w-[145px]"
-          />
-        </Link>
+        <div></div>
 
         <div className="inline-flex items-center gap-3 sm:gap-5">
           <Link href="/" target="_blank" className="hidden duration-300 hover:opacity-80 lg:block">
@@ -170,29 +157,13 @@ const Header = () => {
               </PopoverContent>
             </Popover>
           </div>
-          <div className="order-1 lg:order-none">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={'outline-general'}
-                  className="text-wrap p-0 shadow-none ring-0 lg:px-2.5 lg:py-2 lg:shadow-sm lg:ring-1"
-                >
-                  <CalendarCheck className="!size-5 lg:!size-4" />
-                  {date ? format(date, 'PPP') : <span className="hidden lg:block">Schedule</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="!w-auto p-0">
-                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-              </PopoverContent>
-            </Popover>
-          </div>
           <div className="hidden lg:block">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="group flex cursor-pointer items-center gap-2.5 rounded-lg [&[data-state=open]>button>svg]:rotate-180">
                   <div className="size-8 shrink-0 overflow-hidden rounded-full">
                     <Image
-                      src="/images/profile.png"
+                      src="/images/avatar.webp"
                       width={32}
                       height={32}
                       className="h-full w-full object-cover"

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import '../styles/globals.scss';
+import '../styles/globals.css';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-gray-400 font-plus-jakarta text-sm/[22px] font-normal text-gray antialiased">
+      <body className="bg-white font-plus-jakarta text-sm/[22px] font-normal text-gray antialiased h-screen relative">
         {children}
       </body>
     </html>

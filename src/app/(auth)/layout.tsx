@@ -1,6 +1,6 @@
+import React from 'react';
 import Header from '@components/layout/header';
 import Sidebar from '@components/layout/sidebar';
-import React from 'react';
 
 export default async function AuthLayout({
   children,
@@ -8,12 +8,13 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <Header />
+    <article className="flex w-full h-full">
       <Sidebar />
-      <div id="main-content" className="p-4 transition-all lg:ml-[260px] mt-[60px]">
-        {children}
-      </div>
-    </>
+      <section className="flex flex-col w-full h-full">
+        <Header />
+
+        <section className="w-full h-full">{children}</section>
+      </section>
+    </article>
   );
 }

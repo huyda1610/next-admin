@@ -33,7 +33,7 @@
     @apply bg-light-theme !text-primary;
   }
   .nav-item.active {
-    //@apply !text-black;
+    @apply !text-black;
   }
   .sidebar .submenu > li > a {
     @apply flex rounded-lg px-2 py-1 font-medium text-gray-700 transition hover:bg-light-theme hover:text-primary;

@@ -74,7 +74,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-30 bg-white px-4 py-[15px] shadow-sm lg:px-5">
+    <header className="relative inset-x-0 top-0 bg-white px-4 py-[15px] shadow-sm lg:px-5">
       <div className="flex items-center justify-between gap-5">
         <Link href="/" className="inline-block shrink-0 lg:ml-2.5">
           <Image

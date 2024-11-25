@@ -13,6 +13,7 @@ import { ChevronDown, MessageSquareText, Minus, ScrollText, X } from 'lucide-rea
 import { usePathname } from 'next/navigation';
 import NavLink from '@components/layout/nav-link';
 import { cn } from '@lib/utils';
+import { twMerge } from 'tailwind-merge';
 
 type Items = {
   name: string;
@@ -157,15 +158,23 @@ const Sidebar = () => {
           <ChevronDown className={`hidden h-4 w-4 -rotate-90 ${isSidebarOpen ? '!block' : ''}`} />
         </button>
 
-        {/*<Link href="/" replace className="inline-block shrink-0 lg:ml-2.5">*/}
-        {/*  <Image*/}
-        {/*    src="/images/logo.webp"*/}
-        {/*    width={32}*/}
-        {/*    height={27}*/}
-        {/*    alt="Logo"*/}
-        {/*    className="h-full w-full object-cover"*/}
-        {/*  />*/}
-        {/*</Link>*/}
+        {/*Icon*/}
+        <div
+          className={twMerge(
+            'py-2 pr-2.5 flex items-center gap-2',
+            isSidebarOpen ? 'pl-3' : 'pl-8',
+          )}
+        >
+          <div className="w-8 h-8 relative">
+            {/*<Link href="/" replace className="w-8 h-8 relative">*/}
+            <Image src="/images/logo.webp" fill alt="Logo" className="h-full w-full object-cover" />
+            {/*</Link>*/}
+          </div>
+
+          <strong className={`text-xl text-nowrap  ${isSidebarOpen ? 'hidden' : ''}`}>
+            Next Admin
+          </strong>
+        </div>
 
         <div className="flex items-start justify-between border-b border-gray-300 px-4 py-5 lg:hidden">
           <Link href="/" className="inline-block">

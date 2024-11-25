@@ -13,7 +13,7 @@ export default async function AuthLayout({
       <section className="flex flex-col w-full h-full">
         <Header />
 
-        <section className="w-full h-full">{children}</section>
+        <section className="w-full h-full bg-white-background">{children}</section>
       </section>
     </article>
   );

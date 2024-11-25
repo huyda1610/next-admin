@@ -24,6 +24,7 @@ export default {
       'plus-jakarta': ['Plus Jakarta Sans', 'sans-serif'],
     },
     colors: {
+      'white-background': '#f1f3f6',
       transparent: 'transparent',
       current: 'currentColor',
       white: '#FFFFFF',

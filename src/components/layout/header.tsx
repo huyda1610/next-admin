@@ -25,8 +25,6 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@components/shadcn/button';
 
 const Header = () => {
-  const [date, setDate] = useState<Date>();
-
   const pathName = usePathname();
 
   const toggleSidebar = () => {
@@ -165,7 +163,7 @@ const Header = () => {
                 <div className="group flex cursor-pointer items-center gap-2.5 rounded-lg [&[data-state=open]>button>svg]:rotate-180">
                   <div className="size-8 shrink-0 overflow-hidden rounded-full">
                     <Image
-                      src="/images/profile.png"
+                      src="/images/avatar.webp"
                       width={32}
                       height={32}
                       className="h-full w-full object-cover"

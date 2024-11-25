@@ -137,6 +137,7 @@ const Sidebar = () => {
 
   return (
     <>
+      {/*Responsive Overlay*/}
       <div
         id="overlay"
         className="fixed inset-0 z-30 hidden bg-black/50"
@@ -145,25 +146,30 @@ const Sidebar = () => {
 
       <Card
         id="sidebar"
-        className={`sidebar fixed lg:relative -left-[260px] top-0 z-40 flex h-screen w-[260px] flex-col rounded-none transition-all duration-300 lg:left-0 lg:h-[calc(100vh_-_64px)] ${isSidebarOpen ? 'closed' : ''}`}
+        className={`sidebar fixed lg:relative -left-[260px] top-0 z-40 flex h-screen w-[260px] flex-col rounded-none transition-all duration-300 lg:left-0 ${isSidebarOpen ? 'closed' : ''}`}
       >
         <button
           type="button"
           onClick={toggleSidebar}
-          className="absolute -right-2.5 -top-3.5 hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
+          className="absolute -right-2.5 top-[50px] hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
         >
           <ChevronDown className={`h-4 w-4 rotate-90 ${isSidebarOpen ? 'hidden' : ''}`} />
           <ChevronDown className={`hidden h-4 w-4 -rotate-90 ${isSidebarOpen ? '!block' : ''}`} />
         </button>
+
+        {/*<Link href="/" replace className="inline-block shrink-0 lg:ml-2.5">*/}
+        {/*  <Image*/}
+        {/*    src="/images/logo.webp"*/}
+        {/*    width={32}*/}
+        {/*    height={27}*/}
+        {/*    alt="Logo"*/}
+        {/*    className="h-full w-full object-cover"*/}
+        {/*  />*/}
+        {/*</Link>*/}
+
         <div className="flex items-start justify-between border-b border-gray-300 px-4 py-5 lg:hidden">
           <Link href="/" className="inline-block">
-            <Image
-              src="/images/logo.svg"
-              width={145}
-              height={34}
-              alt="Logo"
-              className="h-auto w-auto"
-            />
+            <Image src="/images/logo.svg" fill alt="Logo" className="object-cover" />
           </Link>
           <button type="button" onClick={toggleSidebarResponsive}>
             <X className="-mr-2 -mt-2 ml-auto size-4 hover:text-black" />

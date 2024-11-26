@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "utils/_reset.scss";
+@import "utils/_nprogress";
+@import "utils/_loading";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,7 +35,7 @@
     @apply bg-light-theme !text-primary;
   }
   .nav-item.active {
-    @apply !text-black;
+    //@apply !text-black
   }
   .sidebar .submenu > li > a {
     @apply flex rounded-lg px-2 py-1 font-medium text-gray-700 transition hover:bg-light-theme hover:text-primary;

@@ -74,7 +74,11 @@ const Header = () => {
         <div></div>
 
         <div className="inline-flex items-center gap-3 sm:gap-5">
-          <Link href="/" target="_blank" className="hidden duration-300 hover:opacity-80 lg:block">
+          <Link
+            href="/public"
+            target="_blank"
+            className="hidden duration-300 hover:opacity-80 lg:block"
+          >
             <MessageSquareText className="h-5 w-5" />
           </Link>
           <div className="order-2 lg:order-none">

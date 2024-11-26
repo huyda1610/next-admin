@@ -9,7 +9,15 @@ import {
 import { Card } from '@components/shadcn/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, MessageSquareText, Minus, ScrollText, X } from 'lucide-react';
+import {
+  ChartArea,
+  ChevronDown,
+  LayoutGrid,
+  MessageSquareText,
+  Minus,
+  ScrollText,
+  X,
+} from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import NavLink from '@components/layout/nav-link';
 import { cn } from '@lib/utils';
@@ -28,6 +36,21 @@ type SidebarItems = {
 };
 
 const sidebarItems: SidebarItems[] = [
+  {
+    groupName: 'Dashboard',
+    items: [
+      {
+        name: 'Analytics',
+        link: '/',
+        icon: <ChartArea className="size-[18px] shrink-0" />,
+      },
+      {
+        name: 'Workspace',
+        link: '/workspace',
+        icon: <LayoutGrid className="size-[18px] shrink-0" />,
+      },
+    ],
+  },
   {
     groupName: 'Tables and Forms',
     items: [
@@ -159,26 +182,44 @@ const Sidebar = () => {
         </button>
 
         {/*Icon*/}
-        <div
+        <Link
           className={twMerge(
-            'py-2 pr-2.5 flex items-center gap-2',
+            'py-2 pr-2.5 flex items-center gap-2 max-lg:hidden',
             isSidebarOpen ? 'pl-3' : 'pl-8',
           )}
+          href={'/'}
+          replace
         >
           <div className="w-8 h-8 relative">
-            {/*<Link href="/" replace className="w-8 h-8 relative">*/}
             <Image src="/images/logo.webp" fill alt="Logo" className="h-full w-full object-cover" />
-            {/*</Link>*/}
           </div>
 
           <strong className={`text-xl text-nowrap  ${isSidebarOpen ? 'hidden' : ''}`}>
             Next Admin
           </strong>
-        </div>
+        </Link>
 
-        <div className="flex items-start justify-between border-b border-gray-300 px-4 py-5 lg:hidden">
-          <Link href="/" className="inline-block">
-            <Image src="/images/logo.svg" fill alt="Logo" className="object-cover" />
+        <div className="flex items-start justify-between border-b border-gray-300 px-2 py-3 lg:hidden">
+          <Link
+            className={twMerge(
+              'py-2 pr-2.5 flex items-center gap-2',
+              isSidebarOpen ? 'pl-3' : 'pl-8',
+            )}
+            href={'/'}
+            replace
+          >
+            <div className="w-8 h-8 relative">
+              <Image
+                src="/images/logo.webp"
+                fill
+                alt="Logo"
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            <strong className={`text-xl text-nowrap  ${isSidebarOpen ? 'hidden' : ''}`}>
+              Next Admin
+            </strong>
           </Link>
           <button type="button" onClick={toggleSidebarResponsive}>
             <X className="-mr-2 -mt-2 ml-auto size-4 hover:text-black" />
@@ -238,7 +279,7 @@ const Sidebar = () => {
                     href={sidebarItems.link}
                     className={`nav-link ${pathName === sidebarItems.link && '!text-black'}`}
                   >
-                    <MessageSquareText className="size-[18px] shrink-0" />
+                    {sidebarItems.icon}
                     <span>{sidebarItems.name}</span>
                   </NavLink>
                 );

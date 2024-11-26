@@ -26,6 +26,7 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.2",
     "@radix-ui/react-tooltip": "^1.1.4",
+    "@types/nprogress": "^0.2.3",
     "add": "^2.0.6",
     "button": "^1.1.1",
     "class-variance-authority": "^0.7.0",

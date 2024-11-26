@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
-import '../styles/globals.css';
+import '../styles/globals.scss';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: '',
+  // icons: {
+  //   shortcut: './',
+  // },
+  title: 'Next Admin',
   description: '',
 };
 

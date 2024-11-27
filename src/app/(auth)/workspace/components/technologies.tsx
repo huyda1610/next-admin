@@ -1,10 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card, CardContent, CardHeader } from '@components/shadcn/card';
 import ShareIcon from '@components/share/icon';
 import { cn } from '@lib/utils';
 import generateRandomDate from '@core/utils/randomDate';
 import { DATE_FORMAT } from '@core/const/app-const';
+import { useCheckClient } from '@hooks/useCheckClient';
 
 const data = [
   {
@@ -52,11 +53,7 @@ const data = [
 ];
 
 function WorkspaceTechnologies() {
-  const [isClient, setIsClient] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const { isClient } = useCheckClient();
 
   if (!isClient) return null;
 

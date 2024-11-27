@@ -31,7 +31,9 @@ export default function AuthLayout({
       <section className="flex flex-col w-full h-full">
         <Header />
 
-        <div className="w-full h-full bg-white-background relative text-black">{children}</div>
+        <div className="w-full h-full bg-white-background relative text-black overflow-x-hidden overflow-auto">
+          {children}
+        </div>
       </section>
     </article>
   );

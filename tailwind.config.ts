@@ -42,6 +42,13 @@ export default {
         '700': '#6B7280',
         DEFAULT: '#525866',
       },
+      blue: {
+        DEFAULT: '#3B82F6',
+        sky: '#0ea5e9',
+      },
+      purple: {
+        DEFAULT: '#8953f1',
+      },
       danger: {
         DEFAULT: '#EF4444',
         light: '#FEE2E2',

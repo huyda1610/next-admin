@@ -3,6 +3,8 @@ import '../styles/globals.scss';
 import React from 'react';
 import { APP_NAME } from '@core/const/app-const';
 
+import '@core/type/string.ts';
+
 export const metadata: Metadata = {
   // icons: {
   //   shortcut: './',

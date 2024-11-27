@@ -22,6 +22,7 @@ import { usePathname } from 'next/navigation';
 import NavLink from '@components/layout/nav-link';
 import { cn } from '@lib/utils';
 import { twMerge } from 'tailwind-merge';
+import { APP_NAME } from '@core/const/app-const';
 
 type Items = {
   name: string;
@@ -195,7 +196,7 @@ const Sidebar = () => {
           </div>
 
           <strong className={`text-xl text-nowrap  ${isSidebarOpen ? 'hidden' : ''}`}>
-            Next Admin
+            {APP_NAME}
           </strong>
         </Link>
 
@@ -218,7 +219,7 @@ const Sidebar = () => {
             </div>
 
             <strong className={`text-xl text-nowrap  ${isSidebarOpen ? 'hidden' : ''}`}>
-              Next Admin
+              {APP_NAME}
             </strong>
           </Link>
           <button type="button" onClick={toggleSidebarResponsive}>

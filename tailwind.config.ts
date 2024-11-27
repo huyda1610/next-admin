@@ -25,6 +25,7 @@ export default {
     },
     colors: {
       'white-background': '#f1f3f6',
+      'border-color': '#e4e4e7',
       transparent: 'transparent',
       current: 'currentColor',
       white: '#FFFFFF',
@@ -40,6 +41,13 @@ export default {
         '600': '#9CA3AF',
         '700': '#6B7280',
         DEFAULT: '#525866',
+      },
+      blue: {
+        DEFAULT: '#3B82F6',
+        sky: '#0ea5e9',
+      },
+      purple: {
+        DEFAULT: '#8953f1',
       },
       danger: {
         DEFAULT: '#EF4444',

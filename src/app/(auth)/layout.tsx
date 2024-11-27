@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import Header from '@components/layout/Header/header';
 import Sidebar from '@components/layout/sidebar';
+import Header from '@components/layout/header/header';
 
 // const Loader = () => {
 //   const pathname = usePathname();
@@ -31,7 +31,9 @@ export default function AuthLayout({
       <section className="flex flex-col w-full h-full">
         <Header />
 
-        <section className="w-full h-full bg-white-background relative">{children}</section>
+        <div className="w-full h-full bg-white-background relative text-black overflow-x-hidden overflow-auto">
+          {children}
+        </div>
       </section>
     </article>
   );

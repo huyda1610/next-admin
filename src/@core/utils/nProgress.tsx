@@ -1,3 +1,4 @@
+'use client';
 import NProgress from 'nprogress';
 
 async function loadNprogress() {

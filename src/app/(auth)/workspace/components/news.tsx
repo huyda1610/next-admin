@@ -38,8 +38,6 @@ const data = Array(9)
     date: date[index] || dayjs().subtract(2, 'month').toString(),
   }));
 
-console.log(data);
-
 function WorkspaceNews() {
   const { isClient } = useCheckClient();
 
@@ -53,7 +51,7 @@ function WorkspaceNews() {
           <section
             key={item.id}
             className={cn(
-              'flex justify-between items-end py-5 border-border-color border-b border-solid',
+              'flex justify-between items-end py-[21px] border-border-color border-b border-solid',
               index === data.length - 1 && 'border-b-0',
             )}
           >
@@ -67,11 +65,11 @@ function WorkspaceNews() {
               />
               <div className="flex flex-col justify-between">
                 <strong>{item.name}</strong>
-                <span>{item.action}</span>
+                <span className="text-xs">{item.action}</span>
               </div>
             </div>
 
-            <span>{dayjs(item.date).fromNow()}</span>
+            <span className="text-xs max-sm:hidden">{dayjs(item.date).fromNow()}</span>
           </section>
         ))}
       </CardContent>

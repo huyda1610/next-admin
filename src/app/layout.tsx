@@ -6,9 +6,6 @@ import { APP_NAME } from '@core/const/app-const';
 import '@core/type/string.ts';
 
 export const metadata: Metadata = {
-  // icons: {
-  //   shortcut: './',
-  // },
   title: APP_NAME,
   description: '',
 };

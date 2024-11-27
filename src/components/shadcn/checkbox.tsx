@@ -4,10 +4,12 @@ import * as React from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cn } from '@lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+import IconCheckboxCheck from '@components/share/icon/svg/icon-checkbox-check';
 // import IconCheckboxCheck from '@/components/icons/icon-checkbox-check';
 
 const checkboxVariants = cva(
-  ' peer h-3 w-3 grid place-content-center shrink-0 rounded-sm border-[1.5px] border-gray-300 focus-visible:outline-none transition disabled:cursor-not-allowed disabled:opacity-40 ',
+  ' peer h-4 w-4 grid place-content-center shrink-0 rounded-sm border-[1.5px] border-gray-300' +
+    ' focus-visible:outline-none transition disabled:cursor-not-allowed disabled:opacity-40 ',
   {
     variants: {
       variant: {
@@ -45,9 +47,7 @@ const Checkbox = React.forwardRef<
     {...props}
   >
     <CheckboxPrimitive.Indicator className={cn('flex items-center justify-center text-current')}>
-      {/*<IconCheckboxCheck*/}
-      {/*  className={cn('h-1.5 w-1.5', variant === 'outline' ? 'currentcolor' : '')}*/}
-      {/*/>*/}
+      <IconCheckboxCheck className={cn('h-3 w-3', variant === 'outline' ? 'currentcolor' : '')} />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));

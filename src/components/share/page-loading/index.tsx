@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PageLoading() {
+function SharePageLoading() {
   return (
     <section className="flex justify-center items-center h-full w-full">
       <div className="loader"></div>
@@ -8,4 +8,4 @@ function PageLoading() {
   );
 }
 
-export default PageLoading;
+export default SharePageLoading;

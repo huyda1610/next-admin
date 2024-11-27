@@ -25,6 +25,7 @@ export default {
     },
     colors: {
       'white-background': '#f1f3f6',
+      'border-color': '#e4e4e7',
       transparent: 'transparent',
       current: 'currentColor',
       white: '#FFFFFF',

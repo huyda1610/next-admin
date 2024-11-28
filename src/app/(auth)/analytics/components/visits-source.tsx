@@ -7,8 +7,8 @@ import SharePieChart from '@components/share/charts/pie';
 const data = [
   { name: 'Search Engine', value: 1048 },
   { name: 'Direct Access', value: 735 },
-  { name: 'Email Marketing', value: 580 },
-  { name: 'Alliance Advertising', value: 484 },
+  { name: 'Marketing', value: 580 },
+  { name: 'Advertising', value: 484 },
 ];
 
 function AnalyticsVisitsSource() {

@@ -2,29 +2,76 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@components/shadcn/card';
 import ShareIcon from '@components/share/icon';
+import { useCheckClient } from '@hooks/useCheckClient';
+import { getRandomNumberInRange } from '@core/utils/randomNumber';
+import dayjs from 'dayjs';
+
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { cn } from '@lib/utils';
+
+dayjs.extend(relativeTime);
+
+const name: string[] = ['William', 'John', 'Jane', 'Alvin', 'Chris'];
+const action: string[] = [
+  'Created Nextjs project in the open source group',
+  'Followed William',
+  'Publish article How to write a Nextjs plug-in',
+  'Published personal updates',
+  'Pushed the code to Github',
+  'Publish article How to write using Next Admin',
+];
+const avatar: string[] = ['boar', 'cat', 'chicken', 'alien', 'dog'];
+const date: string[] = [
+  dayjs().subtract(1, 'minute').toString(),
+  dayjs().subtract(1, 'hour').toString(),
+  dayjs().subtract(1, 'week').toString(),
+  dayjs().subtract(1, 'month').toString(),
+];
+
+const data = Array(9)
+  .fill(null)
+  .map((_, index) => ({
+    id: crypto.randomUUID(),
+    name: name[getRandomNumberInRange(0, 4)],
+    action: action[getRandomNumberInRange(0, 5)],
+    avatar: avatar[getRandomNumberInRange(0, 4)],
+    date: date[index] || dayjs().subtract(2, 'month').toString(),
+  }));
 
 function WorkspaceNews() {
+  const { isClient } = useCheckClient();
+
+  if (!isClient) return null;
+
   return (
     <Card>
       <CardHeader>Latest news</CardHeader>
       <CardContent className="flex flex-col p-5 pt-0">
-        <section className="flex justify-between items-end py-5 border-border-color border-b border-solid">
-          <div className="flex gap-x-4 items-center">
-            <ShareIcon
-              select="alien"
-              iconProps={{
-                width: 40,
-                height: 40,
-              }}
-            />
-            <div className="flex flex-col justify-between">
-              <strong>William</strong>
-              <span>abczsdsd</span>
+        {data.map((item, index) => (
+          <section
+            key={item.id}
+            className={cn(
+              'flex justify-between items-end py-[21px] border-border-color border-b border-solid',
+              index === data.length - 1 && 'border-b-0',
+            )}
+          >
+            <div className="flex gap-x-4 items-center">
+              <ShareIcon
+                select={item.avatar as any}
+                iconProps={{
+                  width: 40,
+                  height: 40,
+                }}
+              />
+              <div className="flex flex-col justify-between">
+                <strong>{item.name}</strong>
+                <span className="text-xs">{item.action}</span>
+              </div>
             </div>
-          </div>
 
-          <span>1 day ago</span>
-        </section>
+            <span className="text-xs max-sm:hidden">{dayjs(item.date).fromNow()}</span>
+          </section>
+        ))}
       </CardContent>
     </Card>
   );

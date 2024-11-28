@@ -21,7 +21,7 @@ function WorkspaceHeader() {
 
   return (
     <Card>
-      <CardContent className="px-4 py-6 flex items-center justify-between">
+      <CardContent className="px-4 py-6 flex items-center md:justify-between flex-wrap gap-y-2">
         <div className="flex items-center gap-6">
           <Image
             alt="Profile"
@@ -37,7 +37,7 @@ function WorkspaceHeader() {
           </div>
         </div>
 
-        <div className="flex items-center gap-16">
+        <div className="flex items-center gap-16 justify-end max-md:w-full">
           {data.map((item) => (
             <div key={item.label}>
               <span>{item.label}</span>

@@ -25,6 +25,24 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%}
+
+  html:not([data-platform='macOs']) {
+    ::-webkit-scrollbar {
+      @apply h-[10px] w-[10px];
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @apply bg-[#e4e4e7] rounded-sm border-none;
+    }
+
+    ::-webkit-scrollbar-track {
+      @apply rounded-sm border-none bg-transparent shadow-none;
+    }
+
+    ::-webkit-scrollbar-button {
+      @apply hidden;
+    }
+  }
 }
 
 @layer components {
@@ -35,7 +53,7 @@
     @apply bg-light-theme !text-primary;
   }
   .nav-item.active {
-    //@apply !text-black
+    //@apply !text-black;
   }
   .sidebar .submenu > li > a {
     @apply flex rounded-lg px-2 py-1 font-medium text-gray-700 transition hover:bg-light-theme hover:text-primary;

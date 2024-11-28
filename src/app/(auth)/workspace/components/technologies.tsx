@@ -66,7 +66,7 @@ function WorkspaceTechnologies() {
             key={item.icon}
             className={cn(
               'p-4 border border-solid border-border-color border-l-0 transition-all' +
-                ' duration-1000 hover:shadow-xl flex flex-col hover:cursor-pointer gap-4 group',
+                ' hover:shadow-xl flex flex-col hover:cursor-pointer gap-4 group',
               (index + 1) % 3 === 0 && 'border-r-0',
             )}
           >

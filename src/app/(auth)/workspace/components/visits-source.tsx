@@ -11,19 +11,19 @@ const data = [
   { name: 'Alliance Advertising', value: 484 },
 ];
 
-function WorkspaceVisitSource() {
+function WorkspaceVisitsSource() {
   const { isClient } = useCheckClient();
 
   if (!isClient) return null;
 
   return (
     <Card>
-      <CardHeader>Visit Source</CardHeader>
+      <CardHeader>Visits Source</CardHeader>
       <CardContent>
-        <SharePieChart data={data} />
+        <SharePieChart data={data} colors={['#5ab1ef', '#b6a2de', '#67e0e3', '#2ec7c9']} />
       </CardContent>
     </Card>
   );
 }
 
-export default WorkspaceVisitSource;
+export default WorkspaceVisitsSource;

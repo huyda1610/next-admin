@@ -4,6 +4,7 @@ import React from 'react';
 import { APP_NAME } from '@core/const/app-const';
 
 import '@core/type/string.ts';
+import '@core/type/number.ts';
 
 export const metadata: Metadata = {
   title: APP_NAME,

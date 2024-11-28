@@ -5,4 +5,6 @@ export type SharePieChartDataType = {
 
 export type SharePieChartProps = {
   data: SharePieChartDataType[];
+
+  colors?: string[];
 };

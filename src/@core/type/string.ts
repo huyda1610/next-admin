@@ -1,3 +1,4 @@
+'use client';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@core/const/app-const';
 

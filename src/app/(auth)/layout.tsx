@@ -3,23 +3,6 @@ import React from 'react';
 import Sidebar from '@components/layout/sidebar';
 import Header from '@components/layout/header/header';
 
-// const Loader = () => {
-//   const pathname = usePathname();
-//   const searchParams = useSearchParams();
-//
-//   useEffect(() => {
-//     const handleStart = () => NProgress.start();
-//     const handleStop = () => NProgress.done();
-//     handleStop();
-//
-//     return () => {
-//       handleStart();
-//     };
-//   }, [pathname, searchParams]);
-//
-//   return <></>;
-// };
-
 export default function AuthLayout({
   children,
 }: Readonly<{

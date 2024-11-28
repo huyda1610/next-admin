@@ -11,20 +11,31 @@ import { AvatarCatSvg } from '@components/share/icon/svg/avatar-cat';
 import { AvatarChickenSvg } from '@components/share/icon/svg/avatar-chicken';
 import { AvatarAlienSvg } from '@components/share/icon/svg/avatar-alien';
 import { AvatarDogSvg } from '@components/share/icon/svg/avatar-dog';
+import { CardSvg } from '@components/share/icon/svg/card';
+import { ClockSvg } from '@components/share/icon/svg/clock';
+import { DownloadSvg } from '@components/share/icon/svg/download';
+import { BarChartSvg } from '@components/share/icon/svg/bar-chart';
+
+export type ShareIconType =
+  | 'github'
+  | 'next'
+  | 'react'
+  | 'html'
+  | 'css'
+  | 'typescript'
+  | 'boar'
+  | 'cat'
+  | 'chicken'
+  | 'alien'
+  | 'dog'
+  | 'card'
+  | 'clock'
+  | 'download'
+  | 'barchart';
 
 type IconProps = {
-  select:
-    | 'github'
-    | 'next'
-    | 'react'
-    | 'html'
-    | 'css'
-    | 'typescript'
-    | 'boar'
-    | 'cat'
-    | 'chicken'
-    | 'alien'
-    | 'dog';
+  select: ShareIconType;
+
   iconProps?: SVGProps<SVGSVGElement>;
 };
 
@@ -40,6 +51,10 @@ const iconMap = {
   chicken: (props?: SVGProps<SVGSVGElement>) => <AvatarChickenSvg {...props} />,
   alien: (props?: SVGProps<SVGSVGElement>) => <AvatarAlienSvg {...props} />,
   dog: (props?: SVGProps<SVGSVGElement>) => <AvatarDogSvg {...props} />,
+  card: (props?: SVGProps<SVGSVGElement>) => <CardSvg {...props}></CardSvg>,
+  clock: (props?: SVGProps<SVGSVGElement>) => <ClockSvg {...props}></ClockSvg>,
+  download: (props?: SVGProps<SVGSVGElement>) => <DownloadSvg {...props}></DownloadSvg>,
+  barchart: (props?: SVGProps<SVGSVGElement>) => <BarChartSvg {...props}></BarChartSvg>,
 } as any;
 
 function ShareIcon(props: IconProps): React.ReactElement {

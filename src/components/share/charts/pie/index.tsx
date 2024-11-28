@@ -18,7 +18,7 @@ function SharePieChart(props: SharePieChartProps) {
         animationEasing: 'exponentialInOut',
         animationType: 'scale',
         avoidLabelOverlap: false,
-        color: ['#5ab1ef', '#b6a2de', '#67e0e3', '#2ec7c9'],
+        color: props?.colors,
         data: props.data,
         emphasis: {
           label: {
@@ -38,7 +38,6 @@ function SharePieChart(props: SharePieChartProps) {
         labelLine: {
           show: false,
         },
-        name: '访问来源',
         radius: ['40%', '65%'],
         type: 'pie',
       },

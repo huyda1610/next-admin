@@ -5,7 +5,7 @@ import WorkspaceTechnologies from './components/technologies';
 import WorkspaceNavigator from '@app/(auth)/workspace/components/navigator';
 import WorkspaceNews from '@app/(auth)/workspace/components/news';
 import WorkspaceTodoList from '@app/(auth)/workspace/components/todo';
-import WorkspaceVisitSource from '@app/(auth)/workspace/components/visit-source';
+import WorkspaceVisitsSource from '@app/(auth)/workspace/components/visits-source';
 import { useClientMetadata } from '@hooks/useClientMetadata';
 
 function WorkspacePage() {
@@ -23,7 +23,7 @@ function WorkspacePage() {
         <div className="w-full lg:col-span-2 flex flex-col gap-4">
           <WorkspaceNavigator />
           <WorkspaceTodoList />
-          <WorkspaceVisitSource />
+          <WorkspaceVisitsSource />
         </div>
       </section>
     </article>

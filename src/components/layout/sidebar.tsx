@@ -60,7 +60,7 @@ const sidebarItems: SidebarItems[] = [
     items: [
       {
         name: 'Form Builder',
-        link: '/',
+        link: '/form-builder',
         icon: <SquareMousePointer className={iconClassName} />,
       },
       {
@@ -179,7 +179,7 @@ const Sidebar = () => {
         <button
           type="button"
           onClick={toggleSidebar}
-          className="absolute -right-2.5 top-[50px] hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
+          className="absolute -right-3 top-[12px] hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
         >
           <ChevronDown className={`h-4 w-4 rotate-90 ${isSidebarOpen ? 'hidden' : ''}`} />
           <ChevronDown className={`hidden h-4 w-4 -rotate-90 ${isSidebarOpen ? '!block' : ''}`} />

@@ -29,10 +29,12 @@ export default {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#FFFFFF',
+
       black: '#171718',
       'black-background': '#3C3C3D',
       primary: '#335CFF',
       gray: {
+        text: '#71717a',
         '100': '#FAFBFC',
         '200': '#F9FAFB',
         '300': '#E2E8F0',

@@ -14,7 +14,7 @@ export default function AuthLayout({
       <section className="flex flex-1 flex-col overflow-hidden">
         <Header />
 
-        <div className=" bg-white-background relative text-black overflow-x-hidden overflow-auto">
+        <div className=" bg-white-background relative text-black overflow-x-hidden overflow-auto h-full w-full">
           {children}
         </div>
       </section>

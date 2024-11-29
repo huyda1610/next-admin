@@ -69,7 +69,7 @@ const Header = () => {
   };
 
   return (
-    <header className="relative inset-x-0 top-0 bg-white px-4 py-[8px] shadow-sm lg:px-5">
+    <header className="relative inset-x-0 top-0 bg-white px-4 py-[8px] shadow-sm lg:px-5 border-b border-solid border-border-color">
       <div className="flex items-center justify-between gap-5">
         <div></div>
 

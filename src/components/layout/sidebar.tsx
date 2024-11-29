@@ -171,7 +171,7 @@ const Sidebar = () => {
 
       <Card
         id="sidebar"
-        className={`sidebar fixed lg:relative -left-[295px] top-0 z-40 flex h-screen w-[295px] flex-col rounded-none transition-all duration-300 lg:left-0 ${isSidebarOpen ? 'closed' : ''}`}
+        className={`sidebar fixed lg:relative -left-[260px] top-0 z-40 flex h-screen w-[260px] flex-col rounded-none transition-all duration-300 lg:left-0 ${isSidebarOpen ? 'closed' : ''}`}
       >
         <button
           type="button"

@@ -9,12 +9,12 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <article className="flex w-full h-full">
+    <article className="flex h-full w-full">
       <Sidebar />
-      <section className="flex flex-col w-full h-full">
+      <section className="flex flex-1 flex-col overflow-hidden">
         <Header />
 
-        <div className="w-full h-full bg-white-background relative text-black overflow-x-hidden overflow-auto">
+        <div className=" bg-white-background relative text-black overflow-x-hidden overflow-auto">
           {children}
         </div>
       </section>

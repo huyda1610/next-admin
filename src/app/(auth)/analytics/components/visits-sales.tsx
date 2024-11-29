@@ -36,7 +36,7 @@ function AnalyticsVisitsSales() {
   };
 
   return (
-    <Card>
+    <Card className="col-span-1 md:col-span-2 lg:col-span-1">
       <CardHeader>Visits Sales</CardHeader>
       <CardContent className="p-6 pt-0">
         <ReactECharts option={option} />

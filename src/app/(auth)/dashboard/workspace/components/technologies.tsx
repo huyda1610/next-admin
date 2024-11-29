@@ -65,9 +65,9 @@ function WorkspaceTechnologies() {
           <section
             key={item.icon}
             className={cn(
-              'p-4 border border-solid border-border-color border-l-0 transition-all' +
-                ' hover:shadow-xl flex flex-col hover:cursor-pointer gap-4 group',
-              (index + 1) % 3 === 0 && 'border-r-0',
+              'p-4 border border-solid border-border-color border-l-0 border-b-0 transition-all' +
+                ' hover:shadow-xl flex flex-col hover:cursor-pointer gap-4 group max-sm:border-r-0',
+              (index + 1) % 3 === 0 && 'xl:border-r-0',
             )}
           >
             <div className="flex items-center gap-4">

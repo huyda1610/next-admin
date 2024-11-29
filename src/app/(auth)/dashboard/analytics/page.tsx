@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import { useClientMetadata } from '@hooks/useClientMetadata';
-import AnalyticsInfo from '@app/(auth)/analytics/components/info';
-import AnalyticsTabs from '@app/(auth)/analytics/components/tabs';
+import AnalyticsInfo from './components/info';
+import AnalyticsTabs from './components/tabs';
 import AnalyticsVisitsSource from './components/visits-source';
-import AnalyticsVisitsData from '@app/(auth)/analytics/components/visits-data';
-import AnalyticsVisitsSales from '@app/(auth)/analytics/components/visits-sales';
+import AnalyticsVisitsData from './components/visits-data';
+import AnalyticsVisitsSales from './components/visits-sales';
 
 function AnalyticsPage() {
   useClientMetadata('Analytics');

@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@components/shadcn/accordion';
-import { Card } from '@components/shadcn/card';
+} from '@components/shadcn/ui/accordion';
+import { Card } from '@components/shadcn/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import {

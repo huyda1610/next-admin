@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import ShareIcon from '@components/share/icon';
 import { cn } from '@lib/utils';
 import generateRandomDate from '@core/utils/randomDate';

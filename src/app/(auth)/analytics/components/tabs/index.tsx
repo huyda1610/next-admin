@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { Card, CardContent } from '@components/shadcn/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/shadcn/tabs';
+import { Card, CardContent } from '@components/shadcn/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/shadcn/ui/tabs';
 import VisitsChart from './visits-chart';
 import TrafficChart from './traffic-chart';
 

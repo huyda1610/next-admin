@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import React from 'react';
 import ShareIcon, { ShareIconType } from '@components/share/icon';
 

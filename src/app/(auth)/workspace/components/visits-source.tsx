@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import { useCheckClient } from '@hooks/useCheckClient';
 import SharePieChart from '@components/share/charts/pie';
 

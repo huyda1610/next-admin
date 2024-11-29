@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import { cn } from '@lib/utils';
 import { ChartColumnBig, House, KeyRound, Layers3, LayoutPanelLeft, Settings } from 'lucide-react';
 

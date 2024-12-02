@@ -13,7 +13,6 @@ import {
   ChartArea,
   ChevronDown,
   LayoutGrid,
-  MessageSquareText,
   Minus,
   ScrollText,
   SquareMousePointer,
@@ -56,35 +55,30 @@ const sidebarItems: SidebarItems[] = [
     ],
   },
   {
-    groupName: 'Tables and Forms',
+    groupName: 'Demos',
     items: [
       {
         name: 'Form Builder',
         link: '/form-builder',
         icon: <SquareMousePointer className={iconClassName} />,
       },
-      {
-        name: 'Crypto Dashboard',
-        link: '/crypto-dashboard',
-        icon: <MessageSquareText className={iconClassName} />,
-      },
-      {
-        name: 'Test',
-        link: '/crypto-dashboard',
-        icon: <MessageSquareText className={iconClassName} />,
-        items: [
-          {
-            name: 'test1',
-            link: '/',
-            icon: <MessageSquareText className={iconClassName} />,
-          },
-          {
-            name: 'test2',
-            link: '/crypto-dashboard',
-            icon: <MessageSquareText className={iconClassName} />,
-          },
-        ],
-      },
+      // {
+      //   name: 'Test',
+      //   link: '/crypto-dashboard',
+      //   icon: <MessageSquareText className={iconClassName} />,
+      //   items: [
+      //     {
+      //       name: 'test1',
+      //       link: '/',
+      //       icon: <MessageSquareText className={iconClassName} />,
+      //     },
+      //     {
+      //       name: 'test2',
+      //       link: '/crypto-dashboard',
+      //       icon: <MessageSquareText className={iconClassName} />,
+      //     },
+      //   ],
+      // },
     ],
   },
 ];

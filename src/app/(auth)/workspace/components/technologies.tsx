@@ -12,42 +12,42 @@ const data = [
     name: 'Github',
     icon: 'github',
     desc: "Don't wait for opportunities, create them.",
-    group: 'Open source group',
+    group: 'Open source',
     date: generateRandomDate().format(DATE_FORMAT),
   },
   {
     name: 'Nextjs',
     icon: 'next',
     desc: 'Who you are now determines who you will be in the future.',
-    group: 'Algorithm group',
+    group: 'Algorithm',
     date: generateRandomDate().format(DATE_FORMAT),
   },
   {
     name: 'React',
     icon: 'react',
     desc: 'A healthy body is the cornerstone of achieving your goals.',
-    group: 'Technical group',
+    group: 'Technical',
     date: generateRandomDate().format(DATE_FORMAT),
   },
   {
     name: 'Typescript',
     icon: 'typescript',
     desc: 'The road is walked, not imagined.',
-    group: 'Architecture group',
+    group: 'Architecture',
     date: generateRandomDate().format(DATE_FORMAT),
   },
   {
     name: 'Html5',
     icon: 'html',
     desc: 'No talent is more important than hard work.',
-    group: 'UI group',
+    group: 'UI',
     date: generateRandomDate().format(DATE_FORMAT),
   },
   {
     name: 'Css3',
     icon: 'css',
     desc: 'Passion and desire can overcome all obstacles.',
-    group: 'UI group',
+    group: 'UI',
     date: generateRandomDate().format(DATE_FORMAT),
   },
 ];
@@ -65,7 +65,8 @@ function WorkspaceTechnologies() {
           <section
             key={item.icon}
             className={cn(
-              'p-4 border border-solid border-border-color border-l-0 border-b-0 transition-all' +
+              'p-4 border border-solid border-border-color border-l-0 justify-between' +
+                ' transition-all' +
                 ' hover:shadow-xl flex flex-col hover:cursor-pointer gap-4 group max-sm:border-r-0',
               (index + 1) % 3 === 0 && 'xl:border-r-0',
             )}
@@ -81,9 +82,7 @@ function WorkspaceTechnologies() {
               />
               <strong className="text-lg">{item.name}</strong>
             </div>
-            <div className="h-10">
-              <span>{item.desc}</span>
-            </div>
+            <span className="line-clamp-2">{item.desc}</span>
             <div className="flex justify-between">
               <span>{item.group}</span>
               <span>{item.date}</span>

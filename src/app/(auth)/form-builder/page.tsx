@@ -1,14 +1,21 @@
+'use client';
 import React from 'react';
-import SharePageHeader from '@components/share/page-layout/header';
+import CommonPage from '@components/common-ui/page';
+import DragAndDrop from './components/drag-and-drop';
+import { useCheckClient } from '@hooks/useCheckClient';
 
 function FormBuilderPage() {
+  const { isClient } = useCheckClient();
+
+  if (!isClient) return null;
+
   return (
-    <div>
-      <SharePageHeader
-        title="Form Builder"
-        description="descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
-      />
-    </div>
+    <CommonPage
+      title="Form Builder"
+      description="descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription"
+    >
+      <DragAndDrop />
+    </CommonPage>
   );
 }
 

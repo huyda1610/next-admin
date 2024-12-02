@@ -13,16 +13,16 @@ import {
   MessageSquareText,
   UserCog,
 } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '@components/shadcn/popover';
-import { Badge } from '@components/shadcn/badge';
+import { Popover, PopoverContent, PopoverTrigger } from '@components/shadcn/ui/popover';
+import { Badge } from '@components/shadcn/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@components/shadcn/dropdown-menu';
+} from '@components/shadcn/ui/dropdown-menu';
 import { usePathname } from 'next/navigation';
-import { Button } from '@components/shadcn/button';
+import { Button } from '@components/shadcn/ui/button';
 
 const Header = () => {
   const pathName = usePathname();

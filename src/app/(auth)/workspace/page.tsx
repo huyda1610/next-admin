@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import WorkspaceHeader from '@app/(auth)/workspace/components/header';
+import WorkspaceHeader from './components/header';
 import WorkspaceTechnologies from './components/technologies';
-import WorkspaceNavigator from '@app/(auth)/workspace/components/navigator';
-import WorkspaceNews from '@app/(auth)/workspace/components/news';
-import WorkspaceTodoList from '@app/(auth)/workspace/components/todo';
-import WorkspaceVisitsSource from '@app/(auth)/workspace/components/visits-source';
+import WorkspaceNavigator from './components/navigator';
+import WorkspaceNews from './components/news';
+import WorkspaceTodoList from './components/todo';
+import WorkspaceVisitsSource from './components/visits-source';
 import { useClientMetadata } from '@hooks/useClientMetadata';
 
 function WorkspacePage() {

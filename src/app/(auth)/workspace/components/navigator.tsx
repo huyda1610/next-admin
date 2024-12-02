@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import { cn } from '@lib/utils';
 import { ChartColumnBig, House, KeyRound, Layers3, LayoutPanelLeft, Settings } from 'lucide-react';
 
@@ -52,9 +52,10 @@ function WorkspaceNavigator() {
           <section
             key={item.name}
             className={cn(
-              'py-8 border border-solid border-border-color border-l-0 transition-all' +
-                ' hover:shadow-xl flex flex-col hover:cursor-pointer items-center group',
-              (index + 1) % 3 === 0 && 'border-r-0',
+              'p-8 border border-solid border-border-color border-l-0 border-b-0 transition-all' +
+                ' hover:shadow-xl flex flex-col hover:cursor-pointer items-center' +
+                ' max-sm:border-r-0 group',
+              (index + 1) % 3 === 0 && 'xl:border-r-0',
             )}
           >
             {item.icon}

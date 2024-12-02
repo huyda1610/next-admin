@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@components/shadcn/card';
+import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import generateRandomDate from '@core/utils/randomDate';
 import { DATE_FORMAT } from '@core/const/app-const';
 import { cn } from '@lib/utils';
-import { Checkbox } from '@components/shadcn/checkbox';
+import { Checkbox } from '@components/shadcn/ui/checkbox';
 import { useCheckClient } from '@hooks/useCheckClient';
 
 const data = [

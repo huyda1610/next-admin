@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@components/shadcn/card';
+import { Card, CardContent } from '@components/shadcn/ui/card';
 
 const PageHeading = ({ heading, className }: any) => {
   return (

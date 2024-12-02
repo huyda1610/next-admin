@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@components/shadcn/accordion';
-import { Card } from '@components/shadcn/card';
+} from '@components/shadcn/ui/accordion';
+import { Card } from '@components/shadcn/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -16,6 +16,7 @@ import {
   MessageSquareText,
   Minus,
   ScrollText,
+  SquareMousePointer,
   X,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -36,6 +37,8 @@ type SidebarItems = {
   items: Items[];
 };
 
+const iconClassName: string = 'size-[18px] shrink-0';
+
 const sidebarItems: SidebarItems[] = [
   {
     groupName: 'Dashboard',
@@ -43,12 +46,12 @@ const sidebarItems: SidebarItems[] = [
       {
         name: 'Analytics',
         link: '/',
-        icon: <ChartArea className="size-[18px] shrink-0" />,
+        icon: <ChartArea className={iconClassName} />,
       },
       {
         name: 'Workspace',
         link: '/workspace',
-        icon: <LayoutGrid className="size-[18px] shrink-0" />,
+        icon: <LayoutGrid className={iconClassName} />,
       },
     ],
   },
@@ -56,29 +59,29 @@ const sidebarItems: SidebarItems[] = [
     groupName: 'Tables and Forms',
     items: [
       {
-        name: 'Dashboard',
-        link: '/',
-        icon: <MessageSquareText className="size-[18px] shrink-0" />,
+        name: 'Form Builder',
+        link: '/form-builder',
+        icon: <SquareMousePointer className={iconClassName} />,
       },
       {
         name: 'Crypto Dashboard',
         link: '/crypto-dashboard',
-        icon: <MessageSquareText className="size-[18px] shrink-0" />,
+        icon: <MessageSquareText className={iconClassName} />,
       },
       {
         name: 'Test',
         link: '/crypto-dashboard',
-        icon: <MessageSquareText className="size-[18px] shrink-0" />,
+        icon: <MessageSquareText className={iconClassName} />,
         items: [
           {
             name: 'test1',
             link: '/',
-            icon: <MessageSquareText className="size-[18px] shrink-0" />,
+            icon: <MessageSquareText className={iconClassName} />,
           },
           {
             name: 'test2',
             link: '/crypto-dashboard',
-            icon: <MessageSquareText className="size-[18px] shrink-0" />,
+            icon: <MessageSquareText className={iconClassName} />,
           },
         ],
       },
@@ -176,7 +179,7 @@ const Sidebar = () => {
         <button
           type="button"
           onClick={toggleSidebar}
-          className="absolute -right-2.5 top-[50px] hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
+          className="absolute -right-3 top-[12px] hidden size-6 place-content-center rounded-full border border-gray-300 bg-white text-black lg:grid"
         >
           <ChevronDown className={`h-4 w-4 rotate-90 ${isSidebarOpen ? 'hidden' : ''}`} />
           <ChevronDown className={`hidden h-4 w-4 -rotate-90 ${isSidebarOpen ? '!block' : ''}`} />
@@ -256,7 +259,7 @@ const Sidebar = () => {
                       className="p-0 shadow-none"
                     >
                       <AccordionTrigger className="nav-link">
-                        <ScrollText className="size-[18px] shrink-0" />
+                        <ScrollText className={iconClassName} />
                         <span>{sidebarItems.name}</span>
                       </AccordionTrigger>
                       <AccordionContent>

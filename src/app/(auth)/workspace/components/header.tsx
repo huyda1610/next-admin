@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Card, CardContent } from '@components/shadcn/card';
+import { Card, CardContent } from '@components/shadcn/ui/card';
 import Image from 'next/image';
 
 function WorkspaceHeader() {

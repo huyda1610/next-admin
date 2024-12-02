@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge } from '@components/shadcn/badge';
+import { Badge } from '@components/shadcn/ui/badge';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@lib/utils';

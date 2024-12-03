@@ -12,10 +12,11 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import Container from './container';
-import { Item } from './sortable-item';
 import type { DragOverEvent } from '@dnd-kit/core/dist/types';
+import { FormProvider, useForm } from 'react-hook-form';
 
 function DragAndDrop() {
+  // const form = useFormField();
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -24,8 +25,8 @@ function DragAndDrop() {
   );
   const [activeId, setActiveId] = useState();
   const [items, setItems] = useState({
-    root: ['1', '2', '3'],
-    container1: ['4', '5', '6'],
+    root: ['1'],
+    container1: [],
   });
 
   function findContainer(id) {
@@ -116,6 +117,8 @@ function DragAndDrop() {
     setActiveId(null);
   }
 
+  const form = useForm();
+
   return (
     <div>
       <DndContext
@@ -125,12 +128,14 @@ function DragAndDrop() {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="grid grid-cols-3">
-          <Container id="root" items={items.root} />
-          <Container id="container1" items={items.container1} />
-        </div>
+        <FormProvider {...form}>
+          <div className="grid grid-cols-3 gap-5">
+            <Container id="root" items={items.root} />
+            <Container id="container1" items={items.container1} />
+          </div>
 
-        <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
+          <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
+        </FormProvider>
       </DndContext>
     </div>
   );

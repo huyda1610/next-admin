@@ -2,22 +2,19 @@
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import FormInput from '@components/form-ui/form-input';
 
-export function Item(props) {
+export function Item(props: any) {
   const { id } = props;
 
-  const style = {
-    width: '100%',
-    height: 50,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: '1px solid black',
-    margin: '10px 0',
-    background: 'white',
-  };
-
-  return <div style={style}>{id}</div>;
+  return (
+    <div
+      id={id}
+      className="w-full h-full bg-white p-3 border-2 border-solid border-border-color rounded-xl"
+    >
+      <FormInput name="asdasd" label="huyda4" placeholder="test" />
+    </div>
+  );
 }
 
 export default function SortableItem(props) {

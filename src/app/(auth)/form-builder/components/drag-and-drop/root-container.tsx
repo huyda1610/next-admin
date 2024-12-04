@@ -2,22 +2,27 @@
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import SortableItem from './sortable-item';
 import { Card, CardContent } from '@components/shadcn/ui/card';
+import { FormItemType } from './type';
+import SortableItem from './sortable-item';
 
-function Container(props) {
-  const { id, items } = props;
+type PropsType = {
+  id: string;
+  items: FormItemType[];
+  className?: string;
+};
 
+function RootContainer({ items, id, className }: PropsType) {
   const { setNodeRef } = useDroppable({
     id,
   });
 
   return (
     <SortableContext id={id} items={items} strategy={verticalListSortingStrategy}>
-      <Card>
+      <Card className={className}>
         <CardContent ref={setNodeRef} className="flex flex-col gap-4 p-4 rounded-xl">
-          {items.map((id) => (
-            <SortableItem key={id} id={id} />
+          {items.map((item) => (
+            <SortableItem key={item.id} {...item} />
           ))}
         </CardContent>
       </Card>
@@ -25,4 +30,4 @@ function Container(props) {
   );
 }
 
-export default Container;
+export default RootContainer;

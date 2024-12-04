@@ -7,21 +7,26 @@ import {
   FormLabel,
   FormMessage,
 } from '@components/shadcn/ui/form';
-import { Input } from '@components/shadcn/ui/input';
+import { Input, InputProps } from '@components/shadcn/ui/input';
 import { FormUIType } from '@components/form-ui/type';
+import { useForm } from 'react-hook-form';
 
-type FormInputType = FormUIType & {};
+export type FormInputType = FormUIType & {
+  componentProps?: InputProps;
+};
 
-function FormInput({ name, control, label, description, placeholder }: FormInputType) {
+function FormInput({ fieldName, control, label, description, componentProps }: FormInputType) {
+  const form = useForm();
+
   return (
     <FormField
-      control={control}
-      name={name}
+      control={control ?? form.control}
+      name={fieldName}
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input {...componentProps} {...field} />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />

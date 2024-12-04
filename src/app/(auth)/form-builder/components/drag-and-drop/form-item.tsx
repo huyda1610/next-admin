@@ -2,12 +2,22 @@
 import React from 'react';
 import FormInput from '@components/form-ui/form-input';
 import { FormItemType } from './type';
+import { cn } from '@lib/utils';
 
-function FormItem(props: FormItemType) {
+export default function FormItem({ id, type, isDemo, componentControls }: FormItemType) {
   const renderItem = (): React.ReactNode => {
-    switch (props.type) {
+    switch (type) {
       case 'input':
-        return <FormInput name="asdasd" label="huyda4" placeholder="test" />;
+        return (
+          <FormInput
+            fieldName="asdasd"
+            label="huyda4"
+            componentProps={{
+              placeholder: 'test',
+            }}
+            {...componentControls}
+          />
+        );
       default:
         return <></>;
     }
@@ -15,12 +25,13 @@ function FormItem(props: FormItemType) {
 
   return (
     <div
-      id={props.id}
-      className="w-full h-full bg-white p-3 border-2 border-solid border-border-color rounded-xl"
+      id={id}
+      className={cn(
+        'w-full h-full bg-white p-3 border-2 border-solid border-border-color rounded-xl',
+        isDemo && 'border-primary border-dashed opacity-50',
+      )}
     >
       {renderItem()}
     </div>
   );
 }
-
-export default FormItem;

@@ -11,7 +11,7 @@ import { Input, InputProps } from '@components/shadcn/ui/input';
 import { FormUIType } from '@components/form-ui/type';
 import { useForm } from 'react-hook-form';
 
-type FormInputType = FormUIType & {
+export type FormInputType = FormUIType & {
   componentProps?: InputProps;
 };
 

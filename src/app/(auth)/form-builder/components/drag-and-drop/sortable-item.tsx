@@ -2,6 +2,7 @@ import React from 'react';
 import { FormItemType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
 import { useSortable } from '@dnd-kit/sortable';
 import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
+import { CSS } from '@dnd-kit/utilities';
 
 function SortableItem(props: FormItemType) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
@@ -9,7 +10,7 @@ function SortableItem(props: FormItemType) {
   });
 
   const style = {
-    transform: transform?.toString(),
+    transform: CSS.Transform.toString(transform),
     transition,
   };
 

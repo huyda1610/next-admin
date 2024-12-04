@@ -37,6 +37,26 @@ function DragAndDrop() {
       {
         id: '1',
         type: 'input',
+        componentControls: {
+          label: 'test1',
+          fieldName: 'test',
+        },
+      },
+      {
+        id: '2',
+        type: 'input',
+        componentControls: {
+          label: 'test2',
+          fieldName: 'test',
+        },
+      },
+      {
+        id: '3',
+        type: 'input',
+        componentControls: {
+          label: 'test3',
+          fieldName: 'test',
+        },
       },
     ],
     form: [],
@@ -134,6 +154,8 @@ function DragAndDrop() {
     const activeIndex = items[activeContainer].findIndex((item) => item.id === id);
     const overIndex = items[overContainer].findIndex((item) => item.id === over?.id);
 
+    console.log(arrayMove(items[overContainer], activeIndex, overIndex));
+
     if (activeIndex !== overIndex) {
       setItems((items) => ({
         ...items,
@@ -158,7 +180,7 @@ function DragAndDrop() {
           <FormContainer id="form" items={items.form} />
         </div>
 
-        <DragOverlay>{activeItem ? <FormItem {...activeItem} /> : null}</DragOverlay>
+        <DragOverlay>{activeItem ? <FormItem {...activeItem} isDemo /> : null}</DragOverlay>
       </DndContext>
     </div>
   );

@@ -6,10 +6,11 @@ import RootContainer from '@app/(auth)/form-builder/components/drag-and-drop/roo
 type PropsType = {
   id: string;
   items: FormItemType[];
+  className?: string;
 };
 
-function FormContainer({ items, id }: PropsType) {
-  return <RootContainer id={id} items={items} />;
+function FormContainer({ items, id, className }: PropsType) {
+  return <RootContainer id={id} className={className} items={items} />;
 }
 
 export default FormContainer;

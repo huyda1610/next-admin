@@ -9,16 +9,17 @@ import SortableItem from './sortable-item';
 type PropsType = {
   id: string;
   items: FormItemType[];
+  className?: string;
 };
 
-function RootContainer({ items, id }: PropsType) {
+function RootContainer({ items, id, className }: PropsType) {
   const { setNodeRef } = useDroppable({
     id,
   });
 
   return (
     <SortableContext id={id} items={items} strategy={verticalListSortingStrategy}>
-      <Card>
+      <Card className={className}>
         <CardContent ref={setNodeRef} className="flex flex-col gap-4 p-4 rounded-xl">
           {items.map((item) => (
             <SortableItem key={item.id} {...item} />

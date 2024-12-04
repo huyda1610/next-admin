@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-@import "utils/_reset.scss";
-@import "utils/_nprogress";
-@import "utils/_loading";
+@use "utils/_reset.scss";
+@use "utils/_nprogress";
+@use "utils/_loading";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

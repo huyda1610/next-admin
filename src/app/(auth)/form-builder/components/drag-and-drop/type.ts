@@ -11,3 +11,8 @@ type FormItemInput = DefaultFormItem & {
   type: 'input';
   componentControls?: FormInputType;
 };
+
+export type ItemsType = {
+  root: FormItemType[];
+  form: FormItemType[];
+};

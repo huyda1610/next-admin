@@ -14,13 +14,8 @@ import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import type { DragOverEvent } from '@dnd-kit/core/dist/types';
 import RootContainer from '@app/(auth)/form-builder/components/drag-and-drop/root-container';
 import FormContainer from '@app/(auth)/form-builder/components/drag-and-drop/form-container';
-import { FormItemType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
+import { FormItemType, ItemsType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
 import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
-
-type ItemsType = {
-  root: FormItemType[];
-  form: FormItemType[];
-};
 
 function DragAndDrop() {
   // const form = useFormField();
@@ -39,22 +34,6 @@ function DragAndDrop() {
         type: 'input',
         componentControls: {
           label: 'test1',
-          fieldName: 'test',
-        },
-      },
-      {
-        id: '2',
-        type: 'input',
-        componentControls: {
-          label: 'test2',
-          fieldName: 'test',
-        },
-      },
-      {
-        id: '3',
-        type: 'input',
-        componentControls: {
-          label: 'test3',
           fieldName: 'test',
         },
       },
@@ -101,7 +80,12 @@ function DragAndDrop() {
     const activeContainer = findContainer(id);
     const overContainer = findContainer(overId);
 
-    if (!activeContainer || !overContainer || activeContainer === overContainer) {
+    if (
+      !activeContainer ||
+      !overContainer ||
+      activeContainer === overContainer ||
+      overContainer === 'root'
+    ) {
       return;
     }
 
@@ -130,11 +114,19 @@ function DragAndDrop() {
 
       return {
         ...prev,
-        [activeContainer]: [...prev[activeContainer].filter((item) => item.id !== active.id)],
+        [activeContainer]: [
+          ...prev[activeContainer].filter((item) => item.id !== active.id),
+          {
+            ...items[activeContainer][activeIndex],
+            id: crypto.randomUUID(),
+          },
+        ],
         [overContainer]: [
-          ...prev[overContainer].slice(0, newIndex),
+          ...prev[overContainer].slice(0, newIndex).filter((item) => item.id !== active.id),
           items[activeContainer][activeIndex],
-          ...prev[overContainer].slice(newIndex, prev[overContainer].length),
+          ...prev[overContainer]
+            .slice(newIndex, prev[overContainer].length)
+            .filter((item) => item.id !== active.id),
         ],
       };
     });
@@ -153,8 +145,6 @@ function DragAndDrop() {
 
     const activeIndex = items[activeContainer].findIndex((item) => item.id === id);
     const overIndex = items[overContainer].findIndex((item) => item.id === over?.id);
-
-    console.log(arrayMove(items[overContainer], activeIndex, overIndex));
 
     if (activeIndex !== overIndex) {
       setItems((items) => ({
@@ -177,7 +167,7 @@ function DragAndDrop() {
       >
         <div className="grid grid-cols-3 gap-5">
           <RootContainer id="root" items={items.root} />
-          <FormContainer id="form" items={items.form} />
+          <FormContainer id="form" items={items.form} setItems={setItems} />
         </div>
 
         <DragOverlay>{activeItem ? <FormItem {...activeItem} isDemo /> : null}</DragOverlay>

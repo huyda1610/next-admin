@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+//@import url('https://fonts.cdnfonts.com/css/segoe-ui-4');
 
 #root {
   display: flex;
@@ -12,7 +12,9 @@
 
 body {
   @apply m-0 box-border p-0;
+  font-size: 14px;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 * {

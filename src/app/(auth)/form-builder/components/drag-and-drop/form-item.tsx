@@ -3,11 +3,19 @@ import React from 'react';
 import FormInput from '@components/form-ui/form-input';
 import { FormItemType } from './type';
 
-function FormItem(props: FormItemType) {
+export default function FormItem(props: FormItemType) {
   const renderItem = (): React.ReactNode => {
     switch (props.type) {
       case 'input':
-        return <FormInput name="asdasd" label="huyda4" placeholder="test" />;
+        return (
+          <FormInput
+            fieldName="asdasd"
+            label="huyda4"
+            componentProps={{
+              placeholder: 'test',
+            }}
+          />
+        );
       default:
         return <></>;
     }
@@ -22,5 +30,3 @@ function FormItem(props: FormItemType) {
     </div>
   );
 }
-
-export default FormItem;

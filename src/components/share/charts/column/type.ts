@@ -1,10 +1,10 @@
-export type ShareColumnChartDataType = {
+export type NextColumnChartDataType = {
   value: number;
   name: string;
 };
 
-export type ShareColumnChartProps = {
-  data: ShareColumnChartDataType[];
+export type NextColumnChartProps = {
+  data: NextColumnChartDataType[];
 
   colors?: string[];
 };

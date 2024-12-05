@@ -1,10 +1,10 @@
-export type SharePieChartDataType = {
+export type NextPieChartDataType = {
   value: number;
   name: string;
 };
 
-export type SharePieChartProps = {
-  data: SharePieChartDataType[];
+export type NextPieChartProps = {
+  data: NextPieChartDataType[];
 
   colors?: string[];
 };

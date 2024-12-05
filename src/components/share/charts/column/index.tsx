@@ -2,9 +2,9 @@
 import ReactECharts from 'echarts-for-react';
 import React from 'react';
 import { EChartsOption } from 'echarts-for-react/src/types';
-import { ShareColumnChartProps } from '@components/share/charts/column/type';
+import { NextColumnChartProps } from '@components/share/charts/column/type';
 
-function ShareColumnChart(props: ShareColumnChartProps) {
+function NextColumnChart(props: NextColumnChartProps) {
   const option: EChartsOption = {
     tooltip: {
       trigger: 'axis',
@@ -46,6 +46,6 @@ function ShareColumnChart(props: ShareColumnChartProps) {
   return <ReactECharts option={option} />;
 }
 
-export default React.memo(ShareColumnChart, (prevProps, nextProps) => {
+export default React.memo(NextColumnChart, (prevProps, nextProps) => {
   return prevProps.data === nextProps.data;
 });

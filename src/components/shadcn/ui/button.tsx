@@ -5,29 +5,35 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-1.5 text-xs/4 duration-300 whitespace-nowrap outline-none font-medium text-center px-2.5 py-2 rounded-lg disabled:pointer-events-none disabled:opacity-30 transition [&>svg]:size-4 [&>svg]:shrink-0',
+  'inline-flex items-center justify-center gap-1.5 duration-300 whitespace-nowrap w-fit' +
+    ' outline-none font-medium text-center px-[15px] py-1 rounded-lg disabled:pointer-events-none' +
+    ' disabled:opacity-30 transition [&>svg]:size-4 [&>svg]:shrink-0',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-white hover:bg-[#2A4DD7]',
+        primary: 'bg-primary text-white hover:bg-[#2A4DD7]',
         black: 'bg-black text-white hover:bg-[#3C3C3D]',
+        text: 'bg-transparent text-black hover:bg-gray-light',
         outline:
           'ring-1 ring-inset ring-primary bg-white shadow-sm text-primary hover:bg-light-theme',
         'outline-black':
           'ring-1 ring-inset ring-black bg-white shadow-sm text-black hover:bg-gray-200',
         'outline-general':
-          'ring-1 ring-inset ring-gray-300 bg-white shadow-sm text-black hover:bg-gray-200',
+          'ring-1 ring-inset ring-gray-300 bg-white shadow-sm text-black hover:bg-gray-200' +
+          ' hover:text-primary hover:ring-primary',
+        'outline-danger':
+          'ring-1 ring-inset ring-gray-300 bg-white shadow-sm text-black hover:bg-gray-200' +
+          ' hover:text-danger hover:ring-danger',
       },
       size: {
-        default: '',
-        small: '',
-        large: 'py-2 px-3 text-sm',
-        extralarge: 'font-semibold [&>svg]:size-[18px] rounded-[10px] text-sm py-[11px] px-3.5',
+        sm: '',
+        lg: 'py-2 px-3 text-sm',
+        xl: 'font-semibold [&>svg]:size-[18px] rounded-[10px] text-sm py-[11px] px-3.5',
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: 'primary',
+      size: 'sm',
     },
   },
 );

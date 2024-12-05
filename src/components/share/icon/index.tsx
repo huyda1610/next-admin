@@ -16,7 +16,7 @@ import { ClockSvg } from '@components/share/icon/svg/clock';
 import { DownloadSvg } from '@components/share/icon/svg/download';
 import { BarChartSvg } from '@components/share/icon/svg/bar-chart';
 
-export type ShareIconType =
+export type NextIconType =
   | 'github'
   | 'next'
   | 'react'
@@ -34,7 +34,7 @@ export type ShareIconType =
   | 'barchart';
 
 type IconProps = {
-  select: ShareIconType;
+  select: NextIconType;
 
   iconProps?: SVGProps<SVGSVGElement>;
 };
@@ -57,8 +57,8 @@ const iconMap = {
   barchart: (props?: SVGProps<SVGSVGElement>) => <BarChartSvg {...props}></BarChartSvg>,
 } as any;
 
-function ShareIcon(props: IconProps): React.ReactElement {
+function NextIcon(props: IconProps): React.ReactElement {
   return iconMap[props.select](props.iconProps) || <></>;
 }
 
-export default ShareIcon;
+export default NextIcon;

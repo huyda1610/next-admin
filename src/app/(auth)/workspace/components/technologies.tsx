@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
-import ShareIcon from '@components/share/icon';
+import NextIcon from '@components/share/icon';
 import { cn } from '@lib/utils';
 import generateRandomDate from '@core/utils/randomDate';
 import { DATE_FORMAT } from '@core/const/app-const';
@@ -72,7 +72,7 @@ function WorkspaceTechnologies() {
             )}
           >
             <div className="flex items-center gap-4">
-              <ShareIcon
+              <NextIcon
                 select={item.icon as any}
                 iconProps={{
                   width: 32,

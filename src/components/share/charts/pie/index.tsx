@@ -1,10 +1,10 @@
 'use client';
 import ReactECharts from 'echarts-for-react';
 import React from 'react';
-import { SharePieChartProps } from '@components/share/charts/pie/type';
+import { NextPieChartProps } from '@components/share/charts/pie/type';
 import { EChartsOption } from 'echarts-for-react/src/types';
 
-function SharePieChart(props: SharePieChartProps) {
+function NextPieChart(props: NextPieChartProps) {
   const option: EChartsOption = {
     legend: {
       bottom: '2%',
@@ -50,6 +50,6 @@ function SharePieChart(props: SharePieChartProps) {
   return <ReactECharts option={option} />;
 }
 
-export default React.memo(SharePieChart, (prevProps, nextProps) => {
+export default React.memo(NextPieChart, (prevProps, nextProps) => {
   return prevProps.data === nextProps.data;
 });

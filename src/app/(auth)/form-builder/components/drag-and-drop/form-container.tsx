@@ -7,6 +7,7 @@ import SortableItem from '@app/(auth)/form-builder/components/drag-and-drop/sort
 import { useDroppable } from '@dnd-kit/core';
 import { Button } from '@components/shadcn/ui/button';
 import { Pencil, Trash2 } from 'lucide-react';
+import InputDialog from '@app/(auth)/form-builder/components/dialog/input-dialog';
 
 type PropsType = {
   id: string;
@@ -36,22 +37,25 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
           {items.map((item) => (
             <div key={item.id} className="relative group">
               <div className="absolute -top-3 right-4 group-hover:visible invisible ease-in-out transition duration-400 flex gap-2">
-                <Button variant="outline-general" className="p-2 rounded-full">
-                  <Pencil className="size-2" />
-                </Button>
+                <InputDialog>
+                  <Button variant="outline-general" className="p-2 rounded-full">
+                    <Pencil className="size-2" />
+                  </Button>
+                </InputDialog>
+
                 <Button
-                  variant="outline-general"
+                  variant="outline-danger"
                   className="p-2 rounded-full"
                   onClick={() => handleRemove(item.id)}
                 >
-                  <Trash2 className="size-2 text-danger" />
+                  <Trash2 className="size-2" />
                 </Button>
               </div>
               <SortableItem {...item} />
             </div>
           ))}
 
-          {items.length ? <Button>Submit</Button> : <></>}
+          {items.length ? <Button>Submit</Button> : <div></div>}
         </CardContent>
       </Card>
     </SortableContext>

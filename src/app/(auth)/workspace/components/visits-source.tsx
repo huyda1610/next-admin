@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import { useCheckClient } from '@hooks/useCheckClient';
-import SharePieChart from '@components/share/charts/pie';
+import NextPieChart from '@components/share/charts/pie';
 
 const data = [
   { name: 'Search Engine', value: 1048 },
@@ -20,7 +20,7 @@ function WorkspaceVisitsSource() {
     <Card>
       <CardHeader>Visits Source</CardHeader>
       <CardContent>
-        <SharePieChart data={data} colors={['#5ab1ef', '#b6a2de', '#67e0e3', '#2ec7c9']} />
+        <NextPieChart data={data} colors={['#5ab1ef', '#b6a2de', '#67e0e3', '#2ec7c9']} />
       </CardContent>
     </Card>
   );

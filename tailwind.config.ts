@@ -29,7 +29,7 @@ export default {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#FFFFFF',
-
+      background: '#FFFFFF',
       black: '#171718',
       'black-background': '#3C3C3D',
       primary: '#335CFF',

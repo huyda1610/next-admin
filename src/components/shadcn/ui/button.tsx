@@ -20,7 +20,10 @@ const buttonVariants = cva(
           'ring-1 ring-inset ring-black bg-white shadow-sm text-black hover:bg-gray-200',
         'outline-general':
           'ring-1 ring-inset ring-gray-300 bg-white shadow-sm text-black hover:bg-gray-200' +
-          ' hover:text-primary hover:border-primary',
+          ' hover:text-primary hover:ring-primary',
+        'outline-danger':
+          'ring-1 ring-inset ring-gray-300 bg-white shadow-sm text-black hover:bg-gray-200' +
+          ' hover:text-danger hover:ring-danger',
       },
       size: {
         sm: '',

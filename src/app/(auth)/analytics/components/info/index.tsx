@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import CardItem from './card-item';
-import { ShareIconType } from '@components/share/icon';
+import { NextIconType } from '@components/share/icon';
 
 const data = [
   {
@@ -9,28 +9,28 @@ const data = [
     value: 2000,
     totalTitle: 'Total',
     totalValue: 120000,
-    icon: 'card' as ShareIconType,
+    icon: 'card' as NextIconType,
   },
   {
     title: 'Visits',
     value: 2000,
     totalTitle: 'Total',
     totalValue: 500000,
-    icon: 'barchart' as ShareIconType,
+    icon: 'barchart' as NextIconType,
   },
   {
     title: 'Downloads',
     value: 8000,
     totalTitle: 'Total',
     totalValue: 120000,
-    icon: 'download' as ShareIconType,
+    icon: 'download' as NextIconType,
   },
   {
     title: 'Usage',
     value: 5000,
     totalTitle: 'Total',
     totalValue: 50000,
-    icon: 'clock' as ShareIconType,
+    icon: 'clock' as NextIconType,
   },
 ];
 

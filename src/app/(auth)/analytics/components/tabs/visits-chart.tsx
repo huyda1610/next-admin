@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import ShareColumnChart from '@components/share/charts/column';
+import NextColumnChart from '@components/share/charts/column';
 
 function VisitsChart() {
   const data = [
@@ -54,7 +54,7 @@ function VisitsChart() {
     },
   ];
 
-  return <ShareColumnChart data={data} />;
+  return <NextColumnChart data={data} />;
 }
 
 export default VisitsChart;

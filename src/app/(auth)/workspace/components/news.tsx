@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
-import ShareIcon from '@components/share/icon';
+import NextIcon from '@components/share/icon';
 import { useCheckClient } from '@hooks/useCheckClient';
 import { getRandomNumberInRange } from '@core/utils/randomNumber';
 import dayjs from 'dayjs';
@@ -56,7 +56,7 @@ function WorkspaceNews() {
             )}
           >
             <div className="flex gap-x-4 items-center">
-              <ShareIcon
+              <NextIcon
                 select={item.avatar as any}
                 iconProps={{
                   width: 40,

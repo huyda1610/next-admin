@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@components/shadcn/ui/card';
 import React from 'react';
-import ShareIcon, { ShareIconType } from '@components/share/icon';
+import NextIcon, { NextIconType } from '@components/share/icon';
 import CountUp from 'react-countup';
 
 type ItemType = {
@@ -8,7 +8,7 @@ type ItemType = {
   value: number;
   totalTitle: string;
   totalValue: number;
-  icon: ShareIconType;
+  icon: NextIconType;
 };
 
 type PropsType = {
@@ -22,14 +22,14 @@ function CardItem({ item }: PropsType) {
       <CardContent className="flex flex-col">
         <div className="flex justify-between p-6 pt-0">
           <CountUp className="text-xl" start={1} end={item.value} />
-          <ShareIcon
+          <NextIcon
             select={item.icon}
             iconProps={{
               width: 36,
               height: 36,
               className: 'text-danger',
             }}
-          ></ShareIcon>
+          ></NextIcon>
         </div>
         <div className="flex justify-between p-6 pt-0">
           <span>{item.totalTitle}</span>

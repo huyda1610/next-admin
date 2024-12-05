@@ -53,6 +53,7 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hook-form": "^7.53.2",
     "react-resizable-panels": "^2.1.7",
+    "recharts": "^2.14.1",
     "sass": "^1.81.0",
     "shadcn": "^2.1.6",
     "sonner": "^1.7.0",

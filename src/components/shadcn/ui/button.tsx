@@ -26,6 +26,7 @@ const buttonVariants = cva(
           ' hover:text-danger hover:ring-danger',
       },
       size: {
+        default: '',
         sm: '',
         lg: 'py-2 px-3 text-sm',
         xl: 'font-semibold [&>svg]:size-[18px] rounded-[10px] text-sm py-[11px] px-3.5',
@@ -33,7 +34,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: 'primary',
-      size: 'sm',
+      size: 'default',
     },
   },
 );

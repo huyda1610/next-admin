@@ -1,6 +1,7 @@
-'use client';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@core/const/app-const';
+
+export {}; // This makes the file a module
 
 declare global {
   interface String {

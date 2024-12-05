@@ -1,4 +1,5 @@
-'use client';
+export {}; // This makes the file a module
+
 declare global {
   interface Number {
     toCurrencyFormat(): string;

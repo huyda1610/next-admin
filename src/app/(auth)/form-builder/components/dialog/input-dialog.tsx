@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -78,11 +77,10 @@ function InputDialog({ children }: PropsType) {
                 </FormItem>
               )}
             />
+            <Button type="submit">Save changes</Button>
           </form>
         </Form>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+        {/*<DialogFooter></DialogFooter>*/}
       </DialogContent>
     </Dialog>
   );

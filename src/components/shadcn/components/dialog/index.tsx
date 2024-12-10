@@ -5,9 +5,12 @@ import { NextDialogProps } from '@components/shadcn/components/dialog/type';
 import { cn } from '@lib/utils';
 import { Expand, Shrink, X } from 'lucide-react';
 import { Button } from '@components/shadcn/ui/button';
+import NextRenderIf from '@components/common-ui/render-if';
 
-function NextDialog({ children, open, setOpen, size, header, body }: NextDialogProps) {
+function NextDialog({ children, open, setOpen, size, header, className, body }: NextDialogProps) {
   const [isExpand, setIsExpand] = React.useState<boolean>(false);
+
+  console.log(isExpand);
 
   const renderSize = (): string => {
     if (size === 'full' || isExpand) {
@@ -18,6 +21,7 @@ function NextDialog({ children, open, setOpen, size, header, body }: NextDialogP
 
     switch (size) {
       case 'sm':
+      default:
         dialogSize = 520;
         break;
       case 'md':
@@ -29,12 +33,9 @@ function NextDialog({ children, open, setOpen, size, header, body }: NextDialogP
       case 'xl':
         dialogSize = 1120;
         break;
-      default:
-        dialogSize = 520;
-        break;
     }
 
-    return 'sm:w-[' + dialogSize + 'px]';
+    return `sm:max-w-[${dialogSize}px]`;
   };
 
   const handleClose = () => {
@@ -47,7 +48,7 @@ function NextDialog({ children, open, setOpen, size, header, body }: NextDialogP
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className={`${renderSize()} w-full p-0 flex flex-col gap-0`}>
+      <DialogContent className={cn('w-full p-0 flex flex-col gap-0', className, renderSize())}>
         {/*Header*/}
         <DialogHeader className="px-5 py-4 border-solid border-border-color border-b flex flex-row justify-between items-center">
           <div>
@@ -55,9 +56,11 @@ function NextDialog({ children, open, setOpen, size, header, body }: NextDialogP
           </div>
 
           <div className="flex items-center gap-2 m-0 justify-start">
-            <Button variant="text" className="p-1 rounded-full" onClick={handleExpand}>
-              {!isExpand ? <Expand className="h-4 w-4" /> : <Shrink className="h-4 w-4" />}
-            </Button>
+            <NextRenderIf ifTrue={size !== 'full'}>
+              <Button variant="text" className="p-1 rounded-full" onClick={handleExpand}>
+                {!isExpand ? <Expand className="h-4 w-4" /> : <Shrink className="h-4 w-4" />}
+              </Button>
+            </NextRenderIf>
 
             <Button variant="text" className="p-1 rounded-full" onClick={handleClose}>
               <X className="h-4 w-4" />

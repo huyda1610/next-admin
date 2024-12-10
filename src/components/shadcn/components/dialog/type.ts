@@ -5,6 +5,7 @@ export type NextDialogProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  className?: string;
   header: NextDialogHeader;
   body?: NextDialogBody;
 };

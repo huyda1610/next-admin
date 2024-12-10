@@ -28,6 +28,7 @@ export default {
       'border-color': '#e4e4e7',
       transparent: 'transparent',
       current: 'currentColor',
+      placeholder: '#999',
       white: '#FFFFFF',
       background: '#FFFFFF',
       black: '#171718',

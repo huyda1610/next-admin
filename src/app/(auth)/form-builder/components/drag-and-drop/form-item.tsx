@@ -4,11 +4,21 @@ import { FormItemType } from './type';
 import { cn } from '@lib/utils';
 import NextFormInput from '@components/shadcn/components/form/input';
 
-export default function FormItem({ id, type, isDemo, componentControls }: FormItemType) {
+export default function FormItem({ id, type, isDemo, ...rest }: FormItemType) {
   const renderItem = (): React.ReactNode => {
     switch (type) {
       case 'input':
-        return <NextFormInput {...componentControls} />;
+        return (
+          <NextFormInput
+            label={rest.label}
+            fieldName={rest.fieldName}
+            description={rest.description}
+            componentProps={{
+              className: isDemo ? 'p-0' : '',
+              placeholder: rest.placeholder,
+            }}
+          />
+        );
       default:
         return <></>;
     }

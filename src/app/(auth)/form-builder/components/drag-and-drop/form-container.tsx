@@ -6,8 +6,8 @@ import { Card, CardContent } from '@components/shadcn/ui/card';
 import SortableItem from '@app/(auth)/form-builder/components/drag-and-drop/sortable-item';
 import { useDroppable } from '@dnd-kit/core';
 import { Button } from '@components/shadcn/ui/button';
-import { Pencil, Trash2 } from 'lucide-react';
-import InputDialog from '@app/(auth)/form-builder/components/dialog/input-dialog';
+import { Trash2 } from 'lucide-react';
+import InputDialog from '@app/(auth)/form-builder/components/dialog/input';
 
 type PropsType = {
   id: string;
@@ -37,11 +37,7 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
           {items.map((item) => (
             <div key={item.id} className="relative group">
               <div className="absolute -top-3 right-4 group-hover:visible invisible ease-in-out transition duration-400 flex gap-2">
-                <InputDialog>
-                  <Button variant="outline-general" className="p-2 rounded-full">
-                    <Pencil className="size-2" />
-                  </Button>
-                </InputDialog>
+                <InputDialog componentControls={item.componentControls} />
 
                 <Button
                   variant="outline-danger"

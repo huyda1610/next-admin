@@ -16,9 +16,9 @@ import RootContainer from '@app/(auth)/form-builder/components/drag-and-drop/roo
 import FormContainer from '@app/(auth)/form-builder/components/drag-and-drop/form-container';
 import { FormItemType, ItemsType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
 import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
+import { getRandomNumberInRange } from '@core/utils/randomNumber';
 
 function DragAndDrop() {
-  // const form = useFormField();
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -33,8 +33,12 @@ function DragAndDrop() {
         id: '1',
         type: 'input',
         componentControls: {
-          label: 'test1',
-          fieldName: 'test',
+          label: 'Username',
+          description: 'This is your public display name.',
+          fieldName: 'input-1',
+          componentProps: {
+            placeholder: 'next admin',
+          },
         },
       },
     ],
@@ -119,6 +123,13 @@ function DragAndDrop() {
           {
             ...items[activeContainer][activeIndex],
             id: crypto.randomUUID(),
+            componentControls: {
+              ...items[activeContainer][activeIndex].componentControls,
+              fieldName:
+                items[activeContainer][activeIndex].componentControls.fieldName.split('-')[0] +
+                '-' +
+                getRandomNumberInRange(1, 999999),
+            },
           },
         ],
         [overContainer]: [
@@ -165,9 +176,9 @@ function DragAndDrop() {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="grid grid-cols-3 gap-5">
-          <RootContainer id="root" items={items.root} />
-          <FormContainer id="form" items={items.form} setItems={setItems} />
+        <div className="flex gap-5">
+          <RootContainer id="root" items={items.root} className="w-1/3" />
+          <FormContainer id="form" items={items.form} className="w-1/3" setItems={setItems} />
         </div>
 
         <DragOverlay>{activeItem ? <FormItem {...activeItem} isDemo /> : null}</DragOverlay>

@@ -1,4 +1,4 @@
-import { FormInputType } from '@components/form-ui/form-input';
+import { FormInputType } from '@components/shadcn/components/form/input';
 
 export type FormItemType = FormItemInput;
 
@@ -9,7 +9,7 @@ type DefaultFormItem = {
 
 type FormItemInput = DefaultFormItem & {
   type: 'input';
-  componentControls?: FormInputType;
+  componentControls: FormInputType;
 };
 
 export type ItemsType = {

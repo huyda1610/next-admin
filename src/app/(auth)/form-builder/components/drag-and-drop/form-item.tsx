@@ -1,23 +1,14 @@
 'use client';
 import React from 'react';
-import FormInput from '@components/form-ui/form-input';
 import { FormItemType } from './type';
 import { cn } from '@lib/utils';
+import NextFormInput from '@components/shadcn/components/form/input';
 
 export default function FormItem({ id, type, isDemo, componentControls }: FormItemType) {
   const renderItem = (): React.ReactNode => {
     switch (type) {
       case 'input':
-        return (
-          <FormInput
-            fieldName="asdasd"
-            label="huyda4"
-            componentProps={{
-              placeholder: 'test',
-            }}
-            {...componentControls}
-          />
-        );
+        return <NextFormInput {...componentControls} />;
       default:
         return <></>;
     }

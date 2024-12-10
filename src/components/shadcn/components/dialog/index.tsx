@@ -34,7 +34,7 @@ function NextDialog({ children, open, setOpen, size, header, body }: NextDialogP
         break;
     }
 
-    return 'sm:max-w-[' + dialogSize + 'px]';
+    return 'sm:w-[' + dialogSize + 'px]';
   };
 
   const handleClose = () => {

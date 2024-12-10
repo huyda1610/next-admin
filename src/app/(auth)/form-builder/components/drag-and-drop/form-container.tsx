@@ -8,6 +8,8 @@ import { useDroppable } from '@dnd-kit/core';
 import { Button } from '@components/shadcn/ui/button';
 import { Trash2 } from 'lucide-react';
 import InputDialog from '@app/(auth)/form-builder/components/dialog/input';
+import { z } from 'zod';
+import { inputFormSchema } from '@app/(auth)/form-builder/components/dialog/input/form-schema.type';
 
 type PropsType = {
   id: string;
@@ -30,6 +32,23 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
     });
   };
 
+  const handleEdit = (id: string, values: z.infer<typeof inputFormSchema>) => {
+    setItems((prev) => {
+      return {
+        ...prev,
+        form: prev.form.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              ...values,
+            };
+          }
+          return item;
+        }),
+      };
+    });
+  };
+
   return (
     <SortableContext id={id} items={items} strategy={verticalListSortingStrategy}>
       <Card className={className}>
@@ -37,7 +56,12 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
           {items.map((item) => (
             <div key={item.id} className="relative group">
               <div className="absolute -top-3 right-4 group-hover:visible invisible ease-in-out transition duration-400 flex gap-2">
-                <InputDialog componentControls={item.componentControls} />
+                <InputDialog
+                  values={{ ...item }}
+                  onSubmit={(values) => {
+                    handleEdit(item.id, values);
+                  }}
+                />
 
                 <Button
                   variant="outline-danger"

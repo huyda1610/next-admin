@@ -1,4 +1,5 @@
-import { FormInputType } from '@components/shadcn/components/form/input';
+import { z } from 'zod';
+import { inputFormSchema } from '@app/(auth)/form-builder/components/dialog/input/form-schema.type';
 
 export type FormItemType = FormItemInput;
 
@@ -7,10 +8,10 @@ type DefaultFormItem = {
   isDemo?: boolean;
 };
 
-type FormItemInput = DefaultFormItem & {
-  type: 'input';
-  componentControls: FormInputType;
-};
+type FormItemInput = DefaultFormItem &
+  z.infer<typeof inputFormSchema> & {
+    type: 'input';
+  };
 
 export type ItemsType = {
   root: FormItemType[];

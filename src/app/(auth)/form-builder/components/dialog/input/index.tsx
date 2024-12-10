@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Button } from '@components/shadcn/ui/button';
 import { Pencil } from 'lucide-react';
 import InputForm from './form';
-import { FormInputType } from '@components/shadcn/components/form/input';
+import { z } from 'zod';
+import { inputFormSchema } from './form-schema.type';
 
 type PropsType = {
-  componentControls: FormInputType;
+  values: z.infer<typeof inputFormSchema>;
+  onSubmit: (values: z.infer<typeof inputFormSchema>) => void;
 };
 
-function InputDialog({ componentControls }: PropsType) {
+function InputDialog({ values, onSubmit }: PropsType) {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
@@ -17,7 +19,7 @@ function InputDialog({ componentControls }: PropsType) {
         <Pencil className="size-2" />
       </Button>
 
-      <InputForm setOpen={setOpen} open={open} componentControls={componentControls} />
+      <InputForm setOpen={setOpen} open={open} values={values} onSubmit={onSubmit} />
     </>
   );
 }

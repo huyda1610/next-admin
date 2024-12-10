@@ -32,14 +32,10 @@ function DragAndDrop() {
       {
         id: '1',
         type: 'input',
-        componentControls: {
-          label: 'Username',
-          description: 'This is your public display name.',
-          fieldName: 'input-1',
-          componentProps: {
-            placeholder: 'next admin',
-          },
-        },
+        label: 'Username',
+        description: 'This is your public display name.',
+        fieldName: 'input-1',
+        placeholder: 'next admin',
       },
     ],
     form: [],
@@ -123,13 +119,10 @@ function DragAndDrop() {
           {
             ...items[activeContainer][activeIndex],
             id: crypto.randomUUID(),
-            componentControls: {
-              ...items[activeContainer][activeIndex].componentControls,
-              fieldName:
-                items[activeContainer][activeIndex].componentControls.fieldName.split('-')[0] +
-                '-' +
-                getRandomNumberInRange(1, 999999),
-            },
+            fieldName:
+              items[activeContainer][activeIndex].fieldName.split('-')[0] +
+              '-' +
+              getRandomNumberInRange(1, 999999),
           },
         ],
         [overContainer]: [

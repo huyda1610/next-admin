@@ -6,7 +6,7 @@ import { cn } from '@lib/utils';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-1.5 duration-300 whitespace-nowrap w-fit' +
-    ' outline-none font-medium text-center px-[15px] py-1 rounded-lg disabled:pointer-events-none' +
+    ' outline-none font-normal text-center px-[15px] py-1 rounded-lg disabled:pointer-events-none' +
     ' disabled:opacity-30 transition [&>svg]:size-4 [&>svg]:shrink-0',
   {
     variants: {

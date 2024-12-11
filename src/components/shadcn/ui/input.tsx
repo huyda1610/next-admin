@@ -9,7 +9,7 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 const inputVariants = cva(
   'text-sm/[10px] relative w-full shadow-3xl placeholder:text-placeholder placeholder:font-normal' +
     ' text-black font-normal px-3.5 py-2.5 rounded-lg disabled:pointer-events-none' +
-    ' disabled:opacity-30 focus:ring-1 outline-none focus:ring-primary transition' +
+    ' disabled:bg-gray-light focus:ring-1 outline-none focus:ring-primary transition' +
     ' duration-150' +
     ' ease-out',
   {

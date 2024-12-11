@@ -4,7 +4,11 @@ import { useSortable } from '@dnd-kit/sortable';
 import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
 import { CSS } from '@dnd-kit/utilities';
 
-function SortableItem(props: FormItemType) {
+type SortableItemProps = FormItemType & {
+  isRoot?: boolean;
+};
+
+function SortableItem(props: SortableItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: props.id,
   });

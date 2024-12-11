@@ -5,5 +5,6 @@ export type FormUIType = {
   fieldName: string;
   description?: string;
   required?: boolean;
+  className?: string;
   form?: UseFormReturn<any>;
 };

@@ -20,10 +20,6 @@ function NextDialog({ children, open, setOpen, size, header, className, body }: 
     let dialogSize: number = 0;
 
     switch (size) {
-      case 'sm':
-      default:
-        dialogSize = 520;
-        break;
       case 'md':
         dialogSize = 720;
         break;
@@ -32,6 +28,10 @@ function NextDialog({ children, open, setOpen, size, header, className, body }: 
         break;
       case 'xl':
         dialogSize = 1120;
+        break;
+      case 'sm':
+      default:
+        dialogSize = 520;
         break;
     }
 

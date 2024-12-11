@@ -19,7 +19,7 @@ function InputDialog({ values, onSubmit }: PropsType) {
         <Pencil className="size-2" />
       </Button>
 
-      <InputForm setOpen={setOpen} open={open} values={values} onSubmit={onSubmit} />
+      {open && <InputForm setOpen={setOpen} open={open} values={values} onSubmit={onSubmit} />}
     </>
   );
 }

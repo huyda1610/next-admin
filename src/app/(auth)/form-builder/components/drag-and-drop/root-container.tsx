@@ -22,7 +22,14 @@ function RootContainer({ items, id, className }: PropsType) {
       <Card className={className}>
         <CardContent ref={setNodeRef} className="flex flex-col gap-4 p-4 rounded-xl">
           {items.map((item) => (
-            <SortableItem key={item.id} {...item} />
+            <div key={item.id} className="relative w-full">
+              <SortableItem {...item} />
+              {/*<div className="absolute -top-[12px] left-[46%] w-full h-full">*/}
+              {/*  <Badge variant="default" className="capitalize font-bold">*/}
+              {/*    {item.type}*/}
+              {/*  </Badge>*/}
+              {/*</div>*/}
+            </div>
           ))}
         </CardContent>
       </Card>

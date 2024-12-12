@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { FormItemType, ItemsType } from './type';
+import { FormItemType, ItemsType } from '../type';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { Card, CardContent } from '@components/shadcn/ui/card';
-import SortableItem from '@app/(auth)/form-builder/components/drag-and-drop/sortable-item';
+import SortableItem from '@app/(auth)/form-builder/components/drag-and-drop/item/sortable-item';
 import { useDroppable } from '@dnd-kit/core';
 import { Button } from '@components/shadcn/ui/button';
 import { Trash2 } from 'lucide-react';
@@ -54,8 +54,8 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
       <Card className={className}>
         <CardContent ref={setNodeRef} className="flex flex-col gap-4 p-4 rounded-xl">
           {items.map((item) => (
-            <div key={item.id} className="relative group">
-              <div className="absolute -top-3 right-4 group-hover:visible invisible ease-in-out transition duration-400 flex gap-2">
+            <div key={item.id} className="relative">
+              <div className="absolute -top-3 right-4 ease-in-out transition duration-400 flex gap-2">
                 <InputDialog
                   values={{ ...item }}
                   onSubmit={(values) => {

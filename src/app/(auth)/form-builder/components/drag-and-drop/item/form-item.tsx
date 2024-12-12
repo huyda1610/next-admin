@@ -1,14 +1,15 @@
 'use client';
 import React from 'react';
-import { FormItemType } from './type';
+import { FormItemType } from '../type';
 import { cn } from '@lib/utils';
 import NextFormInput from '@components/shadcn/components/form/input';
 
 type FormItemProps = FormItemType & {
   isRoot?: boolean;
+  isDragging?: boolean;
 };
 
-export default function FormItem({ id, type, isDemo, isRoot, ...rest }: FormItemProps) {
+export default function FormItem({ id, type, isDemo, isDragging, isRoot, ...rest }: FormItemProps) {
   const renderItem = (): React.ReactNode => {
     switch (type) {
       case 'input':
@@ -35,7 +36,8 @@ export default function FormItem({ id, type, isDemo, isRoot, ...rest }: FormItem
       id={id}
       className={cn(
         'w-full h-full bg-white p-4 border-2 border-solid border-border-color rounded-xl',
-        isDemo && 'border-primary border-dashed opacity-50',
+        isDemo && 'border-primary border-dashed',
+        isDragging && 'border-primary border-dashed opacity-50',
       )}
     >
       {renderItem()}

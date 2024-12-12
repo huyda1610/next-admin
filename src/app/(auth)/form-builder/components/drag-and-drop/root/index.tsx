@@ -3,8 +3,9 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { Card, CardContent } from '@components/shadcn/ui/card';
-import { FormItemType } from './type';
-import SortableItem from './sortable-item';
+import { FormItemType } from '../type';
+import SortableItem from '../item/sortable-item';
+import { Badge } from '@components/shadcn/ui/badge';
 
 type PropsType = {
   id: string;
@@ -23,12 +24,12 @@ function RootContainer({ items, id, className }: PropsType) {
         <CardContent ref={setNodeRef} className="flex flex-col gap-4 p-4 rounded-xl">
           {items.map((item) => (
             <div key={item.id} className="relative w-full">
-              <SortableItem {...item} />
-              {/*<div className="absolute -top-[12px] left-[46%] w-full h-full">*/}
-              {/*  <Badge variant="default" className="capitalize font-bold">*/}
-              {/*    {item.type}*/}
-              {/*  </Badge>*/}
-              {/*</div>*/}
+              <SortableItem isRoot={true} {...item} />
+              <div className="absolute -top-[12px] left-4">
+                <Badge variant="default" className="capitalize font-bold">
+                  {item.type}
+                </Badge>
+              </div>
             </div>
           ))}
         </CardContent>

@@ -68,7 +68,7 @@ function DragAndDrop() {
     const item = items[container].find((item) => item.id === id);
     if (!item) return;
 
-    setActiveItem(item);
+    setActiveItem({ ...item, isDraggingForm: container === 'form' });
   }
 
   function handleDragOver(event: any) {

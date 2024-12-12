@@ -6,6 +6,7 @@ export type FormItemType = FormItemInput;
 type DefaultFormItem = {
   id: string;
   isDemo?: boolean;
+  isDraggingForm?: boolean;
 };
 
 type FormItemInput = DefaultFormItem &

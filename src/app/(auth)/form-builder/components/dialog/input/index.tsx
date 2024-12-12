@@ -15,11 +15,11 @@ function InputDialog({ values, onSubmit }: PropsType) {
 
   return (
     <>
-      <Button variant="outline-general" className="p-2 rounded-full" onClick={() => setOpen(true)}>
+      <Button variant="primary" className="p-2 rounded-full" onClick={() => setOpen(true)}>
         <Pencil className="size-2" />
       </Button>
 
-      <InputForm setOpen={setOpen} open={open} values={values} onSubmit={onSubmit} />
+      {open && <InputForm setOpen={setOpen} open={open} values={values} onSubmit={onSubmit} />}
     </>
   );
 }

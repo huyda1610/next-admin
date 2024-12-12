@@ -42,7 +42,6 @@ function InputForm({ open, setOpen, values, onSubmit: submit }: PropsType) {
       header={{
         title: 'Edit Input Field',
       }}
-      size="full"
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -51,7 +50,7 @@ function InputForm({ open, setOpen, values, onSubmit: submit }: PropsType) {
           <NextFormInput form={form} fieldName="placeholder" label="Placeholder" />
           <NextFormInput form={form} fieldName="fieldName" label="Field Name" required />
           <div className="w-full flex justify-end">
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Save Changes</Button>
           </div>
         </form>
       </Form>

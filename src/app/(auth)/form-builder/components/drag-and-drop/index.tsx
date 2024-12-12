@@ -12,11 +12,11 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import type { DragOverEvent } from '@dnd-kit/core/dist/types';
-import RootContainer from '@app/(auth)/form-builder/components/drag-and-drop/root-container';
-import FormContainer from '@app/(auth)/form-builder/components/drag-and-drop/form-container';
+import RootContainer from '@app/(auth)/form-builder/components/drag-and-drop/root';
 import { FormItemType, ItemsType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
-import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
+import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/item/form-item';
 import { getRandomNumberInRange } from '@core/utils/randomNumber';
+import FormContainer from './form';
 
 function DragAndDrop() {
   const sensors = useSensors(
@@ -68,7 +68,7 @@ function DragAndDrop() {
     const item = items[container].find((item) => item.id === id);
     if (!item) return;
 
-    setActiveItem(item);
+    setActiveItem({ ...item, isDraggingForm: container === 'form' });
   }
 
   function handleDragOver(event: any) {
@@ -161,22 +161,20 @@ function DragAndDrop() {
   }
 
   return (
-    <div>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDragEnd={handleDragEnd}
-      >
-        <div className="flex gap-5">
-          <RootContainer id="root" items={items.root} className="w-1/3" />
-          <FormContainer id="form" items={items.form} className="w-1/3" setItems={setItems} />
-        </div>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCorners}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="flex gap-5">
+        <RootContainer id="root" items={items.root} className="w-1/3" />
+        <FormContainer id="form" items={items.form} className="w-1/3" setItems={setItems} />
+      </div>
 
-        <DragOverlay>{activeItem ? <FormItem {...activeItem} isDemo /> : null}</DragOverlay>
-      </DndContext>
-    </div>
+      <DragOverlay>{activeItem ? <FormItem {...activeItem} isDemo /> : null}</DragOverlay>
+    </DndContext>
   );
 }
 

@@ -11,8 +11,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-primary text-white hover:bg-[#2A4DD7]',
+        primary: 'bg-primary text-white hover:bg-[#708dff]',
         black: 'bg-black text-white hover:bg-[#3C3C3D]',
+        danger: 'bg-danger text-white hover:bg-[#f47c7c]',
         text: 'bg-transparent text-black hover:bg-gray-light',
         outline:
           'ring-1 ring-inset ring-primary bg-white shadow-sm text-primary hover:bg-light-theme',

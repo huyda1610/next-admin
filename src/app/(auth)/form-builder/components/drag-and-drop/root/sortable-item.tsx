@@ -1,11 +1,15 @@
 import React from 'react';
 import { FormItemType } from '@app/(auth)/form-builder/components/drag-and-drop/type';
 import { useSortable } from '@dnd-kit/sortable';
-import FormItem from '@app/(auth)/form-builder/components/drag-and-drop/form-item';
+import FormItem from '../item/form-item';
 import { CSS } from '@dnd-kit/utilities';
 
-function SortableItem(props: FormItemType) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+type SortableItemProps = FormItemType & {
+  isRoot?: boolean;
+};
+
+function RootSortableItem(props: SortableItemProps) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: props.id,
   });
 
@@ -16,9 +20,9 @@ function SortableItem(props: FormItemType) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <FormItem {...props} />
+      <FormItem isDragging={isDragging} {...props} />
     </div>
   );
 }
 
-export default SortableItem;
+export default RootSortableItem;

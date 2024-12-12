@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react';
 
 type PropsType = {
-  ifTrue: boolean;
+  ifTrue: any;
   children: ReactNode;
 };
 

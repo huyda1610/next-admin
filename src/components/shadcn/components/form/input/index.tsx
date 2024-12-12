@@ -21,6 +21,7 @@ function NextFormInput({
   form,
   label,
   description,
+  className,
   required,
   componentProps,
 }: FormInputType) {
@@ -31,9 +32,9 @@ function NextFormInput({
       control={form ? form.control : internalForm.control}
       name={fieldName}
       render={({ field }) => (
-        <FormItem className={form?.getFieldState(fieldName)?.invalid ? '' : 'pb-5'}>
+        <FormItem className={cn(!form?.getFieldState(fieldName)?.invalid && 'pb-5', className)}>
           <FormLabel>
-            <span className="font-semibold">{label}</span>{' '}
+            <span className="font-semibold ">{label}</span>{' '}
             {required && <span className="text-danger">*</span>}
           </FormLabel>
           <FormControl>

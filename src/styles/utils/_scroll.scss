@@ -1,0 +1,39 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(222, 222, 222, 0.75);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.scroll-gutter {
+  scrollbar-gutter: stable !important;
+}
+
+.scroll-transparent:not(:hover)::-webkit-scrollbar-thumb {
+  background-color: transparent !important; /* Set the color of the thumb (the moving part) */
+}
+
+.scroll-transparent:not(:hover)::-webkit-scrollbar-track {
+  background-color: transparent !important; /* Set the color of the track (the area the thumb moves along) */
+}

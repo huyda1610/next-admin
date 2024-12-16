@@ -28,6 +28,7 @@
     "prettier": "^3.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sass": "^1.83.0",
     "shadcn": "^2.1.7",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",

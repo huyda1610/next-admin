@@ -20,12 +20,14 @@ export default function AdminLayout({
       <Sidebar />
       <main
         className={cn(
-          "min-h-screen",
+          "max-h-screen overflow-hidden",
           !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-64"),
         )}
       >
-        <Navbar title={"abc"} />
-        <div className="bg-background">{children}</div>
+        <Navbar />
+        <div className="bg-backgroundDeep overflow-y-auto h-full max-h-screen">
+          {children}
+        </div>
       </main>
     </>
   );

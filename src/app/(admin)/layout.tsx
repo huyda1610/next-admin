@@ -25,7 +25,7 @@ export default function AdminLayout({
         )}
       >
         <Navbar title={"abc"} />
-        {children}
+        <div className="bg-background">{children}</div>
       </main>
     </>
   );

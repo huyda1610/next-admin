@@ -21,7 +21,7 @@ export default function AdminLayout({
       <main
         className={cn(
           "min-h-screen",
-          !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-72"),
+          !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-64"),
         )}
       >
         <Navbar title={"abc"} />

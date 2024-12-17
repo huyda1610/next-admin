@@ -6,7 +6,7 @@ import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
 import React, { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
-import Loading from "./loading";
+import Loading from "@/app/(admin)/loading";
 
 export default function AdminLayout({
   children,

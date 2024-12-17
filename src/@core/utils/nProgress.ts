@@ -3,7 +3,7 @@ import NProgress from "nprogress";
 async function loadNprogress() {
   let nProgressInstance: null | typeof NProgress = null;
 
-  nProgressInstance = await import("nprogress");
+  nProgressInstance = NProgress;
   nProgressInstance.configure({
     showSpinner: false,
     speed: 300,

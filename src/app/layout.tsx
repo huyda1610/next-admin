@@ -5,17 +5,16 @@ import "../styles/globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import React from "react";
 
+const renderMetaData = (): string => {
+  if (process.env.APP_URL) return process.env.APP_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.APP_URL
-      ? `${process.env.APP_URL}`
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : `http://localhost:${process.env.PORT || 3000}`,
-  ),
+  metadataBase: new URL(renderMetaData()),
   title: "Next Admin",
-  description:
-    "A stunning and functional retractable sidebar for Next.js built on top of shadcn/ui complete with desktop and mobile responsiveness.",
+  description: "",
 };
 
 export default function RootLayout({

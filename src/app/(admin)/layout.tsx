@@ -6,7 +6,7 @@ import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
 import React, { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
-import Loading from "@/app/(admin)/loading";
+import Loading from "./loading";
 
 export default function AdminLayout({
   children,
@@ -22,13 +22,13 @@ export default function AdminLayout({
       <Sidebar />
       <main
         className={cn(
-          "max-h-screen overflow-hidden",
+          "h-screen ",
           !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-64"),
         )}
       >
         <Navbar />
         <Suspense fallback={<Loading />}>
-          <div className="bg-backgroundDeep overflow-y-auto h-screen">
+          <div className="bg-backgroundDeep min-h-screen overflow-y-auto">
             {children}
           </div>
         </Suspense>

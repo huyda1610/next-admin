@@ -3,7 +3,6 @@
 import { Ellipsis, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-import { Link } from "react-transition-progress/next";
 import { cn } from "@/lib/utils";
 import { getMenuList } from "@/lib/menu-list";
 import { Button } from "@/components/shadcn/ui/button";
@@ -15,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/shadcn/ui/tooltip";
+import Link from "next/link";
 
 interface MenuProps {
   isOpen: boolean | undefined;

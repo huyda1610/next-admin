@@ -4,8 +4,9 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
+import Loading from "./loading";
 
 export default function AdminLayout({
   children,
@@ -15,6 +16,7 @@ export default function AdminLayout({
   const sidebar = useStore(useSidebar, (x) => x);
   if (!sidebar) return null;
   const { getOpenState, settings } = sidebar;
+
   return (
     <>
       <Sidebar />
@@ -25,9 +27,11 @@ export default function AdminLayout({
         )}
       >
         <Navbar />
-        <div className="bg-backgroundDeep overflow-y-auto h-full max-h-screen">
-          {children}
-        </div>
+        <Suspense fallback={<Loading />}>
+          <div className="bg-backgroundDeep overflow-y-auto h-screen">
+            {children}
+          </div>
+        </Suspense>
       </main>
     </>
   );

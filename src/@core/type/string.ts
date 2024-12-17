@@ -1,5 +1,5 @@
-import dayjs from 'dayjs';
-import { DATE_FORMAT } from '@core/const/app-const';
+import dayjs from "dayjs";
+import { DATE_FORMAT } from "@/@core/const";
 
 export {}; // This makes the file a module
 
@@ -9,8 +9,11 @@ declare global {
   }
 }
 
-String.prototype.toDateFormat = function (this: string, format: string = DATE_FORMAT): string {
-  if (!this) return '';
+String.prototype.toDateFormat = function (
+  this: string,
+  format: string = DATE_FORMAT,
+): string {
+  if (!this) return "";
 
   return dayjs(this).format(format);
 };

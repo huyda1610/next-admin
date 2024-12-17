@@ -7,6 +7,7 @@ import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
 import { PanelsTopLeft } from "lucide-react";
 import Link from "next/link";
+import { APP_NAME } from "@/@core/const";
 
 export function Sidebar() {
   const sidebar = useStore(useSidebar, (x) => x);
@@ -44,7 +45,7 @@ export function Sidebar() {
                   : "translate-x-0 opacity-100",
               )}
             >
-              Brand
+              {APP_NAME}
             </h1>
           </Link>
         </Button>

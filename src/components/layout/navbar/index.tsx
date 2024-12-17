@@ -2,7 +2,7 @@ import { ModeToggle } from "@/components/layout/navbar/mode-toggle";
 import { UserNav } from "@/components/layout/navbar/user-nav";
 import { SheetMenu } from "@/components/layout/navbar/sheet-menu";
 import { Button } from "@/components/shadcn/ui/button";
-import { MenuIcon } from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useStore } from "zustand";
 import { useSidebar } from "@/hooks/use-sidebar";
 
@@ -19,11 +19,15 @@ export function Navbar() {
           <SheetMenu />
           <Button
             className="h-8 p-2 max-lg:hidden"
-            variant="outline"
+            variant="ghost"
             size="icon"
             onClick={() => setSettings({ disabled: !settings.disabled })}
           >
-            <MenuIcon size={20} />
+            {settings.disabled ? (
+              <PanelLeftOpen size={20} />
+            ) : (
+              <PanelLeftClose size={20} />
+            )}
           </Button>
           {/*<h1 className="font-bold">{title}</h1>*/}
         </div>

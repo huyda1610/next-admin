@@ -5,9 +5,10 @@ import AnalyticsVisitsSource from "./components/visits-source";
 import AnalyticsVisitsData from "./components/visits-data";
 import AnalyticsVisitsSales from "./components/visits-sales";
 import type { Metadata } from "next";
+import { getMetadataTitle } from "@/@core/utils/getMetadataTitle";
 
 export const metadata: Metadata = {
-  title: "Analytics - Next Admin",
+  title: getMetadataTitle("Analytics"),
   description: "",
 };
 

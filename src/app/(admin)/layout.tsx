@@ -22,16 +22,12 @@ export default function AdminLayout({
       <Sidebar />
       <main
         className={cn(
-          "h-screen ",
+          "h-screen overflow-y-auto flex flex-col",
           !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-64"),
         )}
       >
         <Navbar />
-        <Suspense fallback={<Loading />}>
-          <div className="bg-backgroundDeep min-h-screen overflow-y-auto">
-            {children}
-          </div>
-        </Suspense>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>
     </>
   );

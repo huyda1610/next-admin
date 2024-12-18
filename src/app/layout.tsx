@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import "../styles/globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import React from "react";
+import NextTopLoader from "nextjs-toploader";
 
 const renderMetaData = (): string => {
   if (process.env.APP_URL) return process.env.APP_URL;
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextTopLoader zIndex={10} />
           {children}
         </ThemeProvider>
       </body>

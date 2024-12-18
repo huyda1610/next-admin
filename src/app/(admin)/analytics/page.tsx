@@ -1,15 +1,17 @@
-"use client";
 import React from "react";
 import AnalyticsInfo from "./components/info";
 import AnalyticsTabs from "./components/tabs";
 import AnalyticsVisitsSource from "./components/visits-source";
 import AnalyticsVisitsData from "./components/visits-data";
 import AnalyticsVisitsSales from "./components/visits-sales";
-import { useClientTitle } from "@/hooks/use-client-title";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Analytics - Next Admin",
+  description: "",
+};
 
 function AnalyticsPage() {
-  useClientTitle("Analytics");
-
   return (
     <article className="p-5 flex flex-col gap-5">
       <AnalyticsInfo />

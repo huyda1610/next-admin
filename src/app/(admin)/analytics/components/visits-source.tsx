@@ -58,7 +58,7 @@ function AnalyticsVisitsSource() {
     <Card>
       <CardHeader>Visits Source</CardHeader>
       <CardContent className="p-6 pt-0">
-        <ReactECharts option={option} />;
+        <ReactECharts option={option} />
       </CardContent>
     </Card>
   );

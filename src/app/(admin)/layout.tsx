@@ -22,7 +22,7 @@ export default function AdminLayout({
       <Sidebar />
       <main
         className={cn(
-          "h-screen overflow-y-auto flex flex-col",
+          "min-h-screen transition-[margin-left] ease-in-out duration-300 overflow-x-hidden",
           !settings.disabled && (!getOpenState() ? "lg:ml-[90px]" : "lg:ml-64"),
         )}
       >

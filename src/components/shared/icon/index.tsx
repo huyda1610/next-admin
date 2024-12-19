@@ -15,6 +15,13 @@ import { ClockSvg } from "./svg/clock";
 import { DownloadSvg } from "./svg/download";
 import { BarChartSvg } from "./svg/bar-chart";
 import { TextFieldSvg } from "./svg/text-field";
+import { CheckBoxSvg } from "./svg/check-box";
+import { DatePickerSvg } from "./svg/date-picker";
+import { NumberSvg } from "./svg/number";
+import { PasswordSvg } from "./svg/password";
+import { SelectListSvg } from "./svg/select-list";
+import { SliderSvg } from "./svg/slider";
+import { TextAreaSvg } from "./svg/text-area";
 
 export const NextIcon = {
   Github: (props?: SVGProps<SVGSVGElement>) => <GithubSvg {...props} />,
@@ -38,5 +45,26 @@ export const NextIcon = {
   ),
   TextField: (props?: SVGProps<SVGSVGElement>) => (
     <TextFieldSvg {...props}></TextFieldSvg>
+  ),
+  CheckBox: (props?: SVGProps<SVGSVGElement>) => (
+    <CheckBoxSvg {...props}></CheckBoxSvg>
+  ),
+  DatePicker: (props?: SVGProps<SVGSVGElement>) => (
+    <DatePickerSvg {...props}></DatePickerSvg>
+  ),
+  Number: (props?: SVGProps<SVGSVGElement>) => (
+    <NumberSvg {...props}></NumberSvg>
+  ),
+  Password: (props?: SVGProps<SVGSVGElement>) => (
+    <PasswordSvg {...props}></PasswordSvg>
+  ),
+  SelectList: (props?: SVGProps<SVGSVGElement>) => (
+    <SelectListSvg {...props}></SelectListSvg>
+  ),
+  Slider: (props?: SVGProps<SVGSVGElement>) => (
+    <SliderSvg {...props}></SliderSvg>
+  ),
+  TextArea: (props?: SVGProps<SVGSVGElement>) => (
+    <TextAreaSvg {...props}></TextAreaSvg>
   ),
 };

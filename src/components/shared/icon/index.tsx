@@ -14,6 +14,7 @@ import { CardSvg } from "./svg/card";
 import { ClockSvg } from "./svg/clock";
 import { DownloadSvg } from "./svg/download";
 import { BarChartSvg } from "./svg/bar-chart";
+import { TextFieldSvg } from "./svg/text-field";
 
 export const NextIcon = {
   Github: (props?: SVGProps<SVGSVGElement>) => <GithubSvg {...props} />,
@@ -34,5 +35,8 @@ export const NextIcon = {
   ),
   Barchart: (props?: SVGProps<SVGSVGElement>) => (
     <BarChartSvg {...props}></BarChartSvg>
+  ),
+  TextField: (props?: SVGProps<SVGSVGElement>) => (
+    <TextFieldSvg {...props}></TextFieldSvg>
   ),
 };

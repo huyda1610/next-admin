@@ -1,12 +1,14 @@
 import { Card, CardContent } from "@/components/shadcn/ui/card";
 import React from "react";
 import CountUp from "react-countup";
+import { cn } from "@/lib/utils";
 
 type ItemType = {
   title: string;
   value: number;
   totalTitle: string;
   totalValue: number;
+  className: string;
   icon: React.ReactElement;
 };
 
@@ -17,7 +19,9 @@ type PropsType = {
 function CardItem({ item }: PropsType) {
   return (
     <Card>
-      <CardContent className="flex flex-col p-6">
+      <CardContent
+        className={cn("flex flex-col p-6 shadow-md rounded-xl", item.className)}
+      >
         <div className="mb-2 flex justify-between items-center">
           <span>{item.title}</span>
           {item.icon}

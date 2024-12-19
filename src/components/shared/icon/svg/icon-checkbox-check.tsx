@@ -1,4 +1,4 @@
-import type { SVGProps } from "@/components/shared/icon/svg/react";
+import React, { SVGProps } from "react";
 
 const IconCheckboxCheck = (props: SVGProps<SVGSVGElement>) => {
   return (

@@ -19,7 +19,7 @@ function ContentLayout({
   return (
     <article>
       {/*Header*/}
-      <section className="px-6 py-4 bg-white">
+      <section className="px-6 py-4 bg-background">
         <h3 className="text-lg font-bold">{title}</h3>
         <div className="flex items-center justify-between flex-wrap mt-2">
           <span className="text-gray-text">{description}</span>

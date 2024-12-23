@@ -3,29 +3,27 @@ import React from "react";
 import { FormItemType, ItemsType } from "../../type";
 import { useDroppable } from "@dnd-kit/core";
 import { z } from "zod";
-import { inputFormSchema } from "@app/(auth)/form-builder/components/dialog/input/form-schema.type";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@components/shadcn/ui/button";
-import { Form } from "@components/shadcn/ui/form";
+import { Button } from "@/components/shadcn/ui/button";
+import { Form } from "@/components/shadcn/ui/form";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Card, CardContent } from "@components/shadcn/ui/card";
+import { Card, CardContent } from "@/components/shadcn/ui/card";
 import FormSortableItem, { FormDragHandle } from "./sortable-item";
 import { Trash2 } from "lucide-react";
-import InputDialog from "../../dialog/input";
 import FormItem from "./form-item";
+import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
 
 type PropsType = {
   id: string;
   items: FormItemType[];
-  className?: string;
   setItems: React.Dispatch<React.SetStateAction<ItemsType>>;
 };
 
-function FormContainer({ items, id, className, setItems }: PropsType) {
+function FormContainer({ items, id, setItems }: PropsType) {
   const { setNodeRef } = useDroppable({
     id,
   });
@@ -94,8 +92,8 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
       items={items}
       strategy={verticalListSortingStrategy}
     >
-      <Card className={className}>
-        <CardContent ref={setNodeRef} className="p-4 rounded-xl">
+      <Card ref={setNodeRef} className="col-span-2">
+        <CardContent className="p-4 rounded-xl">
           {!!items.length && (
             <Form {...form}>
               <form
@@ -108,21 +106,21 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
                       {...item}
                       extra={
                         <div className="ease-in-out transition duration-400 flex flex-col justify-between gap-2">
-                          <InputDialog
-                            values={{ ...item }}
-                            onSubmit={(values) => {
-                              handleEdit(item.id, values);
-                            }}
-                          />
+                          {/*<InputDialog*/}
+                          {/*  values={{ ...item }}*/}
+                          {/*  onSubmit={(values) => {*/}
+                          {/*    handleEdit(item.id, values);*/}
+                          {/*  }}*/}
+                          {/*/>*/}
 
                           <FormDragHandle />
 
                           <Button
-                            variant="danger"
-                            className="p-2 rounded-full"
+                            variant="ghost"
                             onClick={() => handleRemove(item.id)}
+                            className="p-0"
                           >
-                            <Trash2 className="size-2" />
+                            <Trash2 className="text-destructive" size={18} />
                           </Button>
                         </div>
                       }
@@ -131,7 +129,9 @@ function FormContainer({ items, id, className, setItems }: PropsType) {
                   </FormSortableItem>
                 ))}
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit" className="w-fit">
+                  Submit
+                </Button>
               </form>
             </Form>
           )}

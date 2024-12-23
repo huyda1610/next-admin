@@ -25,5 +25,13 @@ export type ItemsType = {
 };
 
 export type ItemType = {
-  type: "input";
+  type:
+    | "input"
+    | "checkbox"
+    | "date-picker"
+    | "number"
+    | "password"
+    | "select"
+    | "slider"
+    | "text-area";
 };

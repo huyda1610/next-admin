@@ -65,14 +65,8 @@ export function FormDragHandle() {
   const { attributes, listeners, ref } = useContext(SortableItemContext);
 
   return (
-    <Button
-      className="p-2 rounded-full"
-      variant="black"
-      {...attributes}
-      {...listeners}
-      ref={ref}
-    >
-      <GripVertical />
+    <Button variant="ghost" {...attributes} {...listeners} ref={ref}>
+      <GripVertical size={18} />
     </Button>
   );
 }

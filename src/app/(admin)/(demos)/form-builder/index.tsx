@@ -16,6 +16,9 @@ import { DragOverEvent } from "@dnd-kit/core/dist/types";
 import { randomGenerate } from "@/@core/utils/randomGenerate";
 import RootContainer from "./components/drag-and-drop/root";
 import RootItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/root/root-item";
+import FormContainer from "./components/drag-and-drop/form";
+import FormItem from "./components/drag-and-drop/form/form-item";
+import { useForm } from "react-hook-form";
 
 function FormBuilderComponent() {
   const sensors = useSensors(
@@ -175,6 +178,23 @@ function FormBuilderComponent() {
     setActiveItem(null);
   }
 
+  const internalForm = useForm();
+  const renderDragItem = (): React.ReactElement => {
+    if (!activeItem) return <></>;
+    const container = findContainer(activeItem.id);
+    if (container === "form")
+      return (
+        <FormItem
+          isDraggingForm={true}
+          form={internalForm}
+          id={activeItem.id}
+          type={activeItem.type}
+          fieldName={""}
+        />
+      );
+    return <RootItem type={activeItem.type} />;
+  };
+
   return (
     <DndContext
       sensors={sensors}
@@ -183,19 +203,12 @@ function FormBuilderComponent() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex gap-5">
+      <div className="grid grid-cols-3 gap-5">
         <RootContainer id="root" items={items.root} />
-        {/*<FormContainer*/}
-        {/*  id="form"*/}
-        {/*  items={items.form}*/}
-        {/*  className="w-1/3"*/}
-        {/*  setItems={setItems}*/}
-        {/*/>*/}
+        <FormContainer id="form" items={items.form} setItems={setItems} />
       </div>
 
-      <DragOverlay>
-        {activeItem ? <RootItem type={activeItem.type} /> : null}
-      </DragOverlay>
+      <DragOverlay>{renderDragItem()}</DragOverlay>
     </DndContext>
   );
 }

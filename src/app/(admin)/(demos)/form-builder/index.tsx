@@ -33,6 +33,7 @@ function FormBuilderComponent() {
     root: [
       {
         id: "1",
+
         type: "input",
         // label: "Username",
         // description: "This is your public display name.",

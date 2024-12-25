@@ -1,12 +1,13 @@
 "use client";
 
 import { Sidebar } from "@/components/layout/sidebar";
-import { useSidebar } from "@/hooks/use-sidebar";
-import { useStore } from "@/hooks/use-store";
+import { useSidebar } from "@/hooks/zustand-store/use-sidebar";
+import { useStore } from "@/hooks/zustand-store/use-store";
 import { cn } from "@/lib/utils";
 import React, { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import Loading from "./loading";
+import NextModal from "@/components/shadcn/components/modal";
 
 export default function AdminLayout({
   children,
@@ -29,6 +30,8 @@ export default function AdminLayout({
         <Navbar />
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>
+
+      <NextModal />
     </>
   );
 }

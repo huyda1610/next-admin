@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Pencil } from "lucide-react";
-import InputForm from "./form";
 import { z } from "zod";
 import { inputFormSchema } from "./form-schema.type";
+import useNextModal from "@/hooks/use-modal";
 
 type PropsType = {
   values: z.infer<typeof inputFormSchema>;
@@ -11,26 +11,33 @@ type PropsType = {
 };
 
 function InputDialog({ values, onSubmit }: PropsType) {
-  const [open, setOpen] = useState<boolean>(false);
+  const { open, setElement } = useNextModal();
+
+  useEffect(() => {
+    setElement(<h1>abcxyz</h1>);
+  }, []);
 
   return (
     <>
       <Button
-        variant="primary"
-        className="p-2 rounded-full"
-        onClick={() => setOpen(true)}
+        variant="ghost"
+        size="icon"
+        onClick={(event) => {
+          event.preventDefault();
+          open();
+        }}
       >
-        <Pencil className="size-2" />
+        <Pencil className="text-info" size={16} />
       </Button>
 
-      {open && (
-        <InputForm
-          setOpen={setOpen}
-          open={open}
-          values={values}
-          onSubmit={onSubmit}
-        />
-      )}
+      {/*{open && (*/}
+      {/*  <InputForm*/}
+      {/*    setOpen={setOpen}*/}
+      {/*    open={open}*/}
+      {/*    values={values}*/}
+      {/*    onSubmit={onSubmit}*/}
+      {/*  />*/}
+      {/*)}*/}
     </>
   );
 }

@@ -1,22 +1,16 @@
-import { UseFormReturn } from "react-hook-form";
+import { inputFormSchema } from "./dialog/input/form-schema.type";
+import { z } from "zod";
 
 export type FormItemType = FormItemInput;
 
 type DefaultFormItem = {
   id: string;
-  isDemo?: boolean;
-  isDraggingForm?: boolean;
-  form?: UseFormReturn<any>;
+  isDraggingForm: boolean;
 };
 
-// type FormItemInput = DefaultFormItem &
-//   z.infer<typeof inputFormSchema> & {
-//     type: 'input';
-//   };
-
 type FormItemInput = DefaultFormItem &
-  ItemType & {
-    fieldName: string;
+  z.infer<typeof inputFormSchema> & {
+    type: "input";
   };
 
 export type ItemsType = {

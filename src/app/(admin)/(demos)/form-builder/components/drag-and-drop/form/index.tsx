@@ -16,6 +16,7 @@ import FormSortableItem, { FormDragHandle } from "./sortable-item";
 import { Trash2 } from "lucide-react";
 import FormItem from "./form-item";
 import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
+import InputDialog from "@/app/(admin)/(demos)/form-builder/components/dialog/input";
 
 type PropsType = {
   id: string;
@@ -106,21 +107,22 @@ function FormContainer({ items, id, setItems }: PropsType) {
                       {...item}
                       extra={
                         <div className="ease-in-out transition duration-400 flex flex-col justify-between gap-2">
-                          {/*<InputDialog*/}
-                          {/*  values={{ ...item }}*/}
-                          {/*  onSubmit={(values) => {*/}
-                          {/*    handleEdit(item.id, values);*/}
-                          {/*  }}*/}
-                          {/*/>*/}
+                          <InputDialog
+                            values={{ ...item }}
+                            onSubmit={(values) => {
+                              handleEdit(item.id, values);
+                            }}
+                          />
 
                           <FormDragHandle />
 
                           <Button
                             variant="ghost"
+                            size="icon"
                             onClick={() => handleRemove(item.id)}
                             className="p-0"
                           >
-                            <Trash2 className="text-destructive" size={18} />
+                            <Trash2 className="text-destructive" size={16} />
                           </Button>
                         </div>
                       }

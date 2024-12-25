@@ -4,7 +4,7 @@ import { SheetMenu } from "@/components/layout/navbar/sheet-menu";
 import { Button } from "@/components/shadcn/ui/button";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useStore } from "zustand";
-import { useSidebar } from "@/hooks/use-sidebar";
+import { useSidebar } from "@/hooks/zustand-store/use-sidebar";
 
 export function Navbar() {
   const sidebar = useStore(useSidebar, (x) => x);

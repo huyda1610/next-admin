@@ -2,8 +2,8 @@
 import { Menu } from "@/components/layout/menu";
 import { SidebarToggle } from "@/components/layout/sidebar/sidebar-toggle";
 import { Button } from "@/components/shadcn/ui/button";
-import { useSidebar } from "@/hooks/use-sidebar";
-import { useStore } from "@/hooks/use-store";
+import { useSidebar } from "@/hooks/zustand-store/use-sidebar";
+import { useStore } from "@/hooks/zustand-store/use-store";
 import { cn } from "@/lib/utils";
 import { PanelsTopLeft } from "lucide-react";
 import Link from "next/link";

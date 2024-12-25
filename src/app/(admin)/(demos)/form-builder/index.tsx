@@ -17,8 +17,6 @@ import { randomGenerate } from "@/@core/utils/randomGenerate";
 import RootContainer from "./components/drag-and-drop/root";
 import RootItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/root/root-item";
 import FormContainer from "./components/drag-and-drop/form";
-import FormItem from "./components/drag-and-drop/form/form-item";
-import { useForm } from "react-hook-form";
 
 function FormBuilderComponent() {
   const sensors = useSensors(
@@ -33,12 +31,12 @@ function FormBuilderComponent() {
     root: [
       {
         id: "1",
-
         type: "input",
-        // label: "Username",
-        // description: "This is your public display name.",
+        label: "Username",
+        description: "This is your public display name.",
         fieldName: "input_1",
-        // placeholder: "next admin",
+        placeholder: "next admin",
+        isDraggingForm: false,
       },
     ],
     form: [],
@@ -179,20 +177,8 @@ function FormBuilderComponent() {
     setActiveItem(null);
   }
 
-  const internalForm = useForm();
   const renderDragItem = (): React.ReactElement => {
     if (!activeItem) return <></>;
-    const container = findContainer(activeItem.id);
-    if (container === "form")
-      return (
-        <FormItem
-          isDraggingForm={true}
-          form={internalForm}
-          id={activeItem.id}
-          type={activeItem.type}
-          fieldName={""}
-        />
-      );
     return <RootItem type={activeItem.type} />;
   };
 

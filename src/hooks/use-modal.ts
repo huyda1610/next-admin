@@ -5,7 +5,7 @@ import { useModalStore } from "@/hooks/zustand-store/use-modal-store";
 type Size = "sm" | "md" | "lg" | "xl";
 
 export type ModalOptions = {
-  size: Size;
+  size?: Size;
   element?: React.ReactNode | string;
   refId?: string;
   closable?: boolean;

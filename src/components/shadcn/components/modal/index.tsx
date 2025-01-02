@@ -39,7 +39,10 @@ function NextModal() {
         modalStore?.removeModal(dialog.refId);
       }}
     >
-      <DialogContent className={cn("w-full p-0", modalSize(dialog.size))}>
+      <DialogContent
+        className={cn("w-full p-0", modalSize(dialog.size))}
+        hiddenCloseBtn={!dialog.closable}
+      >
         {/*Header*/}
         <VisuallyHidden>
           <DialogHeader>
@@ -48,7 +51,7 @@ function NextModal() {
         </VisuallyHidden>
 
         {/*Body*/}
-        <section className={cn("p-3")}>{dialog.element}</section>
+        {dialog.element}
       </DialogContent>
     </Dialog>
   ));

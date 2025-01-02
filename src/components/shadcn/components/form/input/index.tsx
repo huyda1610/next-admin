@@ -27,7 +27,7 @@ function NextFormInput({
         <Input {...field} {...(componentProps ?? {})} />
       </FormControl>
       <NextRenderIf ifTrue={description}>
-        <FormDescription>This is your public display name.</FormDescription>
+        <FormDescription>{description}</FormDescription>
       </NextRenderIf>
       <FormMessage />
     </FormItem>

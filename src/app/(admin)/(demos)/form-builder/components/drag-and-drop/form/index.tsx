@@ -11,12 +11,9 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Card, CardContent } from "@/components/shadcn/ui/card";
-import FormSortableItem, { FormDragHandle } from "./sortable-item";
-import { Trash2 } from "lucide-react";
+import FormSortableItem from "./sortable-item";
 import FormItem from "./form-item";
 import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
-import InputDialog from "@/app/(admin)/(demos)/form-builder/components/dialog/input";
 
 type PropsType = {
   id: string;
@@ -93,52 +90,37 @@ function FormContainer({ items, id, setItems }: PropsType) {
       items={items}
       strategy={verticalListSortingStrategy}
     >
-      <Card ref={setNodeRef} className="col-span-2">
-        <CardContent className="p-4 rounded-xl">
-          {!!items.length && (
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col gap-4"
-              >
-                {items.map((item) => (
-                  <FormSortableItem key={item.id} id={item.id}>
-                    <FormItem
-                      {...item}
-                      extra={
-                        <div className="ease-in-out transition duration-400 flex flex-col justify-between gap-2">
-                          <InputDialog
-                            values={{ ...item }}
-                            onSubmit={(values) => {
-                              handleEdit(item.id, values);
-                            }}
-                          />
+      <div ref={setNodeRef} className="p-4  max-w-[600px] w-3/4 mx-auto">
+        {items.length ? (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-4"
+            >
+              {items.map((item) => (
+                <FormSortableItem key={item.id} id={item.id}>
+                  <FormItem
+                    {...item}
+                    form={form}
+                    handleRemoveAction={handleRemove}
+                    handleEditAction={handleEdit}
+                  />
+                </FormSortableItem>
+              ))}
 
-                          <FormDragHandle />
-
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => handleRemove(item.id)}
-                            className="p-0"
-                          >
-                            <Trash2 className="text-destructive" size={16} />
-                          </Button>
-                        </div>
-                      }
-                      form={form}
-                    />
-                  </FormSortableItem>
-                ))}
-
-                <Button type="submit" className="w-fit">
-                  Submit
-                </Button>
-              </form>
-            </Form>
-          )}
-        </CardContent>
-      </Card>
+              <Button type="submit" className="w-fit">
+                Submit
+              </Button>
+            </form>
+          </Form>
+        ) : (
+          <div className="text-center py-12">
+            <strong className="text-lg text-center py-12">
+              No Fields were added
+            </strong>
+          </div>
+        )}
+      </div>
     </SortableContext>
   );
 }

@@ -54,7 +54,7 @@ function FormSortableItem({ children, id }: PropsWithChildren<Props>) {
 
   return (
     <SortableItemContext.Provider value={context}>
-      <div className="flex gap-2" ref={setNodeRef} style={style}>
+      <div ref={setNodeRef} style={style}>
         {children}
       </div>
     </SortableItemContext.Provider>

@@ -17,6 +17,13 @@ import { randomGenerate } from "@/@core/utils/randomGenerate";
 import RootContainer from "./components/drag-and-drop/root";
 import RootItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/root/root-item";
 import FormContainer from "./components/drag-and-drop/form";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/shadcn/ui/tabs";
+import { Card, CardContent } from "@/components/shadcn/ui/card";
 
 function FormBuilderComponent() {
   const sensors = useSensors(
@@ -192,7 +199,37 @@ function FormBuilderComponent() {
     >
       <div className="grid grid-cols-3 gap-5">
         <RootContainer id="root" items={items.root} />
-        <FormContainer id="form" items={items.form} setItems={setItems} />
+
+        <Card className="col-span-2">
+          <CardContent className="p-0 pt-2">
+            <Tabs defaultValue="form">
+              <TabsList className="relative w-full justify-start rounded-none border-b bg-transparent p-1">
+                <TabsTrigger
+                  value="form"
+                  className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                >
+                  Form Preview
+                </TabsTrigger>
+                <TabsTrigger
+                  value="code"
+                  className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                >
+                  Code
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="form">
+                <FormContainer
+                  id="form"
+                  items={items.form}
+                  setItems={setItems}
+                />
+              </TabsContent>
+              <TabsContent value="code">
+                <></>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
       </div>
 
       <DragOverlay>{renderDragItem()}</DragOverlay>

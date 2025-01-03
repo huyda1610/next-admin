@@ -17,7 +17,7 @@ type PropsType = {
   onClose: () => void;
 };
 
-function InputForm({ values, onSubmit: submit, onClose }: PropsType) {
+function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
   const form = useForm({
     resolver: zodResolver(inputFormSchema),
     defaultValues: {
@@ -89,4 +89,4 @@ function InputForm({ values, onSubmit: submit, onClose }: PropsType) {
   );
 }
 
-export default InputForm;
+export default InputFormModal;

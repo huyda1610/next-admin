@@ -24,6 +24,7 @@ import {
   TabsTrigger,
 } from "@/components/shadcn/ui/tabs";
 import { Card, CardContent } from "@/components/shadcn/ui/card";
+import FormItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/form/form-item";
 
 function FormBuilderComponent() {
   const sensors = useSensors(
@@ -73,6 +74,8 @@ function FormBuilderComponent() {
     const { id } = active;
 
     const container = findContainer(id as string);
+
+    console.log(container);
 
     if (!container) return;
     const item = items[container].find((item) => item.id === id);
@@ -186,6 +189,15 @@ function FormBuilderComponent() {
 
   const renderDragItem = (): React.ReactElement => {
     if (!activeItem) return <></>;
+    if (activeItem?.isDraggingForm)
+      return (
+        <FormItem
+          handleRemoveAction={() => {}}
+          handleEditAction={() => {}}
+          item={activeItem}
+          isDragging={true}
+        />
+      );
     return <RootItem type={activeItem.type} />;
   };
 

@@ -14,6 +14,7 @@ import {
 import FormSortableItem from "./sortable-item";
 import FormItem from "./form-item";
 import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
+import { FORM_REQUIRED } from "@/@core/const";
 
 type PropsType = {
   id: string;
@@ -56,7 +57,9 @@ function FormContainer({ items, id, setItems }: PropsType) {
   const initialForm = () => {
     const data: string[] = items.map((item) => item.fieldName);
     return data.reduce((acc: any, cur) => {
-      acc[cur] = z.string();
+      acc[cur] = z.string().min(1, {
+        message: FORM_REQUIRED,
+      });
       return acc;
     }, {});
   };
@@ -104,7 +107,6 @@ function FormContainer({ items, id, setItems }: PropsType) {
                     handleRemoveAction={handleRemove}
                     handleEditAction={handleEdit}
                     item={item}
-                    isDragging={false}
                   />
                 </FormSortableItem>
               ))}

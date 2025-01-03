@@ -4,7 +4,7 @@ import { Pencil } from "lucide-react";
 import { z } from "zod";
 import { inputFormSchema } from "./form-schema.type";
 import useNextModal from "@/hooks/use-modal";
-import InputForm from "./form";
+import InputFormModal from "./form-modal";
 
 type PropsType = {
   values: z.infer<typeof inputFormSchema>;
@@ -22,7 +22,11 @@ function InputDialog({ values, onSubmit }: PropsType) {
         event.preventDefault();
         open({
           element: (
-            <InputForm values={values} onSubmit={onSubmit} onClose={close} />
+            <InputFormModal
+              values={values}
+              onSubmit={onSubmit}
+              onClose={close}
+            />
           ),
           closable: true,
         });

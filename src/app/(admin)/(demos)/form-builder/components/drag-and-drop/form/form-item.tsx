@@ -14,29 +14,42 @@ import { Input } from "@/components/shadcn/ui/input";
 import { FormItemType } from "@/app/(admin)/(demos)/form-builder/components/type";
 
 type FormItemProps = {
-  isDragging: boolean;
-  form: UseFormReturn;
+  form?: UseFormReturn;
   handleRemoveAction: (id: string) => void;
   handleEditAction: (
     id: string,
     values: z.infer<typeof inputFormSchema>,
   ) => void;
   item: FormItemType;
+  isDragging?: boolean;
 };
 
 export default function FormItem({
-  isDragging,
   form,
   handleRemoveAction,
   handleEditAction,
   item,
+  isDragging,
 }: FormItemProps) {
   const renderItem = (): React.ReactNode => {
+    if (!form) {
+      switch (item.type) {
+        case "input":
+          return (
+            <NextFormItem label={item.label} description={item.description}>
+              <Input placeholder={item.placeholder} />
+            </NextFormItem>
+          );
+        default:
+          return <></>;
+      }
+    }
+
     switch (item.type) {
       case "input":
         return (
           <FormField
-            control={form.control}
+            control={form?.control}
             name={item.fieldName}
             render={({ field }) => (
               <NextFormItem label={item.label} description={item.description}>
@@ -54,7 +67,8 @@ export default function FormItem({
     <div
       id={item.id}
       className={cn(
-        isDragging && "border-primary border-dashed opacity-50",
+        isDragging &&
+          "border border-solid border-border bg-white rounded-lg p-1 px-2",
         "relative group",
       )}
     >

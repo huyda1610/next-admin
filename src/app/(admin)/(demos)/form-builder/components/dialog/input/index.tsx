@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Pencil } from "lucide-react";
 import { z } from "zod";
@@ -12,11 +12,7 @@ type PropsType = {
 };
 
 function InputDialog({ values, onSubmit }: PropsType) {
-  const { open, setElement } = useNextModal();
-
-  useEffect(() => {
-    setElement(<InputForm values={values} onSubmit={onSubmit} />);
-  }, []);
+  const { open, close } = useNextModal();
 
   return (
     <Button
@@ -25,6 +21,9 @@ function InputDialog({ values, onSubmit }: PropsType) {
       onClick={(event) => {
         event.preventDefault();
         open({
+          element: (
+            <InputForm values={values} onSubmit={onSubmit} onClose={close} />
+          ),
           closable: true,
         });
       }}

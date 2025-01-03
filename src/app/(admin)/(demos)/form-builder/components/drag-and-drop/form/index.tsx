@@ -100,10 +100,11 @@ function FormContainer({ items, id, setItems }: PropsType) {
               {items.map((item) => (
                 <FormSortableItem key={item.id} id={item.id}>
                   <FormItem
-                    {...item}
                     form={form}
                     handleRemoveAction={handleRemove}
                     handleEditAction={handleEdit}
+                    item={item}
+                    isDragging={false}
                   />
                 </FormSortableItem>
               ))}

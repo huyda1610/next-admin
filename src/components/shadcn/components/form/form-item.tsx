@@ -6,26 +6,27 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/shadcn/ui/form";
-import { Input, InputProps } from "@/components/shadcn/ui/input";
-import { FormUIType } from "../type";
 import NextRenderIf from "@/components/utils/render-if";
 
-export type FormInputType = FormUIType & {
-  componentProps?: InputProps;
+export type FormItemType = {
+  label?: string;
+  description?: string;
+  required?: boolean;
+  children: React.ReactElement;
 };
 
-function NextFormInput({
-  field,
-  componentProps,
+function NextFormItem({
   label,
   description,
-}: FormInputType) {
+  required,
+  children,
+}: FormItemType) {
   return (
     <FormItem>
-      <FormLabel>{label}</FormLabel>
-      <FormControl>
-        <Input {...field} {...(componentProps ?? {})} />
-      </FormControl>
+      <FormLabel>
+        {label} {required && <span className="text-red-500">*</span>}
+      </FormLabel>
+      <FormControl>{children}</FormControl>
       <NextRenderIf ifTrue={description}>
         <FormDescription>{description}</FormDescription>
       </NextRenderIf>
@@ -34,4 +35,4 @@ function NextFormInput({
   );
 }
 
-export default NextFormInput;
+export default NextFormItem;

@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-import { FormItemType } from "../../type";
 import { cn } from "@/lib/utils";
 import { FormField } from "@/components/shadcn/ui/form";
-import NextFormInput from "@/components/shadcn/components/form/input";
 import { UseFormReturn } from "react-hook-form";
 import InputDialog from "@/app/(admin)/(demos)/form-builder/components/dialog/input";
 import { Button } from "@/components/shadcn/ui/button";
@@ -11,33 +9,40 @@ import { Trash2 } from "lucide-react";
 import { FormDragHandle } from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
 import { z } from "zod";
 import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
+import NextFormItem from "@/components/shadcn/components/form/form-item";
+import { Input } from "@/components/shadcn/ui/input";
+import { FormItemType } from "@/app/(admin)/(demos)/form-builder/components/type";
 
-type FormItemProps = FormItemType & {
-  isDragging?: boolean;
+type FormItemProps = {
+  isDragging: boolean;
   form: UseFormReturn;
   handleRemoveAction: (id: string) => void;
   handleEditAction: (
     id: string,
     values: z.infer<typeof inputFormSchema>,
   ) => void;
+  item: FormItemType;
 };
 
 export default function FormItem({
-  id,
-  type,
   isDragging,
+  form,
   handleRemoveAction,
   handleEditAction,
-  ...rest
+  item,
 }: FormItemProps) {
   const renderItem = (): React.ReactNode => {
-    switch (type) {
+    switch (item.type) {
       case "input":
         return (
           <FormField
-            control={rest.form?.control}
-            name={rest.fieldName}
-            render={({ field }) => <NextFormInput {...rest} field={field} />}
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem label={item.label} description={item.description}>
+                <Input {...field} placeholder={item.placeholder} />
+              </NextFormItem>
+            )}
           />
         );
       default:
@@ -47,7 +52,7 @@ export default function FormItem({
 
   return (
     <div
-      id={id}
+      id={item.id}
       className={cn(
         isDragging && "border-primary border-dashed opacity-50",
         "relative group",
@@ -57,16 +62,16 @@ export default function FormItem({
       {/*Button*/}
       <div className="absolute -left-12 top-1/2 flex -translate-y-1/2 flex-col gap-1 opacity-0 transition-opacity group-hover:opacity-100">
         <InputDialog
-          values={{ ...rest }}
+          values={item}
           onSubmit={(values) => {
-            handleEditAction(id, values);
+            handleEditAction(item.id, values);
           }}
         />
 
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => handleRemoveAction(id)}
+          onClick={() => handleRemoveAction(item.id)}
           className="p-0"
         >
           <Trash2 className="text-destructive" size={16} />

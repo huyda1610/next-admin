@@ -49,7 +49,7 @@ export default function FormItem({
       case "input":
         return (
           <FormField
-            control={form?.control}
+            control={form.control}
             name={item.fieldName}
             render={({ field }) => (
               <NextFormItem label={item.label} description={item.description}>
@@ -68,7 +68,7 @@ export default function FormItem({
       id={item.id}
       className={cn(
         isDragging &&
-          "border border-solid border-border bg-white rounded-lg p-1 px-2",
+          "border-2 border-solid border-border bg-white rounded-lg p-1 px-2",
         "relative group",
       )}
     >

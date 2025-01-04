@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "@/components/shadcn/ui/toaster";
 
 const renderMetaData = (): string => {
   if (process.env.APP_URL) return process.env.APP_URL;
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextTopLoader zIndex={10} />
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>

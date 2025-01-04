@@ -4,7 +4,6 @@ import { FormItemType, ItemsType } from "../../type";
 import { useDroppable } from "@dnd-kit/core";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/shadcn/ui/button";
 import { Form } from "@/components/shadcn/ui/form";
 import {
@@ -14,7 +13,8 @@ import {
 import FormSortableItem from "./sortable-item";
 import FormItem from "./form-item";
 import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
-import { FORM_REQUIRED } from "@/@core/const";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useToast } from "@/hooks/use-toast";
 
 type PropsType = {
   id: string;
@@ -26,6 +26,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
   const { setNodeRef } = useDroppable({
     id,
   });
+  const { toast } = useToast();
 
   const handleRemove = (id: string) => {
     setItems((prev) => {
@@ -57,34 +58,22 @@ function FormContainer({ items, id, setItems }: PropsType) {
   const initialForm = () => {
     const data: string[] = items.map((item) => item.fieldName);
     return data.reduce((acc: any, cur) => {
-      acc[cur] = z.string().min(1, {
-        message: FORM_REQUIRED,
-      });
+      acc[cur] = z.string().optional().default("");
       return acc;
     }, {});
   };
 
-  const defaultValues = () => {
-    const data: string[] = items.map((item) => item.fieldName);
-    return data.reduce((acc: any, cur) => {
-      acc[cur] = "";
-      return acc;
-    }, {});
-  };
-
-  const formSchema = z.object({
-    ...initialForm(),
-  });
+  const formSchema = z.object(initialForm());
 
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      ...defaultValues(),
-    },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // console.log(values);
+    toast({
+      title: "Submitted following values",
+      description: JSON.stringify(values),
+    });
   }
 
   return (

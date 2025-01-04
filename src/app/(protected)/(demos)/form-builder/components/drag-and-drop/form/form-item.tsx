@@ -69,7 +69,7 @@ export default function FormItem({
       id={item.id}
       className={cn(
         isDragging &&
-          "border-2 border-solid border-border bg-white rounded-lg p-1 px-2",
+          "border-2 border-solid border-border rounded-lg p-1 px-2 bg-background",
         "relative group",
       )}
     >

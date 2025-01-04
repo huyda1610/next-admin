@@ -51,7 +51,6 @@ function FormSortableItem({ children, id }: PropsWithChildren<Props>) {
     border: isDragging ? "2px" : undefined,
     borderStyle: isDragging ? "dashed" : undefined,
     padding: isDragging ? "4px 8px" : undefined,
-    background: isDragging ? "#f1f3f6" : undefined,
     borderRadius: isDragging ? "8px" : undefined,
     transform: CSS.Translate.toString(transform),
     transition,

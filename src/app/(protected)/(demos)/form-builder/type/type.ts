@@ -1,5 +1,6 @@
-import { inputFormSchema } from "./dialog/input/form-schema.type";
+import { inputFormSchema } from "../components/dialog/input/form-schema.type";
 import { z } from "zod";
+import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 
 export type FormItemType = FormItemInput;
 
@@ -10,7 +11,7 @@ type DefaultFormItem = {
 
 type FormItemInput = DefaultFormItem &
   z.infer<typeof inputFormSchema> & {
-    type: "input";
+    type: FieldTypeEnum.INPUT;
   };
 
 export type ItemsType = {

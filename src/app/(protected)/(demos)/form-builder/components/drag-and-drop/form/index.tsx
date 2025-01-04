@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FormItemType, ItemsType } from "../../type";
+import { FormItemType, ItemsType } from "../../../type/type";
 import { useDroppable } from "@dnd-kit/core";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import {
 } from "@dnd-kit/sortable";
 import FormSortableItem from "./sortable-item";
 import FormItem from "./form-item";
-import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
+import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 
@@ -71,8 +71,14 @@ function FormContainer({ items, id, setItems }: PropsType) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     toast({
-      title: "Submitted following values",
-      description: JSON.stringify(values),
+      title: "Submitted following values:",
+      description: (
+        <pre className="mt-2 w-[340px] overflow-auto rounded-md bg-foreground p-4">
+          <code className="overflow-auto text-secondary">
+            {JSON.stringify(values, null, 2)}
+          </code>
+        </pre>
+      ),
     });
   }
 

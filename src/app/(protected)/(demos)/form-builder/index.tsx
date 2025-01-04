@@ -11,11 +11,11 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { FormItemType, ItemsType } from "./components/type";
+import { FormItemType, ItemsType } from "./type/type";
 import { DragOverEvent } from "@dnd-kit/core/dist/types";
 import { randomGenerate } from "@/@core/utils/randomGenerate";
 import RootContainer from "./components/drag-and-drop/root";
-import RootItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/root/root-item";
+import RootItem from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/root/root-item";
 import FormContainer from "./components/drag-and-drop/form";
 import {
   Tabs,
@@ -24,7 +24,9 @@ import {
   TabsTrigger,
 } from "@/components/shadcn/ui/tabs";
 import { Card, CardContent } from "@/components/shadcn/ui/card";
-import FormItem from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/form/form-item";
+import FormItem from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/form-item";
+import FormBuilderCodeBlock from "@/app/(protected)/(demos)/form-builder/components/code-block";
+import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 
 function FormBuilderComponent() {
   const sensors = useSensors(
@@ -39,7 +41,7 @@ function FormBuilderComponent() {
     root: [
       {
         id: "1",
-        type: "input",
+        type: FieldTypeEnum.INPUT,
         label: "Username",
         description: "This is your public display name.",
         fieldName: "input_1",
@@ -237,7 +239,7 @@ function FormBuilderComponent() {
                 />
               </TabsContent>
               <TabsContent value="code">
-                <></>
+                <FormBuilderCodeBlock />
               </TabsContent>
             </Tabs>
           </CardContent>

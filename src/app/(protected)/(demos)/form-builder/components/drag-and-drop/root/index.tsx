@@ -6,7 +6,7 @@ import {
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Card, CardContent, CardHeader } from "@/components/shadcn/ui/card";
-import { FormItemType } from "../../type";
+import { FormItemType } from "../../../type/type";
 import RootSortableItem from "./sortable-item";
 
 type PropsType = {

@@ -3,15 +3,16 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { FormField } from "@/components/shadcn/ui/form";
 import { UseFormReturn } from "react-hook-form";
-import InputDialog from "@/app/(admin)/(demos)/form-builder/components/dialog/input";
+import InputDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/input";
 import { Button } from "@/components/shadcn/ui/button";
 import { Trash2 } from "lucide-react";
-import { FormDragHandle } from "@/app/(admin)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
+import { FormDragHandle } from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
 import { z } from "zod";
-import { inputFormSchema } from "@/app/(admin)/(demos)/form-builder/components/dialog/input/form-schema.type";
+import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
 import NextFormItem from "@/components/shadcn/components/form/form-item";
 import { Input } from "@/components/shadcn/ui/input";
-import { FormItemType } from "@/app/(admin)/(demos)/form-builder/components/type";
+import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
+import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -34,7 +35,7 @@ export default function FormItem({
   const renderItem = (): React.ReactNode => {
     if (!form) {
       switch (item.type) {
-        case "input":
+        case FieldTypeEnum.INPUT:
           return (
             <NextFormItem label={item.label} description={item.description}>
               <Input placeholder={item.placeholder} />
@@ -46,7 +47,7 @@ export default function FormItem({
     }
 
     switch (item.type) {
-      case "input":
+      case FieldTypeEnum.INPUT:
         return (
           <FormField
             control={form.control}

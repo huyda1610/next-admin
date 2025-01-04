@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ItemType } from "@/app/(admin)/(demos)/form-builder/components/type";
+import { ItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import { Card, CardContent } from "@/components/shadcn/ui/card";
 import { NextIcon } from "@/components/shared/icon";
 import { cn } from "@/lib/utils";

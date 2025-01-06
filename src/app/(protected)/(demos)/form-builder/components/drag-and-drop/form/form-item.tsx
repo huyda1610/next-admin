@@ -53,8 +53,16 @@ export default function FormItem({
             control={form.control}
             name={item.fieldName}
             render={({ field }) => (
-              <NextFormItem label={item.label} description={item.description}>
-                <Input {...field} placeholder={item.placeholder} />
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.required}
+              >
+                <Input
+                  {...field}
+                  placeholder={item.placeholder}
+                  disabled={item.disabled}
+                />
               </NextFormItem>
             )}
           />

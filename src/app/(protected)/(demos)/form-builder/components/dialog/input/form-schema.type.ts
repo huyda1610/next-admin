@@ -5,7 +5,7 @@ export const inputFormSchema = z.object({
   label: z.string(),
   description: z.string(),
   placeholder: z.string(),
-  fieldName: z.string().min(1, {
-    message: FORM_REQUIRED,
-  }),
+  fieldName: z.string().nonempty(FORM_REQUIRED),
+  required: z.boolean(),
+  disabled: z.boolean(),
 });

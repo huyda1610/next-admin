@@ -15,6 +15,7 @@ import FormItem from "./form-item";
 import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
+import { FORM_REQUIRED } from "@/@core/const";
 
 type PropsType = {
   id: string;
@@ -56,11 +57,24 @@ function FormContainer({ items, id, setItems }: PropsType) {
 
   // ---------------------------------------------Form Control-----------------------------------------------------
   const initialForm = () => {
-    const data: string[] = items.map((item) => item.fieldName);
-    return data.reduce((acc: any, cur) => {
-      acc[cur] = z.string().optional().default("");
-      return acc;
-    }, {});
+    return items.reduce(
+      (acc: any, cur) => {
+        acc[cur.fieldName] = z
+          .string()
+          .optional()
+          .default("")
+          .refine(
+            (data) => {
+              if (data) return true;
+              return !cur.required;
+            },
+            { message: FORM_REQUIRED },
+          );
+
+        return acc;
+      },
+      {} as Record<string, z.ZodString>,
+    );
   };
 
   const formSchema = z.object(initialForm());

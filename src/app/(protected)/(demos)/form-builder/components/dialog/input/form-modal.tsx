@@ -1,15 +1,17 @@
 "use client";
-import React from "react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormField } from "@/components/shadcn/ui/form";
-import { Button } from "@/components/shadcn/ui/button";
-import { inputFormSchema } from "./form-schema.type";
-import NextModalTitle from "@/components/shadcn/components/modal/components/title";
-import NextModalBody from "@/components/shadcn/components/modal/components/body";
 import NextFormItem from "@/components/shadcn/components/form/form-item";
+import NextFormItemCheckBox from "@/components/shadcn/components/form/form-item-checkbox";
+import NextModalBody from "@/components/shadcn/components/modal/components/body";
+import NextModalTitle from "@/components/shadcn/components/modal/components/title";
+import { Button } from "@/components/shadcn/ui/button";
+import { Checkbox } from "@/components/shadcn/ui/checkbox";
+import { Form, FormField } from "@/components/shadcn/ui/form";
 import { Input } from "@/components/shadcn/ui/input";
+import { Textarea } from "@/components/shadcn/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { inputFormSchema } from "./form-schema.type";
 
 type PropsType = {
   values: z.infer<typeof inputFormSchema>;
@@ -54,7 +56,7 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
               name="description"
               render={({ field }) => (
                 <NextFormItem label="Description">
-                  <Input {...field} />
+                  <Textarea {...field} />
                 </NextFormItem>
               )}
             />
@@ -78,6 +80,34 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
                 </NextFormItem>
               )}
             />
+
+            <div className="flex gap-2">
+              <FormField
+                control={form.control}
+                name="required"
+                render={({ field }) => (
+                  <NextFormItemCheckBox label="Required">
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </NextFormItemCheckBox>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="disabled"
+                render={({ field }) => (
+                  <NextFormItemCheckBox label="Disabled">
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </NextFormItemCheckBox>
+                )}
+              />
+            </div>
 
             <div className="w-full flex justify-end">
               <Button type="submit">Save Changes</Button>

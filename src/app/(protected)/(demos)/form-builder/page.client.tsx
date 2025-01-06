@@ -28,6 +28,20 @@ import FormItem from "@/app/(protected)/(demos)/form-builder/components/drag-and
 import FormBuilderCodeBlock from "@/app/(protected)/(demos)/form-builder/components/code-block";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 
+const rootItems: FormItemType[] = [
+  {
+    id: "1",
+    type: FieldTypeEnum.INPUT,
+    label: "Username",
+    description: "This is your public display name.",
+    fieldName: "input_1",
+    placeholder: "next admin",
+    isDraggingForm: false,
+    required: false,
+    disabled: false,
+  },
+];
+
 function FormBuilderComponent() {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -38,17 +52,7 @@ function FormBuilderComponent() {
 
   const [activeItem, setActiveItem] = useState<FormItemType | null>(null);
   const [items, setItems] = useState<ItemsType>({
-    root: [
-      {
-        id: "1",
-        type: FieldTypeEnum.INPUT,
-        label: "Username",
-        description: "This is your public display name.",
-        fieldName: "input_1",
-        placeholder: "next admin",
-        isDraggingForm: false,
-      },
-    ],
+    root: rootItems,
     form: [],
   });
 
@@ -76,8 +80,6 @@ function FormBuilderComponent() {
     const { id } = active;
 
     const container = findContainer(id as string);
-
-    console.log(container);
 
     if (!container) return;
     const item = items[container].find((item) => item.id === id);

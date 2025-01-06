@@ -12,6 +12,8 @@
     --foreground: 222.34deg 10.43% 12.27%;
     --background-deep: 216 20.11% 95.47%;
 
+    --input-disable: 0, 0%, 96%;
+
     --card: 0 0% 100%;
     --card-foreground: 222.34deg 10.43% 12.27%;
 
@@ -44,6 +46,8 @@
     --background: 222.34deg 10.43% 12.27%;
     --foreground: 0 0% 98%;
     --background-deep: 220deg 13.06% 9%;
+
+    --input-disable: 220, 6%, 19%;
 
     --card: 222.34deg 10.43% 12.27%;
     --card-foreground: 0 0% 98%;

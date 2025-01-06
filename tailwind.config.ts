@@ -48,6 +48,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "input-disable": {
+          DEFAULT: "hsl(var(--input-disable))",
+        },
         info: {
           DEFAULT: "#00b8d9",
           light: "#61f3f3",

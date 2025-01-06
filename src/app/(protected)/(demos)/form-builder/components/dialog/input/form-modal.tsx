@@ -90,6 +90,7 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      disabled={form.watch("disabled")}
                     />
                   </NextFormItemCheckBox>
                 )}
@@ -103,6 +104,7 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      disabled={form.watch("required")}
                     />
                   </NextFormItemCheckBox>
                 )}

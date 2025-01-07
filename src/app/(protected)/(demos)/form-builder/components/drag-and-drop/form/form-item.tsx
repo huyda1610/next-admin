@@ -13,6 +13,7 @@ import NextFormItem from "@/components/shadcn/components/form/form-item";
 import { Input } from "@/components/shadcn/ui/input";
 import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
+import { Textarea } from "@/components/shadcn/ui/textarea";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -41,6 +42,12 @@ export default function FormItem({
               <Input placeholder={item.placeholder} />
             </NextFormItem>
           );
+        case FieldTypeEnum.TEXT_AREA:
+          return (
+            <NextFormItem label={item.label} description={item.description}>
+              <Textarea placeholder={item.placeholder} />
+            </NextFormItem>
+          );
         default:
           return <></>;
       }
@@ -59,6 +66,26 @@ export default function FormItem({
                 required={item.required}
               >
                 <Input
+                  {...field}
+                  placeholder={item.placeholder}
+                  disabled={item.disabled}
+                />
+              </NextFormItem>
+            )}
+          />
+        );
+      case FieldTypeEnum.TEXT_AREA:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.required}
+              >
+                <Textarea
                   {...field}
                   placeholder={item.placeholder}
                   disabled={item.disabled}

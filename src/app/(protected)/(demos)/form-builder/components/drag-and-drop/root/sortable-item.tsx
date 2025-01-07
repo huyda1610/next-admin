@@ -1,10 +1,10 @@
 import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { ItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
+import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import RootItem from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/root/root-item";
 
-type SortableItemProps = ItemType & {
+type SortableItemProps = FormItemType & {
   isRoot?: boolean;
   id: string;
 };

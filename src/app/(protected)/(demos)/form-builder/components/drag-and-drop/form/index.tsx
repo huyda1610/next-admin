@@ -16,6 +16,7 @@ import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/componen
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { FORM_REQUIRED } from "@/@core/const";
+import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 
 type PropsType = {
   id: string;
@@ -59,17 +60,34 @@ function FormContainer({ items, id, setItems }: PropsType) {
   const initialForm = () => {
     return items.reduce(
       (acc: any, cur) => {
-        acc[cur.fieldName] = z
-          .string()
-          .optional()
-          .default("")
-          .refine(
-            (data) => {
-              if (data) return true;
-              return !cur.required;
-            },
-            { message: FORM_REQUIRED },
-          );
+        switch (cur.type) {
+          case FieldTypeEnum.NUMBER:
+            acc[cur.fieldName] = z
+              .number()
+              .optional()
+              .default(0)
+              .refine(
+                (data) => {
+                  if (data) return true;
+                  return !cur.required;
+                },
+                { message: FORM_REQUIRED },
+              );
+            break;
+          default:
+            acc[cur.fieldName] = z
+              .string()
+              .optional()
+              .default("")
+              .refine(
+                (data) => {
+                  if (data) return true;
+                  return !cur.required;
+                },
+                { message: FORM_REQUIRED },
+              );
+            break;
+        }
 
         return acc;
       },

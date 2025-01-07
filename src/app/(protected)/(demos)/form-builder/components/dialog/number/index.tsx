@@ -2,16 +2,18 @@ import React from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Pencil } from "lucide-react";
 import { z } from "zod";
-import { textAreaFormSchema } from "./form-schema.type";
+import { numberFormSchema } from "./form-schema.type";
 import useNextModal from "@/hooks/use-modal";
-import InputFormModal from "./form-modal";
+import FormModal from "./form-modal";
+
+const schema = numberFormSchema;
 
 type PropsType = {
-  values: z.infer<typeof textAreaFormSchema>;
-  onSubmit: (values: z.infer<typeof textAreaFormSchema>) => void;
+  values: z.infer<typeof schema>;
+  onSubmit: (values: z.infer<typeof schema>) => void;
 };
 
-function InputDialog({ values, onSubmit }: PropsType) {
+function NumberDialog({ values, onSubmit }: PropsType) {
   const { open, close } = useNextModal();
 
   return (
@@ -22,13 +24,10 @@ function InputDialog({ values, onSubmit }: PropsType) {
         event.preventDefault();
         open({
           element: (
-            <InputFormModal
-              values={values}
-              onSubmit={onSubmit}
-              onClose={close}
-            />
+            <FormModal values={values} onSubmit={onSubmit} onClose={close} />
           ),
           closable: true,
+          size: "md",
         });
       }}
     >
@@ -37,4 +36,4 @@ function InputDialog({ values, onSubmit }: PropsType) {
   );
 }
 
-export default InputDialog;
+export default NumberDialog;

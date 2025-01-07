@@ -51,6 +51,17 @@ const rootItems: FormItemType[] = [
     required: false,
     disabled: false,
   },
+  {
+    id: "3",
+    type: FieldTypeEnum.NUMBER,
+    label: "Age",
+    description: "Input your age.",
+    fieldName: "number_1",
+    placeholder: "29",
+    isDraggingForm: false,
+    required: false,
+    disabled: false,
+  },
 ];
 
 function FormBuilderComponent() {
@@ -176,7 +187,8 @@ function FormBuilderComponent() {
     if (
       !activeContainer ||
       !overContainer ||
-      activeContainer !== overContainer
+      activeContainer !== overContainer ||
+      overContainer === "root"
     ) {
       return;
     }

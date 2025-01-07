@@ -40,8 +40,11 @@ function NextModal() {
       }}
     >
       <DialogContent
-        className={cn("w-full p-0", modalSize(dialog.size))}
+        className={cn("w-full p-0")}
         hiddenCloseBtn={!dialog.closable}
+        style={{
+          width: `${modalSize(dialog.size)}px`,
+        }}
       >
         {/*Header*/}
         <VisuallyHidden>

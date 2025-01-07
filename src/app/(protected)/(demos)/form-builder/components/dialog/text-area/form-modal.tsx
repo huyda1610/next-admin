@@ -13,28 +13,30 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { textAreaFormSchema } from "./form-schema.type";
 
+const schema = textAreaFormSchema;
+
 type PropsType = {
-  values: z.infer<typeof textAreaFormSchema>;
-  onSubmit: (values: z.infer<typeof textAreaFormSchema>) => void;
+  values: z.infer<typeof schema>;
+  onSubmit: (values: z.infer<typeof schema>) => void;
   onClose: () => void;
 };
 
-function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
+function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
   const form = useForm({
-    resolver: zodResolver(textAreaFormSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       ...values,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof textAreaFormSchema>) {
+  async function onSubmit(values: z.infer<typeof schema>) {
     submit(values);
     onClose();
   }
 
   return (
     <>
-      <NextModalTitle>Edit Input Field</NextModalTitle>
+      <NextModalTitle>Edit Textarea Field</NextModalTitle>
       <NextModalBody className="pb-3">
         <Form {...form}>
           <form
@@ -121,4 +123,4 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
   );
 }
 
-export default InputFormModal;
+export default FormModal;

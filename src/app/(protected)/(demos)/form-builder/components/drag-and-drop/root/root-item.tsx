@@ -21,11 +21,11 @@ function RootItem({ type, isDragging }: PropsType) {
           ),
           title: "Text Field",
         };
-      // case "number":
-      //   return {
-      //     icon: <NextIcon.Number width={32} height={32}></NextIcon.Number>,
-      //     title: "Number Field",
-      //   };
+      case FieldTypeEnum.NUMBER:
+        return {
+          icon: <NextIcon.Number width={32} height={32}></NextIcon.Number>,
+          title: "Number Field",
+        };
       case FieldTypeEnum.TEXT_AREA:
         return {
           icon: <NextIcon.TextArea width={32} height={32}></NextIcon.TextArea>,

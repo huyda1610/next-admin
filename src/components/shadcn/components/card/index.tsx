@@ -9,7 +9,7 @@ type HeaderType = {
 type PropsType = {
   className?: string;
   header?: HeaderType;
-  children?: React.ReactNode;
+  children?: React.ReactElement;
   contentClassName?: string;
 };
 

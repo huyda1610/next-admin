@@ -14,6 +14,8 @@ import { Input } from "@/components/shadcn/ui/input";
 import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 import { Textarea } from "@/components/shadcn/ui/textarea";
+import TextAreaDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/text-area";
+import NumberDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/number";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -33,24 +35,26 @@ export default function FormItem({
   item,
   isDragging,
 }: FormItemProps) {
-  const renderItem = (): React.ReactNode => {
+  const getDragItem = (placeholder: string): React.ReactElement => {
+    switch (item.type) {
+      case FieldTypeEnum.INPUT:
+        return <Input placeholder={placeholder} />;
+      case FieldTypeEnum.TEXT_AREA:
+        return <Textarea placeholder={placeholder} />;
+      case FieldTypeEnum.NUMBER:
+        return <Input type="number" placeholder={placeholder} />;
+      default:
+        return <></>;
+    }
+  };
+
+  const renderItem = (): React.ReactElement => {
     if (!form) {
-      switch (item.type) {
-        case FieldTypeEnum.INPUT:
-          return (
-            <NextFormItem label={item.label} description={item.description}>
-              <Input placeholder={item.placeholder} />
-            </NextFormItem>
-          );
-        case FieldTypeEnum.TEXT_AREA:
-          return (
-            <NextFormItem label={item.label} description={item.description}>
-              <Textarea placeholder={item.placeholder} />
-            </NextFormItem>
-          );
-        default:
-          return <></>;
-      }
+      return (
+        <NextFormItem label={item.label} description={item.description}>
+          {getDragItem(item.placeholder)}
+        </NextFormItem>
+      );
     }
 
     switch (item.type) {
@@ -94,6 +98,68 @@ export default function FormItem({
             )}
           />
         );
+      case FieldTypeEnum.NUMBER:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.required}
+              >
+                <Input
+                  {...field}
+                  type="number"
+                  placeholder={item.placeholder}
+                  disabled={item.disabled}
+                  max={item?.max}
+                  min={item?.min}
+                  // Convert string value to number
+                  onChange={(event) => field.onChange(+event.target.value)}
+                  // Prevent empty string being passed to number field
+                  value={field.value === undefined ? "" : field.value}
+                />
+              </NextFormItem>
+            )}
+          />
+        );
+      default:
+        return <></>;
+    }
+  };
+
+  const renderEditButton = (): React.ReactElement => {
+    switch (item.type) {
+      case FieldTypeEnum.INPUT:
+        return (
+          <InputDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.TEXT_AREA:
+        return (
+          <TextAreaDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.NUMBER:
+        return (
+          <NumberDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+
       default:
         return <></>;
     }
@@ -111,12 +177,7 @@ export default function FormItem({
       <div className="w-full">{renderItem()}</div>
       {/*Button*/}
       <div className="absolute -left-12 top-1/2 flex -translate-y-1/2 flex-col gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-        <InputDialog
-          values={item}
-          onSubmit={(values) => {
-            handleEditAction(item.id, values);
-          }}
-        />
+        {renderEditButton()}
 
         <Button
           variant="ghost"

@@ -13,21 +13,23 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { inputFormSchema } from "./form-schema.type";
 
+const schema = inputFormSchema;
+
 type PropsType = {
-  values: z.infer<typeof inputFormSchema>;
-  onSubmit: (values: z.infer<typeof inputFormSchema>) => void;
+  values: z.infer<typeof schema>;
+  onSubmit: (values: z.infer<typeof schema>) => void;
   onClose: () => void;
 };
 
-function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
+function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
   const form = useForm({
-    resolver: zodResolver(inputFormSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       ...values,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof inputFormSchema>) {
+  async function onSubmit(values: z.infer<typeof schema>) {
     submit(values);
     onClose();
   }
@@ -121,4 +123,4 @@ function InputFormModal({ values, onSubmit: submit, onClose }: PropsType) {
   );
 }
 
-export default InputFormModal;
+export default FormModal;

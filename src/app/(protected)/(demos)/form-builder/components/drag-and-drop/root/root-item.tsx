@@ -31,13 +31,13 @@ function RootItem({ type, isDragging }: PropsType) {
           icon: <NextIcon.TextArea width={32} height={32}></NextIcon.TextArea>,
           title: "TextArea Field",
         };
-      // case "date-picker":
-      //   return {
-      //     icon: (
-      //       <NextIcon.DatePicker width={32} height={32}></NextIcon.DatePicker>
-      //     ),
-      //     title: "Date Field",
-      //   };
+      case FieldTypeEnum.DATE_PICKER:
+        return {
+          icon: (
+            <NextIcon.DatePicker width={32} height={32}></NextIcon.DatePicker>
+          ),
+          title: "Date Field",
+        };
       // case "select":
       //   return {
       //     icon: (

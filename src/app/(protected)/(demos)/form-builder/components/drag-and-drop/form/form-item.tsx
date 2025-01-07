@@ -43,6 +43,8 @@ export default function FormItem({
         return <Textarea placeholder={placeholder} />;
       case FieldTypeEnum.NUMBER:
         return <Input type="number" placeholder={placeholder} />;
+      case FieldTypeEnum.DATE_PICKER:
+        return <Input type="number" placeholder={placeholder} />;
       default:
         return <></>;
     }

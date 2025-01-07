@@ -62,6 +62,17 @@ const rootItems: FormItemType[] = [
     required: false,
     disabled: false,
   },
+  {
+    id: "4",
+    type: FieldTypeEnum.DATE_PICKER,
+    label: "Date of birth",
+    description: "Your date of birth is used to calculate your age.",
+    fieldName: "datepicker_1",
+    placeholder: "Pick a date",
+    isDraggingForm: false,
+    required: false,
+    disabled: false,
+  },
 ];
 
 function FormBuilderComponent() {
@@ -151,18 +162,22 @@ function FormBuilderComponent() {
         newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
       }
 
+      console.log(activeContainer);
+
       return {
         ...prev,
         [activeContainer]: [
-          ...prev[activeContainer].filter((item) => item.id !== active.id),
-          {
-            ...items[activeContainer][activeIndex],
-            id: crypto.randomUUID(),
-            fieldName:
-              items[activeContainer][activeIndex].fieldName.split("_")[0] +
-              "_" +
-              randomGenerate.number(1, 999999),
-          },
+          ...prev[activeContainer].map((item) => {
+            if (item.id !== active.id) return item;
+            return {
+              ...items[activeContainer][activeIndex],
+              id: crypto.randomUUID(),
+              fieldName:
+                items[activeContainer][activeIndex].fieldName.split("_")[0] +
+                "_" +
+                randomGenerate.number(1, 999999),
+            };
+          }),
         ],
         [overContainer]: [
           ...prev[overContainer]

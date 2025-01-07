@@ -11,9 +11,9 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { numberFormSchema } from "./form-schema.type";
+import { datePickerFormSchema } from "./form-schema.type";
 
-const schema = numberFormSchema;
+const schema = datePickerFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -36,7 +36,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
   return (
     <>
-      <NextModalTitle>Edit Input Number Field</NextModalTitle>
+      <NextModalTitle>Edit Input Field</NextModalTitle>
       <NextModalBody className="pb-3">
         <Form {...form}>
           <form
@@ -83,42 +83,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               )}
             />
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="min"
-                render={({ field }) => (
-                  <NextFormItem label="Min">
-                    <Input
-                      type="number"
-                      {...field}
-                      // Convert string value to number
-                      onChange={(event) => field.onChange(+event.target.value)}
-                      // Prevent empty string being passed to number field
-                      value={field.value === undefined ? "" : field.value}
-                    />
-                  </NextFormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="max"
-                render={({ field }) => (
-                  <NextFormItem label="Max">
-                    <Input
-                      type="number"
-                      {...field} // Convert string value to number
-                      onChange={(event) => field.onChange(+event.target.value)}
-                      // Prevent empty string being passed to number field
-                      value={field.value === undefined ? "" : field.value}
-                    />
-                  </NextFormItem>
-                )}
-              />
-            </div>
-
-            <div className="flex gap-x-6">
+            <div className="flex gap-2">
               <FormField
                 control={form.control}
                 name="required"

@@ -14,7 +14,7 @@ export const numberFormSchema = z
   })
   .refine(
     (data) => {
-      if (!data.min || !data.max) return false;
+      if (!data.min || !data.max) return true;
       return data.min <= data.max;
     },
     {

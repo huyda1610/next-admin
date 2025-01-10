@@ -162,8 +162,6 @@ function FormBuilderComponent() {
         newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
       }
 
-      console.log(activeContainer);
-
       return {
         ...prev,
         [activeContainer]: [
@@ -238,6 +236,7 @@ function FormBuilderComponent() {
           handleEditAction={() => {}}
           item={activeItem}
           isDragging={true}
+          value={activeItem.value}
         />
       );
     return <RootItem type={activeItem.type} />;

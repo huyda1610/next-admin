@@ -5,7 +5,7 @@ import { FormField } from "@/components/shadcn/ui/form";
 import { UseFormReturn } from "react-hook-form";
 import InputDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/input";
 import { Button } from "@/components/shadcn/ui/button";
-import { Trash2 } from "lucide-react";
+import { CalendarIcon, Trash2 } from "lucide-react";
 import { FormDragHandle } from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
 import { z } from "zod";
 import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
@@ -16,6 +16,14 @@ import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/Field
 import { Textarea } from "@/components/shadcn/ui/textarea";
 import TextAreaDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/text-area";
 import NumberDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/number";
+import NextFormDatePicker from "@/components/shadcn/components/date-picker/form-date-picker";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/shadcn/ui/popover";
+import { Calendar } from "@/components/shadcn/ui/calendar";
+import { format } from "date-fns";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -26,9 +34,11 @@ type FormItemProps = {
   ) => void;
   item: FormItemType;
   isDragging?: boolean;
+  value?: any;
 };
 
 export default function FormItem({
+  value,
   form,
   handleRemoveAction,
   handleEditAction,
@@ -36,15 +46,41 @@ export default function FormItem({
   isDragging,
 }: FormItemProps) {
   const getDragItem = (placeholder: string): React.ReactElement => {
+    console.log(value);
     switch (item.type) {
       case FieldTypeEnum.INPUT:
-        return <Input placeholder={placeholder} />;
+        return <Input placeholder={placeholder} readOnly value={value} />;
       case FieldTypeEnum.TEXT_AREA:
-        return <Textarea placeholder={placeholder} />;
+        return <Textarea placeholder={placeholder} readOnly value={value} />;
       case FieldTypeEnum.NUMBER:
-        return <Input type="number" placeholder={placeholder} />;
+        return (
+          <Input
+            type="number"
+            placeholder={placeholder}
+            readOnly
+            value={value}
+          />
+        );
       case FieldTypeEnum.DATE_PICKER:
-        return <Input type="number" placeholder={placeholder} />;
+        return (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  "text-muted-foreground",
+                )}
+              >
+                {value ? format(value, "PPP") : <span>Pick a date</span>}
+                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar mode="single" initialFocus />
+            </PopoverContent>
+          </Popover>
+        );
       default:
         return <></>;
     }
@@ -123,6 +159,22 @@ export default function FormItem({
                   // Prevent empty string being passed to number field
                   value={field.value === undefined ? "" : field.value}
                 />
+              </NextFormItem>
+            )}
+          />
+        );
+      case FieldTypeEnum.DATE_PICKER:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.required}
+              >
+                <NextFormDatePicker field={field} />
               </NextFormItem>
             )}
           />

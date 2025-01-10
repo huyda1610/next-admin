@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormItemType, ItemsType } from "../../../type/type";
 import { useDroppable } from "@dnd-kit/core";
 import { z } from "zod";
@@ -56,6 +56,23 @@ function FormContainer({ items, id, setItems }: PropsType) {
     });
   };
 
+  const handleSetFormItemValue = (name: string, value: any) => {
+    setItems((prev) => {
+      return {
+        ...prev,
+        form: prev.form.map((item) => {
+          if (item.fieldName === name) {
+            return {
+              ...item,
+              value: value,
+            };
+          }
+          return item;
+        }),
+      };
+    });
+  };
+
   // ---------------------------------------------Form Control-----------------------------------------------------
   const initialForm = () => {
     return items.reduce(
@@ -66,6 +83,18 @@ function FormContainer({ items, id, setItems }: PropsType) {
               .number()
               .optional()
               .default(0)
+              .refine(
+                (data) => {
+                  if (data) return true;
+                  return !cur.required;
+                },
+                { message: FORM_REQUIRED },
+              );
+            break;
+          case FieldTypeEnum.DATE_PICKER:
+            acc[cur.fieldName] = z
+              .date()
+              .optional()
               .refine(
                 (data) => {
                   if (data) return true;
@@ -101,6 +130,19 @@ function FormContainer({ items, id, setItems }: PropsType) {
     resolver: zodResolver(formSchema),
   });
 
+  const datePickerItems = items.filter(
+    (item) => item.type === FieldTypeEnum.DATE_PICKER,
+  );
+
+  useEffect(() => {
+    console.log(
+      form.watch(
+        datePickerItems.map((datePicker) => datePicker.fieldName).join(","),
+      ),
+    );
+    // handleSetFormItemValue("datepicker_1", form.watch("datepicker_1"));
+  }, [form.watch()]);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     toast({
       title: "Submitted following values:",
@@ -125,6 +167,9 @@ function FormContainer({ items, id, setItems }: PropsType) {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
+              onChange={(event: any) => {
+                handleSetFormItemValue(event.target.name, event.target.value);
+              }}
               className="flex flex-col gap-4"
             >
               {items.map((item) => (

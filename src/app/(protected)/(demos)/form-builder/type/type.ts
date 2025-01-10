@@ -24,19 +24,23 @@ type DefaultFormItem = {
 type FormItemInput = DefaultFormItem &
   z.infer<typeof inputFormSchema> & {
     type: FieldTypeEnum.INPUT;
+    value?: string;
   };
 
 type TextAreaItemInput = DefaultFormItem &
   z.infer<typeof textAreaFormSchema> & {
     type: FieldTypeEnum.TEXT_AREA;
+    value?: string;
   };
 
 type NumberItemInput = DefaultFormItem &
   z.infer<typeof numberFormSchema> & {
     type: FieldTypeEnum.NUMBER;
+    value?: number;
   };
 
 type DatePickerItemInput = DefaultFormItem &
   z.infer<typeof datePickerFormSchema> & {
     type: FieldTypeEnum.DATE_PICKER;
+    value?: Date;
   };

@@ -7,4 +7,5 @@ export const selectFormSchema = z.object({
   placeholder: z.string(),
   fieldName: z.string().nonempty(FORM_REQUIRED),
   controls: z.string().default(""),
+  options: z.array(z.object({ label: z.string(), value: z.string() })),
 });

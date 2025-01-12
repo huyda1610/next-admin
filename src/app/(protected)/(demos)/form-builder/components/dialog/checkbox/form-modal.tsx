@@ -9,11 +9,11 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { inputFormSchema } from "./form-schema.type";
+import { checkboxFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
-const schema = inputFormSchema;
+const schema = checkboxFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -36,7 +36,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
   return (
     <>
-      <NextModalTitle>Edit Input Field</NextModalTitle>
+      <NextModalTitle>Edit Checkbox Field</NextModalTitle>
       <NextModalBody className="pb-3">
         <Form {...form}>
           <form
@@ -59,16 +59,6 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               render={({ field }) => (
                 <NextFormItem label="Description">
                   <Textarea {...field} />
-                </NextFormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="placeholder"
-              render={({ field }) => (
-                <NextFormItem label="Placeholder">
-                  <Input {...field} />
                 </NextFormItem>
               )}
             />

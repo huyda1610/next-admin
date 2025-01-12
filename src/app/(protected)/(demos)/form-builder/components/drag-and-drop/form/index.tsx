@@ -103,6 +103,18 @@ function FormContainer({ items, id, setItems }: PropsType) {
                 { message: FORM_REQUIRED },
               );
             break;
+          case FieldTypeEnum.CHECKBOX:
+            acc[cur.fieldName] = z
+              .boolean()
+              .optional()
+              .refine(
+                (data) => {
+                  if (data) return true;
+                  return cur.controls !== FieldControlsEnum.REQUIRED;
+                },
+                { message: FORM_REQUIRED },
+              );
+            break;
           default:
             acc[cur.fieldName] = z
               .string()

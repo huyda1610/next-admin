@@ -27,6 +27,11 @@ import { format } from "date-fns";
 import DatePickerDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker";
 import NextDatePicker from "@/components/shadcn/components/date-picker";
 import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
+import NexSelect from "@/components/shadcn/components/select";
+import SelectDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/select";
+import { Checkbox } from "@/components/shadcn/ui/checkbox";
+import NextFormItemCheckBox from "@/components/shadcn/components/form/form-item-checkbox";
+import CheckboxDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -47,8 +52,7 @@ export default function FormItem({
   isDragging,
   handleSetFormItemValue,
 }: FormItemProps) {
-  const getDragItem = (placeholder: string): React.ReactElement => {
-    console.log(value);
+  const getDragItem = (placeholder?: string): React.ReactElement => {
     switch (item.type) {
       case FieldTypeEnum.INPUT:
         return <Input placeholder={placeholder} readOnly value={value} />;
@@ -83,6 +87,10 @@ export default function FormItem({
             </PopoverContent>
           </Popover>
         );
+      case FieldTypeEnum.SELECT:
+        return <NexSelect defaultValue={value} />;
+      case FieldTypeEnum.CHECKBOX:
+        return <Checkbox checked={value} />;
       default:
         return <></>;
     }
@@ -90,6 +98,17 @@ export default function FormItem({
 
   const renderItem = (): React.ReactElement => {
     if (!form) {
+      if (item.type === FieldTypeEnum.CHECKBOX) {
+        return (
+          <NextFormItemCheckBox
+            label={item.label}
+            description={item.description}
+          >
+            {getDragItem()}
+          </NextFormItemCheckBox>
+        );
+      }
+
       return (
         <NextFormItem label={item.label} description={item.description}>
           {getDragItem(item.placeholder)}
@@ -189,6 +208,48 @@ export default function FormItem({
             )}
           />
         );
+      case FieldTypeEnum.SELECT:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.controls === FieldControlsEnum.REQUIRED}
+              >
+                <NexSelect
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  placeholder={item.placeholder}
+                  options={item.options}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
+                />
+              </NextFormItem>
+            )}
+          />
+        );
+      case FieldTypeEnum.CHECKBOX:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItemCheckBox
+                label={item.label}
+                description={item.description}
+                required={item.controls === FieldControlsEnum.REQUIRED}
+              >
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
+                />
+              </NextFormItemCheckBox>
+            )}
+          />
+        );
       default:
         return <></>;
     }
@@ -226,6 +287,24 @@ export default function FormItem({
       case FieldTypeEnum.DATE_PICKER:
         return (
           <DatePickerDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.SELECT:
+        return (
+          <SelectDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.CHECKBOX:
+        return (
+          <CheckboxDialog
             values={item}
             onSubmit={(values) => {
               handleEditAction(item.id, values);

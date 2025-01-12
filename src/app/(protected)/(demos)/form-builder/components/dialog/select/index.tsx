@@ -2,18 +2,18 @@ import React from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Pencil } from "lucide-react";
 import { z } from "zod";
-import { inputFormSchema } from "./form-schema.type";
+import { selectFormSchema } from "./form-schema.type";
 import useNextModal from "@/hooks/use-modal";
 import FormModal from "./form-modal";
 
-const schema = inputFormSchema;
+const schema = selectFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
   onSubmit: (values: z.infer<typeof schema>) => void;
 };
 
-function InputDialog({ values, onSubmit }: PropsType) {
+function SelectDialog({ values, onSubmit }: PropsType) {
   const { open, close } = useNextModal();
 
   return (
@@ -36,4 +36,4 @@ function InputDialog({ values, onSubmit }: PropsType) {
   );
 }
 
-export default InputDialog;
+export default SelectDialog;

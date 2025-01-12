@@ -9,10 +9,11 @@ import {
 import NextRenderIf from "@/components/utils/render-if";
 
 export type FormItemType = {
-  label?: string;
+  label?: React.ReactNode;
   description?: string;
   required?: boolean;
   children: React.ReactElement;
+  className?: string;
 };
 
 function NextFormItem({
@@ -20,9 +21,10 @@ function NextFormItem({
   description,
   required,
   children,
+  className,
 }: FormItemType) {
   return (
-    <FormItem>
+    <FormItem className={className}>
       <FormLabel>
         {label} {required && <span className="text-red-500">*</span>}
       </FormLabel>

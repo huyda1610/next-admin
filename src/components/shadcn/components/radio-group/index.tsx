@@ -9,9 +9,9 @@ type Options = {
 };
 
 type NextRadioGroupPropsType = {
-  onValueChange: (value: string) => void;
+  onValueChange?: (value: string) => void;
   defaultValue?: string;
-  options: Options[];
+  options?: Options[];
   className?: string;
 };
 

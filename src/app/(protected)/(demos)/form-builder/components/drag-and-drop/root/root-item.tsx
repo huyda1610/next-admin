@@ -53,7 +53,7 @@ function RootItem({ type, isDragging }: PropsType) {
       case FieldTypeEnum.PASSWORD:
         return {
           icon: <NextIcon.Password width={32} height={32}></NextIcon.Password>,
-          title: "Password Field",
+          title: "Password OPT Field",
         };
       case FieldTypeEnum.SLIDER:
         return {

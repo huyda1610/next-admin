@@ -6,7 +6,7 @@ import { numberFormSchema } from "@/app/(protected)/(demos)/form-builder/compone
 import { datePickerFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker/form-schema.type";
 import { selectFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/select/form-schema.type";
 import { checkboxFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox/form-schema.type";
-import { passwordFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password/form-schema.type";
+import { passwordOptFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password/form-schema.type";
 import { sliderFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/slider/form-schema.type";
 
 export type ItemsType = {
@@ -21,7 +21,7 @@ export type ItemSchemaType = z.infer<
   | typeof datePickerFormSchema
   | typeof selectFormSchema
   | typeof checkboxFormSchema
-  | typeof passwordFormSchema
+  | typeof passwordOptFormSchema
   | typeof sliderFormSchema
 >;
 
@@ -67,17 +67,17 @@ type DatePickerItemInput = DefaultFormItem &
 type SelectItemInput = DefaultFormItem &
   z.infer<typeof selectFormSchema> & {
     type: FieldTypeEnum.SELECT;
-    value?: string | number;
+    value?: string;
   };
 
 type CheckboxItemInput = DefaultFormItem &
   z.infer<typeof checkboxFormSchema> & {
     type: FieldTypeEnum.CHECKBOX;
-    value?: string | number;
+    value?: boolean;
   };
 
 type PasswordItemInput = DefaultFormItem &
-  z.infer<typeof passwordFormSchema> & {
+  z.infer<typeof passwordOptFormSchema> & {
     type: FieldTypeEnum.PASSWORD;
     value?: string | number;
   };

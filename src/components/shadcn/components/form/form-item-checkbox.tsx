@@ -4,6 +4,7 @@ import {
   FormDescription,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/shadcn/ui/form";
 import NextRenderIf from "@/components/utils/render-if";
 
@@ -30,7 +31,8 @@ function NextFormItemCheckBox({
         </FormLabel>
         <NextRenderIf ifTrue={description}>
           <FormDescription>{description}</FormDescription>
-        </NextRenderIf>{" "}
+        </NextRenderIf>
+        <FormMessage />
       </div>
     </FormItem>
   );

@@ -9,11 +9,11 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { inputFormSchema } from "./form-schema.type";
+import { passwordOptFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
-const schema = inputFormSchema;
+const schema = passwordOptFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -36,7 +36,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
   return (
     <>
-      <NextModalTitle>Edit Input Field</NextModalTitle>
+      <NextModalTitle>Edit Password OPT Field</NextModalTitle>
       <NextModalBody className="pb-3">
         <Form {...form}>
           <form

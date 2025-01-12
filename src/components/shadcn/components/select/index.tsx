@@ -13,7 +13,7 @@ type Options = {
   value: string;
 };
 
-type NextSelectPropsType = {
+type NextSelectProps = {
   onValueChange?: (value: string) => void;
   defaultValue?: string;
   options?: Options[];
@@ -27,7 +27,7 @@ function NextSelect({
   options,
   placeholder,
   disabled,
-}: NextSelectPropsType) {
+}: NextSelectProps) {
   return (
     <Select
       onValueChange={onValueChange}

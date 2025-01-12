@@ -105,12 +105,13 @@ const rootItems: FormItemType[] = [
   },
   {
     id: "7",
-    type: FieldTypeEnum.PASSWORDOPT,
+    type: FieldTypeEnum.PASSWORD_OPT,
     label: "Password",
     description: "Enter your password.",
-    fieldName: "SELECT_1",
-    placeholder: "This is your password",
+    fieldName: "passwordOpt_1",
     isDraggingForm: false,
+    maxLength: 6,
+    separatorAt: 2,
     controls: "",
   },
   {

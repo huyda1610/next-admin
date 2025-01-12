@@ -8,7 +8,7 @@ type Options = {
   value: string;
 };
 
-type NextRadioGroupPropsType = {
+type NextRadioGroupProps = {
   onValueChange?: (value: string) => void;
   defaultValue?: string;
   options?: Options[];
@@ -20,7 +20,7 @@ function NextRadioGroup({
   defaultValue,
   options,
   className,
-}: NextRadioGroupPropsType) {
+}: NextRadioGroupProps) {
   return (
     <RadioGroup
       onValueChange={onValueChange}

@@ -12,6 +12,7 @@ import { z } from "zod";
 import { passwordOptFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
+import React from "react";
 
 const schema = passwordOptFormSchema;
 
@@ -63,15 +64,41 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="placeholder"
-              render={({ field }) => (
-                <NextFormItem label="Placeholder">
-                  <Input {...field} />
-                </NextFormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name={"maxLength"}
+                render={({ field }) => (
+                  <NextFormItem label={"MaxLength"} required={true}>
+                    <Input
+                      {...field}
+                      type="number"
+                      // Convert string value to number
+                      onChange={(event) => field.onChange(+event.target.value)}
+                      // Prevent empty string being passed to number field
+                      value={field.value === undefined ? "" : field.value}
+                    />
+                  </NextFormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name={"separatorAt"}
+                render={({ field }) => (
+                  <NextFormItem label={"SeparatorAt"}>
+                    <Input
+                      {...field}
+                      type="number"
+                      // Convert string value to number
+                      onChange={(event) => field.onChange(+event.target.value)}
+                      // Prevent empty string being passed to number field
+                      value={field.value === undefined ? "" : field.value}
+                    />
+                  </NextFormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}

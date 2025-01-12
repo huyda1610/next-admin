@@ -6,8 +6,8 @@ import { numberFormSchema } from "@/app/(protected)/(demos)/form-builder/compone
 import { datePickerFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker/form-schema.type";
 import { selectFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/select/form-schema.type";
 import { checkboxFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox/form-schema.type";
-import { passwordOptFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password/form-schema.type";
 import { sliderFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/slider/form-schema.type";
+import { passwordOptFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password-opt/form-schema.type";
 
 export type ItemsType = {
   root: FormItemType[];
@@ -78,8 +78,8 @@ type CheckboxItemInput = DefaultFormItem &
 
 type PasswordItemInput = DefaultFormItem &
   z.infer<typeof passwordOptFormSchema> & {
-    type: FieldTypeEnum.PASSWORD;
-    value?: string | number;
+    type: FieldTypeEnum.PASSWORD_OPT;
+    value?: number;
   };
 
 type SliderItemInput = DefaultFormItem &

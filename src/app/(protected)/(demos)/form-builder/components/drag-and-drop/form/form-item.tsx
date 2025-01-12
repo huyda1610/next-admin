@@ -32,6 +32,8 @@ import SelectDialog from "@/app/(protected)/(demos)/form-builder/components/dial
 import { Checkbox } from "@/components/shadcn/ui/checkbox";
 import NextFormItemCheckBox from "@/components/shadcn/components/form/form-item-checkbox";
 import CheckboxDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox";
+import NextInputOpt from "@/components/shadcn/components/input-opt";
+import PasswordOptDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/password-opt";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -91,6 +93,8 @@ export default function FormItem({
         return <NexSelect defaultValue={value} />;
       case FieldTypeEnum.CHECKBOX:
         return <Checkbox checked={value} />;
+      case FieldTypeEnum.PASSWORD_OPT:
+        return <NextInputOpt maxLength={6} separatorAt={2} />;
       default:
         return <></>;
     }
@@ -111,7 +115,9 @@ export default function FormItem({
 
       return (
         <NextFormItem label={item.label} description={item.description}>
-          {getDragItem(item.placeholder)}
+          {getDragItem(
+            item.type !== FieldTypeEnum.PASSWORD_OPT ? item?.placeholder : "",
+          )}
         </NextFormItem>
       );
     }
@@ -250,6 +256,27 @@ export default function FormItem({
             )}
           />
         );
+      case FieldTypeEnum.PASSWORD_OPT:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={item.description}
+                required={item.controls === FieldControlsEnum.REQUIRED}
+              >
+                <NextInputOpt
+                  field={field}
+                  maxLength={item.maxLength}
+                  separatorAt={item?.separatorAt}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
+                />
+              </NextFormItem>
+            )}
+          />
+        );
       default:
         return <></>;
     }
@@ -305,6 +332,15 @@ export default function FormItem({
       case FieldTypeEnum.CHECKBOX:
         return (
           <CheckboxDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.PASSWORD_OPT:
+        return (
+          <PasswordOptDialog
             values={item}
             onSubmit={(values) => {
               handleEditAction(item.id, values);

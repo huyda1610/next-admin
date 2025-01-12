@@ -4,6 +4,10 @@ import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/Field
 import { textAreaFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/text-area/form-schema.type";
 import { numberFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/number/form-schema.type";
 import { datePickerFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker/form-schema.type";
+import { selectFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/select/form-schema.type";
+import { checkboxFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox/form-schema.type";
+import { passwordFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password/form-schema.type";
+import { sliderFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/slider/form-schema.type";
 
 export type ItemsType = {
   root: FormItemType[];
@@ -15,13 +19,21 @@ export type ItemSchemaType = z.infer<
   | typeof textAreaFormSchema
   | typeof numberFormSchema
   | typeof datePickerFormSchema
+  | typeof selectFormSchema
+  | typeof checkboxFormSchema
+  | typeof passwordFormSchema
+  | typeof sliderFormSchema
 >;
 
 export type FormItemType =
   | FormItemInput
   | TextAreaItemInput
   | NumberItemInput
-  | DatePickerItemInput;
+  | DatePickerItemInput
+  | SelectItemInput
+  | CheckboxItemInput
+  | PasswordItemInput
+  | SliderItemInput;
 
 type DefaultFormItem = {
   id: string;
@@ -50,4 +62,28 @@ type DatePickerItemInput = DefaultFormItem &
   z.infer<typeof datePickerFormSchema> & {
     type: FieldTypeEnum.DATE_PICKER;
     value?: Date;
+  };
+
+type SelectItemInput = DefaultFormItem &
+  z.infer<typeof selectFormSchema> & {
+    type: FieldTypeEnum.SELECT;
+    value?: string | number;
+  };
+
+type CheckboxItemInput = DefaultFormItem &
+  z.infer<typeof checkboxFormSchema> & {
+    type: FieldTypeEnum.CHECKBOX;
+    value?: string | number;
+  };
+
+type PasswordItemInput = DefaultFormItem &
+  z.infer<typeof passwordFormSchema> & {
+    type: FieldTypeEnum.PASSWORD;
+    value?: string | number;
+  };
+
+type SliderItemInput = DefaultFormItem &
+  z.infer<typeof sliderFormSchema> & {
+    type: FieldTypeEnum.SLIDER;
+    value?: string | number;
   };

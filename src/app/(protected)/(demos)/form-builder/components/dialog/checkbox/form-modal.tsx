@@ -9,12 +9,11 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { datePickerFormSchema } from "./form-schema.type";
-import NextRangePicker from "@/components/shadcn/components/range-picker";
+import { inputFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
-const schema = datePickerFormSchema;
+const schema = inputFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -37,7 +36,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
   return (
     <>
-      <NextModalTitle>Edit Date Picker Field</NextModalTitle>
+      <NextModalTitle>Edit Input Field</NextModalTitle>
       <NextModalBody className="pb-3">
         <Form {...form}>
           <form
@@ -86,16 +85,6 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
             <FormField
               control={form.control}
-              name="dateDisabledRange"
-              render={({ field }) => (
-                <NextFormItem label="Date Disabled Range">
-                  <NextRangePicker field={field} />
-                </NextFormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name="controls"
               render={({ field }) => (
                 <NextFormItem label="Controls">
@@ -108,6 +97,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
                 </NextFormItem>
               )}
             />
+
             <div className="w-full flex justify-end">
               <Button type="submit">Save Changes</Button>
             </div>

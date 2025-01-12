@@ -38,30 +38,28 @@ function RootItem({ type, isDragging }: PropsType) {
           ),
           title: "Date Field",
         };
-      // case "select":
-      //   return {
-      //     icon: (
-      //       <NextIcon.SelectList width={32} height={32}></NextIcon.SelectList>
-      //     ),
-      //     title: "Select Field",
-      //   };
-      // case "checkbox":
-      //   return {
-      //     icon: (
-      //       <NextIcon.TextField width={32} height={32}></NextIcon.TextField>
-      //     ),
-      //     title: "Checkbox Field",
-      //   };
-      // case "password":
-      //   return {
-      //     icon: <NextIcon.Password width={32} height={32}></NextIcon.Password>,
-      //     title: "Password Field",
-      //   };
-      // case "slider":
-      //   return {
-      //     icon: <NextIcon.Slider width={32} height={32}></NextIcon.Slider>,
-      //     title: "Slider Field",
-      //   };
+      case FieldTypeEnum.SELECT:
+        return {
+          icon: (
+            <NextIcon.SelectList width={32} height={32}></NextIcon.SelectList>
+          ),
+          title: "Select Field",
+        };
+      case FieldTypeEnum.CHECKBOX:
+        return {
+          icon: <NextIcon.CheckBox width={32} height={32}></NextIcon.CheckBox>,
+          title: "Checkbox Field",
+        };
+      case FieldTypeEnum.PASSWORD:
+        return {
+          icon: <NextIcon.Password width={32} height={32}></NextIcon.Password>,
+          title: "Password Field",
+        };
+      case FieldTypeEnum.SLIDER:
+        return {
+          icon: <NextIcon.Slider width={32} height={32}></NextIcon.Slider>,
+          title: "Slider Field",
+        };
       default:
         return {
           icon: <></>,

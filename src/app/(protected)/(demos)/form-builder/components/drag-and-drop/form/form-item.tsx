@@ -127,12 +127,12 @@ export default function FormItem({
               <NextFormItem
                 label={item.label}
                 description={item.description}
-                required={item.required}
+                required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <Textarea
                   {...field}
                   placeholder={item.placeholder}
-                  disabled={item.disabled}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
                 />
               </NextFormItem>
             )}
@@ -147,13 +147,13 @@ export default function FormItem({
               <NextFormItem
                 label={item.label}
                 description={item.description}
-                required={item.required}
+                required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <Input
                   {...field}
                   type="number"
                   placeholder={item.placeholder}
-                  disabled={item.disabled}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
                   max={item?.max}
                   min={item?.min}
                   // Convert string value to number
@@ -174,14 +174,14 @@ export default function FormItem({
               <NextFormItem
                 label={item.label}
                 description={item.description}
-                required={item.required}
+                required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <NextDatePicker
                   field={field}
                   onSelect={(date) => {
                     handleSetFormItemValue(item.fieldName, date);
                   }}
-                  disabled={item.disabled}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
                   maxDate={item?.dateDisabledRange?.to}
                   minDate={item?.dateDisabledRange?.from}
                 />

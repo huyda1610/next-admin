@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { datePickerFormSchema } from "./form-schema.type";
+import NextRangePicker from "@/components/shadcn/components/range-picker";
 
 const schema = datePickerFormSchema;
 
@@ -79,6 +80,16 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               render={({ field }) => (
                 <NextFormItem label="FieldName">
                   <Input {...field} />
+                </NextFormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="dateDisabledRange"
+              render={({ field }) => (
+                <NextFormItem label="Date Disabled Range">
+                  <NextRangePicker field={field} />
                 </NextFormItem>
               )}
             />

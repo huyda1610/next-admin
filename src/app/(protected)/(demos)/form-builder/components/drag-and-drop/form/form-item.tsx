@@ -7,16 +7,16 @@ import InputDialog from "@/app/(protected)/(demos)/form-builder/components/dialo
 import { Button } from "@/components/shadcn/ui/button";
 import { CalendarIcon, Trash2 } from "lucide-react";
 import { FormDragHandle } from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
-import { z } from "zod";
-import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
 import NextFormItem from "@/components/shadcn/components/form/form-item";
 import { Input } from "@/components/shadcn/ui/input";
-import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
+import {
+  FormItemType,
+  ItemSchemaType,
+} from "@/app/(protected)/(demos)/form-builder/type/type";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
 import { Textarea } from "@/components/shadcn/ui/textarea";
 import TextAreaDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/text-area";
 import NumberDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/number";
-import NextFormDatePicker from "@/components/shadcn/components/date-picker/form-date-picker";
 import {
   Popover,
   PopoverContent,
@@ -24,14 +24,14 @@ import {
 } from "@/components/shadcn/ui/popover";
 import { Calendar } from "@/components/shadcn/ui/calendar";
 import { format } from "date-fns";
+import DatePickerDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker";
+import NextDatePicker from "@/components/shadcn/components/date-picker";
 
 type FormItemProps = {
   form?: UseFormReturn;
   handleRemoveAction: (id: string) => void;
-  handleEditAction: (
-    id: string,
-    values: z.infer<typeof inputFormSchema>,
-  ) => void;
+  handleEditAction: (id: string, values: ItemSchemaType) => void;
+  handleSetFormItemValue: (name: string, value: any) => void;
   item: FormItemType;
   isDragging?: boolean;
   value?: any;
@@ -44,6 +44,7 @@ export default function FormItem({
   handleEditAction,
   item,
   isDragging,
+  handleSetFormItemValue,
 }: FormItemProps) {
   const getDragItem = (placeholder: string): React.ReactElement => {
     console.log(value);
@@ -174,7 +175,15 @@ export default function FormItem({
                 description={item.description}
                 required={item.required}
               >
-                <NextFormDatePicker field={field} />
+                <NextDatePicker
+                  field={field}
+                  onSelect={(date) => {
+                    handleSetFormItemValue(item.fieldName, date);
+                  }}
+                  disabled={item.disabled}
+                  maxDate={item?.dateDisabledRange?.to}
+                  minDate={item?.dateDisabledRange?.from}
+                />
               </NextFormItem>
             )}
           />
@@ -207,6 +216,15 @@ export default function FormItem({
       case FieldTypeEnum.NUMBER:
         return (
           <NumberDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.DATE_PICKER:
+        return (
+          <DatePickerDialog
             values={item}
             onSubmit={(values) => {
               handleEditAction(item.id, values);

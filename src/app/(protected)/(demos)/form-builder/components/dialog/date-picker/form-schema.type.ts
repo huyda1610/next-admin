@@ -8,6 +8,12 @@ export const datePickerFormSchema = z.object({
   fieldName: z.string().nonempty(FORM_REQUIRED),
   required: z.boolean(),
   disabled: z.boolean(),
-  maxDate: z.date().optional(),
-  minDate: z.date().optional(),
+  dateDisabledRange: z.object({
+    from: z.date({
+      required_error: "Start date is required",
+    }),
+    to: z.date({
+      required_error: "End date is required",
+    }),
+  }),
 });

@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import { FormItemType, ItemsType } from "../../../type/type";
+import React from "react";
+import { FormItemType, ItemSchemaType, ItemsType } from "../../../type/type";
 import { useDroppable } from "@dnd-kit/core";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,6 @@ import {
 } from "@dnd-kit/sortable";
 import FormSortableItem from "./sortable-item";
 import FormItem from "./form-item";
-import { inputFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/input/form-schema.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { FORM_REQUIRED } from "@/@core/const";
@@ -39,7 +38,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
     });
   };
 
-  const handleEdit = (id: string, values: z.infer<typeof inputFormSchema>) => {
+  const handleEdit = (id: string, values: ItemSchemaType) => {
     setItems((prev) => {
       return {
         ...prev,
@@ -130,19 +129,6 @@ function FormContainer({ items, id, setItems }: PropsType) {
     resolver: zodResolver(formSchema),
   });
 
-  const datePickerItems = items.filter(
-    (item) => item.type === FieldTypeEnum.DATE_PICKER,
-  );
-
-  useEffect(() => {
-    console.log(
-      form.watch(
-        datePickerItems.map((datePicker) => datePicker.fieldName).join(","),
-      ),
-    );
-    // handleSetFormItemValue("datepicker_1", form.watch("datepicker_1"));
-  }, [form.watch()]);
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     toast({
       title: "Submitted following values:",
@@ -179,6 +165,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
                     handleRemoveAction={handleRemove}
                     handleEditAction={handleEdit}
                     item={item}
+                    handleSetFormItemValue={handleSetFormItemValue}
                   />
                 </FormSortableItem>
               ))}

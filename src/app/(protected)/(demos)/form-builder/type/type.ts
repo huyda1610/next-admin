@@ -10,6 +10,13 @@ export type ItemsType = {
   form: FormItemType[];
 };
 
+export type ItemSchemaType = z.infer<
+  | typeof inputFormSchema
+  | typeof textAreaFormSchema
+  | typeof numberFormSchema
+  | typeof datePickerFormSchema
+>;
+
 export type FormItemType =
   | FormItemInput
   | TextAreaItemInput

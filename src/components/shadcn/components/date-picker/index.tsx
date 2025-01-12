@@ -8,14 +8,24 @@ import { Calendar } from "../../ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns/format";
 
-type NextFormDatePickerProps = {
+type NextDatePickerProps = {
   field: ControllerRenderProps;
+  onSelect?: (date: Date | undefined) => void;
+  disabled?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
 };
 
-function NextFormDatePicker({ field }: NextFormDatePickerProps) {
+function NextDatePicker({
+  field,
+  onSelect,
+  disabled,
+  minDate,
+  maxDate,
+}: NextDatePickerProps) {
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild disabled={disabled}>
         <FormControl>
           <Button
             variant={"outline"}
@@ -37,10 +47,18 @@ function NextFormDatePicker({ field }: NextFormDatePickerProps) {
         <Calendar
           mode="single"
           selected={field.value}
-          onSelect={field.onChange}
-          disabled={(date) =>
-            date > new Date() || date < new Date("1900-01-01")
-          }
+          onSelect={(event) => {
+            field.onChange(event);
+            if (onSelect) onSelect(event);
+          }}
+          disabled={(date) => {
+            if (minDate && maxDate) {
+              return date > maxDate || date < minDate;
+            }
+            if (minDate) return date < minDate;
+            if (maxDate) return date > maxDate;
+            return false;
+          }}
           initialFocus
         />
       </PopoverContent>
@@ -48,4 +66,4 @@ function NextFormDatePicker({ field }: NextFormDatePickerProps) {
   );
 }
 
-export default NextFormDatePicker;
+export default NextDatePicker;

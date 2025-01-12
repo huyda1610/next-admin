@@ -26,6 +26,7 @@ import { Calendar } from "@/components/shadcn/ui/calendar";
 import { format } from "date-fns";
 import DatePickerDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker";
 import NextDatePicker from "@/components/shadcn/components/date-picker";
+import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -106,12 +107,12 @@ export default function FormItem({
               <NextFormItem
                 label={item.label}
                 description={item.description}
-                required={item.required}
+                required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <Input
                   {...field}
                   placeholder={item.placeholder}
-                  disabled={item.disabled}
+                  disabled={item.controls === FieldControlsEnum.DISABLED}
                 />
               </NextFormItem>
             )}

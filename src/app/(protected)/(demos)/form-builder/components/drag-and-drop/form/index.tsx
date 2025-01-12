@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { FORM_REQUIRED } from "@/@core/const";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
+import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
 type PropsType = {
   id: string;
@@ -85,7 +86,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
               .refine(
                 (data) => {
                   if (data) return true;
-                  return !cur.required;
+                  return cur.controls !== FieldControlsEnum.REQUIRED;
                 },
                 { message: FORM_REQUIRED },
               );
@@ -97,7 +98,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
               .refine(
                 (data) => {
                   if (data) return true;
-                  return !cur.required;
+                  return cur.controls !== FieldControlsEnum.REQUIRED;
                 },
                 { message: FORM_REQUIRED },
               );
@@ -110,7 +111,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
               .refine(
                 (data) => {
                   if (data) return true;
-                  return !cur.required;
+                  return cur.controls !== FieldControlsEnum.REQUIRED;
                 },
                 { message: FORM_REQUIRED },
               );

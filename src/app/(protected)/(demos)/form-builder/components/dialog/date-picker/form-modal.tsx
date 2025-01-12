@@ -1,10 +1,8 @@
 "use client";
 import NextFormItem from "@/components/shadcn/components/form/form-item";
-import NextFormItemCheckBox from "@/components/shadcn/components/form/form-item-checkbox";
 import NextModalBody from "@/components/shadcn/components/modal/components/body";
 import NextModalTitle from "@/components/shadcn/components/modal/components/title";
 import { Button } from "@/components/shadcn/ui/button";
-import { Checkbox } from "@/components/shadcn/ui/checkbox";
 import { Form, FormField } from "@/components/shadcn/ui/form";
 import { Input } from "@/components/shadcn/ui/input";
 import { Textarea } from "@/components/shadcn/ui/textarea";
@@ -13,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { datePickerFormSchema } from "./form-schema.type";
 import NextRangePicker from "@/components/shadcn/components/range-picker";
+import NextRadioGroup from "@/components/shadcn/components/radio-group";
+import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
 const schema = datePickerFormSchema;
 
@@ -94,36 +94,20 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               )}
             />
 
-            <div className="flex gap-2">
-              <FormField
-                control={form.control}
-                name="required"
-                render={({ field }) => (
-                  <NextFormItemCheckBox label="Required">
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      disabled={form.watch("disabled")}
-                    />
-                  </NextFormItemCheckBox>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="disabled"
-                render={({ field }) => (
-                  <NextFormItemCheckBox label="Disabled">
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      disabled={form.watch("required")}
-                    />
-                  </NextFormItemCheckBox>
-                )}
-              />
-            </div>
-
+            <FormField
+              control={form.control}
+              name="controls"
+              render={({ field }) => (
+                <NextFormItem label="Controls">
+                  <NextRadioGroup
+                    className="flex flex-row items-center gap-6"
+                    options={FieldControlsOptions}
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                  />
+                </NextFormItem>
+              )}
+            />
             <div className="w-full flex justify-end">
               <Button type="submit">Save Changes</Button>
             </div>

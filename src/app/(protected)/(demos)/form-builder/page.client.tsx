@@ -37,8 +37,7 @@ const rootItems: FormItemType[] = [
     fieldName: "input_1",
     placeholder: "Next Admin",
     isDraggingForm: false,
-    required: false,
-    disabled: false,
+    controls: "",
   },
   {
     id: "2",
@@ -48,8 +47,7 @@ const rootItems: FormItemType[] = [
     fieldName: "textarea_1",
     placeholder: "Tell us a little bit about yourself.",
     isDraggingForm: false,
-    required: false,
-    disabled: false,
+    controls: "",
   },
   {
     id: "3",
@@ -59,8 +57,7 @@ const rootItems: FormItemType[] = [
     fieldName: "number_1",
     placeholder: "29",
     isDraggingForm: false,
-    required: false,
-    disabled: false,
+    controls: "",
   },
   {
     id: "4",
@@ -70,8 +67,7 @@ const rootItems: FormItemType[] = [
     fieldName: "datepicker_1",
     placeholder: "Pick a date",
     isDraggingForm: false,
-    required: false,
-    disabled: false,
+    controls: "",
   },
 ];
 
@@ -234,6 +230,7 @@ function FormBuilderComponent() {
         <FormItem
           handleRemoveAction={() => {}}
           handleEditAction={() => {}}
+          handleSetFormItemValue={() => {}}
           item={activeItem}
           isDragging={true}
           value={activeItem.value}

@@ -10,12 +10,12 @@ const array2D = (totalItems: number, rows: number): number[][] => {
   // Calculate columns needed
   const cols = Math.ceil(totalItems / rows);
   const array = [];
-  let counter = 1;
+  let counter = 0;
 
   // Create the array row by row
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < cols; i++) {
     const row = [];
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < rows; j++) {
       // Add number if we haven't exceeded total items
       if (counter <= totalItems) {
         row.push(counter);

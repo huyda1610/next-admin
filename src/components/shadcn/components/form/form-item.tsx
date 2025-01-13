@@ -10,7 +10,7 @@ import NextRenderIf from "@/components/utils/render-if";
 
 export type FormItemType = {
   label?: React.ReactNode;
-  description?: string;
+  description?: React.ReactNode;
   required?: boolean;
   children: React.ReactElement;
   className?: string;

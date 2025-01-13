@@ -2,18 +2,18 @@ import React from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Pencil } from "lucide-react";
 import { z } from "zod";
-import { passwordOptFormSchema } from "./form-schema.type";
+import { passwordOtpFormSchema } from "./form-schema.type";
 import useNextModal from "@/hooks/use-modal";
 import FormModal from "./form-modal";
 
-const schema = passwordOptFormSchema;
+const schema = passwordOtpFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
   onSubmit: (values: z.infer<typeof schema>) => void;
 };
 
-function PasswordOptDialog({ values, onSubmit }: PropsType) {
+function PasswordOtpDialog({ values, onSubmit }: PropsType) {
   const { open, close } = useNextModal();
 
   return (
@@ -36,4 +36,4 @@ function PasswordOptDialog({ values, onSubmit }: PropsType) {
   );
 }
 
-export default PasswordOptDialog;
+export default PasswordOtpDialog;

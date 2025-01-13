@@ -105,10 +105,10 @@ const rootItems: FormItemType[] = [
   },
   {
     id: "7",
-    type: FieldTypeEnum.PASSWORD_OPT,
+    type: FieldTypeEnum.PASSWORD_OTP,
     label: "Password",
     description: "Enter your password.",
-    fieldName: "passwordOpt_1",
+    fieldName: "passwordOTP_1",
     isDraggingForm: false,
     maxLength: 6,
     separatorAt: 2,
@@ -118,12 +118,13 @@ const rootItems: FormItemType[] = [
     id: "8",
     type: FieldTypeEnum.SLIDER,
     label: "Slider",
-    description:
-      "Selected value is 0, minimun valus is 0, maximim values is 100, step size is 10",
+    description: "This is a desciption",
     fieldName: "SLIDER_1",
-    placeholder: "mail@example.com",
     isDraggingForm: false,
     controls: "",
+    min: 0,
+    max: 100,
+    step: 10,
   },
 ];
 

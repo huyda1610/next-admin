@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
 import { FormField } from "@/components/shadcn/ui/form";
@@ -32,8 +33,10 @@ import SelectDialog from "@/app/(protected)/(demos)/form-builder/components/dial
 import { Checkbox } from "@/components/shadcn/ui/checkbox";
 import NextFormItemCheckBox from "@/components/shadcn/components/form/form-item-checkbox";
 import CheckboxDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox";
-import NextInputOpt from "@/components/shadcn/components/input-opt";
-import PasswordOptDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/password-opt";
+import NextInputOtp from "@/components/shadcn/components/input-opt";
+import PasswordOtpDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/password-otp";
+import SliderDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/slider";
+import { Slider } from "@/components/shadcn/ui/slider";
 
 type FormItemProps = {
   form?: UseFormReturn;
@@ -93,8 +96,10 @@ export default function FormItem({
         return <NexSelect defaultValue={value} />;
       case FieldTypeEnum.CHECKBOX:
         return <Checkbox checked={value} />;
-      case FieldTypeEnum.PASSWORD_OPT:
-        return <NextInputOpt maxLength={6} separatorAt={2} />;
+      case FieldTypeEnum.PASSWORD_OTP:
+        return <NextInputOtp maxLength={6} separatorAt={2} />;
+      case FieldTypeEnum.SLIDER:
+        return <Slider max={100} step={10} defaultValue={[50]} />;
       default:
         return <></>;
     }
@@ -102,7 +107,11 @@ export default function FormItem({
 
   const renderItem = (): React.ReactElement => {
     if (!form) {
-      if (item.type === FieldTypeEnum.CHECKBOX) {
+      if (
+        item.type === FieldTypeEnum.CHECKBOX ||
+        item.type === FieldTypeEnum.SLIDER ||
+        item.type === FieldTypeEnum.PASSWORD_OTP
+      ) {
         return (
           <NextFormItemCheckBox
             label={item.label}
@@ -115,9 +124,7 @@ export default function FormItem({
 
       return (
         <NextFormItem label={item.label} description={item.description}>
-          {getDragItem(
-            item.type !== FieldTypeEnum.PASSWORD_OPT ? item?.placeholder : "",
-          )}
+          {getDragItem(item?.placeholder)}
         </NextFormItem>
       );
     }
@@ -256,7 +263,7 @@ export default function FormItem({
             )}
           />
         );
-      case FieldTypeEnum.PASSWORD_OPT:
+      case FieldTypeEnum.PASSWORD_OTP:
         return (
           <FormField
             control={form.control}
@@ -267,11 +274,37 @@ export default function FormItem({
                 description={item.description}
                 required={item.controls === FieldControlsEnum.REQUIRED}
               >
-                <NextInputOpt
+                <NextInputOtp
                   field={field}
                   maxLength={item.maxLength}
                   separatorAt={item?.separatorAt}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
+                />
+              </NextFormItem>
+            )}
+          />
+        );
+      case FieldTypeEnum.SLIDER:
+        return (
+          <FormField
+            control={form.control}
+            name={item.fieldName}
+            render={({ field }) => (
+              <NextFormItem
+                label={item.label}
+                description={
+                  <div className="flex flex-col">
+                    <span>{`Selected value is ${field.value ?? 0}, minimum values is ${item.min}, maximum values is ${item.max}, step size is ${item.step}`}</span>
+                    {item.description}
+                  </div>
+                }
+                required={item.controls === FieldControlsEnum.REQUIRED}
+              >
+                <Slider
+                  max={item.max}
+                  step={item.step}
+                  value={[field.value ?? 0]}
+                  onValueChange={([value]) => field.onChange(value)}
                 />
               </NextFormItem>
             )}
@@ -338,9 +371,18 @@ export default function FormItem({
             }}
           />
         );
-      case FieldTypeEnum.PASSWORD_OPT:
+      case FieldTypeEnum.PASSWORD_OTP:
         return (
-          <PasswordOptDialog
+          <PasswordOtpDialog
+            values={item}
+            onSubmit={(values) => {
+              handleEditAction(item.id, values);
+            }}
+          />
+        );
+      case FieldTypeEnum.SLIDER:
+        return (
+          <SliderDialog
             values={item}
             onSubmit={(values) => {
               handleEditAction(item.id, values);

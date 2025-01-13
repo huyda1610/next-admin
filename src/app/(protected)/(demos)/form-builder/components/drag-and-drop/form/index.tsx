@@ -79,6 +79,7 @@ function FormContainer({ items, id, setItems }: PropsType) {
       (acc: any, cur) => {
         switch (cur.type) {
           case FieldTypeEnum.NUMBER:
+          case FieldTypeEnum.SLIDER:
             acc[cur.fieldName] = z
               .number()
               .optional()

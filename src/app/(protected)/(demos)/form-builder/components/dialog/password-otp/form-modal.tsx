@@ -9,12 +9,12 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { passwordOptFormSchema } from "./form-schema.type";
+import { passwordOtpFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 import React from "react";
 
-const schema = passwordOptFormSchema;
+const schema = passwordOtpFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -64,12 +64,12 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
               )}
             />
 
-            <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <FormField
                 control={form.control}
                 name={"maxLength"}
                 render={({ field }) => (
-                  <NextFormItem label={"MaxLength"} required={true}>
+                  <NextFormItem label={"Max length"} required={true}>
                     <Input
                       {...field}
                       type="number"
@@ -86,7 +86,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
                 control={form.control}
                 name={"separatorAt"}
                 render={({ field }) => (
-                  <NextFormItem label={"SeparatorAt"}>
+                  <NextFormItem label={"Separator at"}>
                     <Input
                       {...field}
                       type="number"

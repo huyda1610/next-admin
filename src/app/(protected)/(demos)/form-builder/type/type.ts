@@ -7,7 +7,7 @@ import { datePickerFormSchema } from "@/app/(protected)/(demos)/form-builder/com
 import { selectFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/select/form-schema.type";
 import { checkboxFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/checkbox/form-schema.type";
 import { sliderFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/slider/form-schema.type";
-import { passwordOptFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password-opt/form-schema.type";
+import { passwordOtpFormSchema } from "@/app/(protected)/(demos)/form-builder/components/dialog/password-otp/form-schema.type";
 
 export type ItemsType = {
   root: FormItemType[];
@@ -21,7 +21,7 @@ export type ItemSchemaType = z.infer<
   | typeof datePickerFormSchema
   | typeof selectFormSchema
   | typeof checkboxFormSchema
-  | typeof passwordOptFormSchema
+  | typeof passwordOtpFormSchema
   | typeof sliderFormSchema
 >;
 
@@ -77,8 +77,8 @@ type CheckboxItemInput = DefaultFormItem &
   };
 
 type PasswordItemInput = DefaultFormItem &
-  z.infer<typeof passwordOptFormSchema> & {
-    type: FieldTypeEnum.PASSWORD_OPT;
+  z.infer<typeof passwordOtpFormSchema> & {
+    type: FieldTypeEnum.PASSWORD_OTP;
     value?: number;
   };
 

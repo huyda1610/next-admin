@@ -9,11 +9,11 @@ import { Textarea } from "@/components/shadcn/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { inputFormSchema } from "./form-schema.type";
+import { sliderFormSchema } from "./form-schema.type";
 import NextRadioGroup from "@/components/shadcn/components/radio-group";
 import { FieldControlsOptions } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
-const schema = inputFormSchema;
+const schema = sliderFormSchema;
 
 type PropsType = {
   values: z.infer<typeof schema>;
@@ -65,16 +65,6 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
 
             <FormField
               control={form.control}
-              name="placeholder"
-              render={({ field }) => (
-                <NextFormItem label="Placeholder">
-                  <Input {...field} />
-                </NextFormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name="fieldName"
               render={({ field }) => (
                 <NextFormItem label="FieldName">
@@ -82,6 +72,54 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
                 </NextFormItem>
               )}
             />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
+              <FormField
+                control={form.control}
+                name="min"
+                render={({ field }) => (
+                  <NextFormItem label="Min">
+                    <Input
+                      type="number"
+                      {...field} // Convert string value to number
+                      onChange={(event) => field.onChange(+event.target.value)}
+                      // Prevent empty string being passed to number field
+                      value={field.value === undefined ? "" : field.value}
+                    />
+                  </NextFormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="step"
+                render={({ field }) => (
+                  <NextFormItem label="Step">
+                    <Input
+                      type="number"
+                      {...field} // Convert string value to number
+                      onChange={(event) => field.onChange(+event.target.value)}
+                      // Prevent empty string being passed to number field
+                      value={field.value === undefined ? "" : field.value}
+                    />
+                  </NextFormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="max"
+                render={({ field }) => (
+                  <NextFormItem label="Max">
+                    <Input
+                      type="number"
+                      {...field} // Convert string value to number
+                      onChange={(event) => field.onChange(+event.target.value)}
+                      // Prevent empty string being passed to number field
+                      value={field.value === undefined ? "" : field.value}
+                    />
+                  </NextFormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}

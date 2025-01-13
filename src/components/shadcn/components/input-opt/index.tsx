@@ -3,8 +3,10 @@ import { ControllerRenderProps } from "react-hook-form";
 import {
   InputOTP,
   InputOTPGroup,
+  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/shadcn/ui/input-otp";
+import { generate } from "@/@core/utils/generate";
 
 type NextInputOptProps = {
   field?: ControllerRenderProps<any>;
@@ -13,23 +15,48 @@ type NextInputOptProps = {
   disabled?: boolean;
 };
 
-function NextInputOpt({
+function NextInputOtp({
   field,
   maxLength = 1,
-  separatorAt,
+  separatorAt = 0,
   disabled,
 }: NextInputOptProps) {
-  const oneDimensionArray: number[] = Array.from(Array(maxLength).keys());
+  const oneDimensionArray: React.ReactNode[] = Array.from(
+    Array(maxLength)
+      .keys()
+      .flatMap((key) => {
+        return [<InputOTPSlot key={key} index={key} />];
+      }),
+  );
+
+  console.log(generate.array2D(maxLength, separatorAt));
+
+  const twoDimensionArray: React.ReactNode[] = !separatorAt
+    ? []
+    : generate.array2D(maxLength, separatorAt).map((group, index) => {
+        return (
+          <div key={index} className="flex items-center gap-2">
+            <InputOTPGroup>
+              {group.map((key) => (
+                <InputOTPSlot key={key + index} index={key} />
+              ))}
+            </InputOTPGroup>
+            {index + 1 < generate.array2D(maxLength, separatorAt).length && (
+              <InputOTPSeparator key={crypto.randomUUID()} />
+            )}
+          </div>
+        );
+      });
 
   return (
     <InputOTP maxLength={maxLength} disabled={disabled} {...field}>
-      <InputOTPGroup>
-        {oneDimensionArray.map((index) => (
-          <InputOTPSlot key={index} index={index} />
-        ))}
-      </InputOTPGroup>
+      {!separatorAt ? (
+        <InputOTPGroup>{oneDimensionArray}</InputOTPGroup>
+      ) : (
+        twoDimensionArray
+      )}
     </InputOTP>
   );
 }
 
-export default NextInputOpt;
+export default NextInputOtp;

@@ -50,10 +50,10 @@ function RootItem({ type, isDragging }: PropsType) {
           icon: <NextIcon.CheckBox width={32} height={32}></NextIcon.CheckBox>,
           title: "Checkbox Field",
         };
-      case FieldTypeEnum.PASSWORD_OPT:
+      case FieldTypeEnum.PASSWORD_OTP:
         return {
           icon: <NextIcon.Password width={32} height={32}></NextIcon.Password>,
-          title: "Password OPT Field",
+          title: "Password OTP Field",
         };
       case FieldTypeEnum.SLIDER:
         return {

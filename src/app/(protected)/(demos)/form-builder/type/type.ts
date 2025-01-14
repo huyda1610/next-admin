@@ -79,11 +79,11 @@ type CheckboxItemInput = DefaultFormItem &
 type PasswordItemInput = DefaultFormItem &
   z.infer<typeof passwordOtpFormSchema> & {
     type: FieldTypeEnum.PASSWORD_OTP;
-    value?: number;
+    value?: string;
   };
 
 type SliderItemInput = DefaultFormItem &
   z.infer<typeof sliderFormSchema> & {
     type: FieldTypeEnum.SLIDER;
-    value?: string | number;
+    value?: number;
   };

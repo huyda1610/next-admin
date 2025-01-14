@@ -13,6 +13,7 @@ type NextInputOptProps = {
   maxLength: number;
   separatorAt?: number;
   disabled?: boolean;
+  defaultValue?: string;
 };
 
 function NextInputOtp({
@@ -20,6 +21,7 @@ function NextInputOtp({
   maxLength = 1,
   separatorAt = 0,
   disabled,
+  defaultValue,
 }: NextInputOptProps) {
   const oneDimensionArray: React.ReactNode[] = Array.from(
     Array(maxLength)
@@ -28,8 +30,6 @@ function NextInputOtp({
         return [<InputOTPSlot key={key} index={key} />];
       }),
   );
-
-  console.log(generate.array2D(maxLength, separatorAt));
 
   const twoDimensionArray: React.ReactNode[] = !separatorAt
     ? []
@@ -49,7 +49,13 @@ function NextInputOtp({
       });
 
   return (
-    <InputOTP maxLength={maxLength} disabled={disabled} {...field}>
+    <InputOTP
+      maxLength={maxLength}
+      disabled={disabled}
+      {...field}
+      defaultValue={defaultValue}
+      value={field?.value}
+    >
       {!separatorAt ? (
         <InputOTPGroup>{oneDimensionArray}</InputOTPGroup>
       ) : (

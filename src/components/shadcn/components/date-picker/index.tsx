@@ -14,6 +14,7 @@ type NextDatePickerProps = {
   disabled?: boolean;
   maxDate?: Date;
   minDate?: Date;
+  defaultValue?: Date;
 };
 
 function NextDatePicker({
@@ -22,6 +23,7 @@ function NextDatePicker({
   disabled,
   minDate,
   maxDate,
+  defaultValue,
 }: NextDatePickerProps) {
   return (
     <Popover>
@@ -34,8 +36,8 @@ function NextDatePicker({
               !field.value && "text-muted-foreground",
             )}
           >
-            {field.value ? (
-              format(field.value, "PPP")
+            {field.value || defaultValue ? (
+              format(field.value ?? defaultValue, "PPP")
             ) : (
               <span>Pick a date</span>
             )}
@@ -46,7 +48,7 @@ function NextDatePicker({
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={field.value}
+          selected={field.value ?? defaultValue}
           onSelect={(event) => {
             field.onChange(event);
             if (onSelect) onSelect(event);

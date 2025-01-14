@@ -6,7 +6,7 @@ import { FormField } from "@/components/shadcn/ui/form";
 import { UseFormReturn } from "react-hook-form";
 import InputDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/input";
 import { Button } from "@/components/shadcn/ui/button";
-import { CalendarIcon, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { FormDragHandle } from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/sortable-item";
 import NextFormItem from "@/components/shadcn/components/form/form-item";
 import { Input } from "@/components/shadcn/ui/input";
@@ -18,13 +18,6 @@ import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/Field
 import { Textarea } from "@/components/shadcn/ui/textarea";
 import TextAreaDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/text-area";
 import NumberDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/number";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/shadcn/ui/popover";
-import { Calendar } from "@/components/shadcn/ui/calendar";
-import { format } from "date-fns";
 import DatePickerDialog from "@/app/(protected)/(demos)/form-builder/components/dialog/date-picker";
 import NextDatePicker from "@/components/shadcn/components/date-picker";
 import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
@@ -39,7 +32,7 @@ import SliderDialog from "@/app/(protected)/(demos)/form-builder/components/dial
 import { Slider } from "@/components/shadcn/ui/slider";
 
 type FormItemProps = {
-  form?: UseFormReturn;
+  form: UseFormReturn;
   handleRemoveAction: (id: string) => void;
   handleEditAction: (id: string, values: ItemSchemaType) => void;
   handleSetFormItemValue: (name: string, value: any) => void;
@@ -57,78 +50,7 @@ export default function FormItem({
   isDragging,
   handleSetFormItemValue,
 }: FormItemProps) {
-  const getDragItem = (placeholder?: string): React.ReactElement => {
-    switch (item.type) {
-      case FieldTypeEnum.INPUT:
-        return <Input placeholder={placeholder} readOnly value={value} />;
-      case FieldTypeEnum.TEXT_AREA:
-        return <Textarea placeholder={placeholder} readOnly value={value} />;
-      case FieldTypeEnum.NUMBER:
-        return (
-          <Input
-            type="number"
-            placeholder={placeholder}
-            readOnly
-            value={value}
-          />
-        );
-      case FieldTypeEnum.DATE_PICKER:
-        return (
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  "text-muted-foreground",
-                )}
-              >
-                {value ? format(value, "PPP") : <span>Pick a date</span>}
-                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar mode="single" initialFocus />
-            </PopoverContent>
-          </Popover>
-        );
-      case FieldTypeEnum.SELECT:
-        return <NexSelect defaultValue={value} />;
-      case FieldTypeEnum.CHECKBOX:
-        return <Checkbox checked={value} />;
-      case FieldTypeEnum.PASSWORD_OTP:
-        return <NextInputOtp maxLength={6} separatorAt={2} />;
-      case FieldTypeEnum.SLIDER:
-        return <Slider max={100} step={10} defaultValue={[50]} />;
-      default:
-        return <></>;
-    }
-  };
-
   const renderItem = (): React.ReactElement => {
-    if (!form) {
-      if (
-        item.type === FieldTypeEnum.CHECKBOX ||
-        item.type === FieldTypeEnum.SLIDER ||
-        item.type === FieldTypeEnum.PASSWORD_OTP
-      ) {
-        return (
-          <NextFormItemCheckBox
-            label={item.label}
-            description={item.description}
-          >
-            {getDragItem()}
-          </NextFormItemCheckBox>
-        );
-      }
-
-      return (
-        <NextFormItem label={item.label} description={item.description}>
-          {getDragItem(item?.placeholder)}
-        </NextFormItem>
-      );
-    }
-
     switch (item.type) {
       case FieldTypeEnum.INPUT:
         return (
@@ -143,6 +65,7 @@ export default function FormItem({
               >
                 <Input
                   {...field}
+                  value={field?.value ?? value}
                   placeholder={item.placeholder}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
                 />
@@ -163,6 +86,7 @@ export default function FormItem({
               >
                 <Textarea
                   {...field}
+                  value={field?.value ?? value}
                   placeholder={item.placeholder}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
                 />
@@ -191,7 +115,9 @@ export default function FormItem({
                   // Convert string value to number
                   onChange={(event) => field.onChange(+event.target.value)}
                   // Prevent empty string being passed to number field
-                  value={field.value === undefined ? "" : field.value}
+                  value={
+                    field?.value === undefined ? "" : (field?.value ?? value)
+                  }
                 />
               </NextFormItem>
             )}
@@ -216,6 +142,7 @@ export default function FormItem({
                   disabled={item.controls === FieldControlsEnum.DISABLED}
                   maxDate={item?.dateDisabledRange?.to}
                   minDate={item?.dateDisabledRange?.from}
+                  defaultValue={value}
                 />
               </NextFormItem>
             )}
@@ -233,8 +160,11 @@ export default function FormItem({
                 required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <NexSelect
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    handleSetFormItemValue(item.fieldName, value);
+                  }}
+                  defaultValue={field.value ?? value}
                   placeholder={item.placeholder}
                   options={item.options}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
@@ -255,8 +185,11 @@ export default function FormItem({
                 required={item.controls === FieldControlsEnum.REQUIRED}
               >
                 <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
+                  checked={field.value ?? value}
+                  onCheckedChange={(value) => {
+                    field.onChange(value);
+                    handleSetFormItemValue(item.fieldName, value);
+                  }}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
                 />
               </NextFormItemCheckBox>
@@ -276,6 +209,7 @@ export default function FormItem({
               >
                 <NextInputOtp
                   field={field}
+                  defaultValue={value}
                   maxLength={item.maxLength}
                   separatorAt={item?.separatorAt}
                   disabled={item.controls === FieldControlsEnum.DISABLED}
@@ -303,8 +237,11 @@ export default function FormItem({
                 <Slider
                   max={item.max}
                   step={item.step}
-                  value={[field.value ?? 0]}
-                  onValueChange={([value]) => field.onChange(value)}
+                  value={[field.value ?? value ?? 0]}
+                  onValueChange={([value]) => {
+                    field.onChange(value);
+                    handleSetFormItemValue(item.fieldName, value);
+                  }}
                 />
               </NextFormItem>
             )}

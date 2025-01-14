@@ -27,6 +27,10 @@ import { Card, CardContent } from "@/components/shadcn/ui/card";
 import FormItem from "@/app/(protected)/(demos)/form-builder/components/drag-and-drop/form/form-item";
 import FormBuilderCodeBlock from "@/app/(protected)/(demos)/form-builder/components/code-block";
 import { FieldTypeEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldTypeEnum.enum";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { generateForm } from "@/app/(protected)/(demos)/form-builder/utils/generate-form";
 
 const rootItems: FormItemType[] = [
   {
@@ -280,11 +284,19 @@ function FormBuilderComponent() {
     setActiveItem(null);
   }
 
+  const formSchema = z.object(generateForm(activeItem ? [activeItem] : []));
+
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+  });
+
   const renderDragItem = (): React.ReactElement => {
     if (!activeItem) return <></>;
+
     if (activeItem?.isDraggingForm)
       return (
         <FormItem
+          form={form}
           handleRemoveAction={() => {}}
           handleEditAction={() => {}}
           handleSetFormItemValue={() => {}}

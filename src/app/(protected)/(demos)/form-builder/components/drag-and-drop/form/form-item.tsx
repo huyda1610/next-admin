@@ -115,9 +115,7 @@ export default function FormItem({
                   // Convert string value to number
                   onChange={(event) => field.onChange(+event.target.value)}
                   // Prevent empty string being passed to number field
-                  value={
-                    field?.value === undefined ? "" : (field?.value ?? value)
-                  }
+                  value={field?.value ?? value}
                 />
               </NextFormItem>
             )}

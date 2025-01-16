@@ -77,7 +77,7 @@ const zodSchemaToString = (schema: z.ZodTypeAny): string => {
   return "z.unknown()";
 };
 
-export const generateZodSchemaString = (formFields: FormItemType[]): string => {
+export const generateCodeZodSchema = (formFields: FormItemType[]): string => {
   const schema = generateZodSchema(formFields);
   const schemaEntries = Object.entries(schema.shape)
     .map(([key, value]) => {

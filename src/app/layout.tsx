@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextTopLoader zIndex={10} showSpinner={false} />
+          <NextTopLoader color="#1c1e22" zIndex={10} showSpinner={false} />
           <Toaster />
           {children}
         </ThemeProvider>

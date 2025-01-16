@@ -2,30 +2,24 @@
 import React from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import { cn } from "@/lib/utils";
+import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
+import { generateCode } from "@/app/(protected)/(demos)/form-builder/utils/generate-code";
 
-const exampleCode = `
-import React, { useState } from "react";
+type PropsType = { items: FormItemType[] };
 
-function Example() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-`.trim();
-
-function FormBuilderCodeBlock() {
+function FormBuilderCodeBlock({ items }: PropsType) {
+  const code = generateCode(items);
   return (
     <section className="mt-5">
-      <Highlight theme={themes.oneDark} code={exampleCode} language="tsx">
+      <Highlight theme={themes.oneDark} code={code} language="tsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={cn(className, "rounded-b-lg p-4")} style={style}>
+          <pre
+            className={cn(
+              className,
+              "rounded-b-lg p-4 max-h-[525px] overflow-y-auto",
+            )}
+            style={style}
+          >
             {tokens.map((line: any, i: number) => (
               <div {...getLineProps({ line, key: i })} key={i}>
                 <div className="table-cell">

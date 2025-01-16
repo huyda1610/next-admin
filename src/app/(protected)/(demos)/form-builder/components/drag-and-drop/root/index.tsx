@@ -25,7 +25,7 @@ function RootContainer({ items, id }: PropsType) {
       items={items}
       strategy={verticalListSortingStrategy}
     >
-      <Card className="h-full min-w-[302px]">
+      <Card className="h-full min-w-[400px]">
         <CardHeader className="text-md font-semibold">
           Drag and drop elements
         </CardHeader>

@@ -42,7 +42,7 @@ function NextInputOtp({
               ))}
             </InputOTPGroup>
             {index + 1 < generate.array2D(maxLength, separatorAt).length && (
-              <InputOTPSeparator key={crypto.randomUUID()} />
+              <InputOTPSeparator />
             )}
           </div>
         );

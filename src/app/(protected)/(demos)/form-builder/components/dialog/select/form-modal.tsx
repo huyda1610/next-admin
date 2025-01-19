@@ -113,7 +113,7 @@ function FormModal({ values, onSubmit: submit, onClose }: PropsType) {
                 </Button>
               </div>
 
-              <div className="max-h-[293px] overflow-y-auto flex flex-col gap-1 px-3 py-2">
+              <div className="max-h-[222px] overflow-y-auto flex flex-col gap-1 px-3 py-2">
                 {fields.map((field, index) => (
                   <div
                     key={field.id}

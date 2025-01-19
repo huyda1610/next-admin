@@ -1,6 +1,56 @@
 import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import { FieldTypeEnum } from "../../enum/FieldTypeEnum.enum";
 import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
+import { generate } from "@/@core/utils/generate";
+
+const renderSelectOptions = (item: FormItemType): string => {
+  if (item.type === FieldTypeEnum.SELECT) {
+    return item.options
+      .map(
+        (option) =>
+          `<SelectItem value="${option.value}">${option.label}</SelectItem>`,
+      )
+      .join("\n");
+  }
+  return "";
+};
+
+const renderOTPSlot = (item: FormItemType): string => {
+  if (item.type === FieldTypeEnum.PASSWORD_OTP) {
+    const oneDimensionArray: string = Array.from(
+      Array(item.maxLength)
+        .keys()
+        .flatMap((key) => {
+          return [`<InputOTPSlot index={${key}} />`];
+        }),
+    ).join("\n");
+
+    console.log(generate.array2D(item.maxLength, item.separatorAt ?? 0));
+
+    const twoDimensionArray: string = !item.separatorAt
+      ? ""
+      : generate
+          .array2D(item.maxLength, item.separatorAt)
+          .map((group, index) => {
+            return `
+            <InputOTPGroup>
+              ${group
+                .map((groupIndex) => `<InputOTPSlot index={${groupIndex}} />`)
+                .join("\n")}
+            </InputOTPGroup>
+            ${index + 1 < generate.array2D(item.maxLength, item.separatorAt ?? 0).length ? "<InputOTPSeparator />" : ""}
+          `;
+          })
+          .join("\n");
+
+    if (!item.separatorAt) {
+      return ` <InputOTPGroup>${oneDimensionArray}</InputOTPGroup>`;
+    }
+
+    return twoDimensionArray;
+  }
+  return "";
+};
 
 export const generateCodeField = (item: FormItemType): string => {
   switch (item.type) {
@@ -52,7 +102,8 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem>
               <FormLabel>${item.label}</FormLabel>
               <FormControl>
-                <Input placeholder="${item.placeholder}" type="number" disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field} />
+                <Input placeholder="${item.placeholder}" type="number" disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}}
+                {...field} value={field.value ?? ''} />
               </FormControl>
               <FormDescription>
                 ${item.description}
@@ -94,14 +145,14 @@ export const generateCodeField = (item: FormItemType): string => {
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>{
-                      const minDate = ${item.dateDisabledRange?.from};
-                      const maxDate = ${item.dateDisabledRange?.to};
+                      const minDate: Date  = ${item.dateDisabledRange?.from ? `new Date('${item.dateDisabledRange?.from}')` : "date"};
+                      const maxDate: Date  = ${item.dateDisabledRange?.to ? `new Date('${item.dateDisabledRange?.to}')` : "date"};
                       
                       if (minDate && maxDate) {
                         return date > maxDate || date < minDate;
                       }
-                      if (minDate) return date < minDate;
-                      if (maxDate) return date > maxDate;
+                      if (minDate !== undefined) return date < minDate;
+                      if (maxDate !== undefined) return date > maxDate;
                       return false;
                     }}
                   />
@@ -129,9 +180,7 @@ export const generateCodeField = (item: FormItemType): string => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                  ${renderSelectOptions(item)}
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -171,15 +220,8 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem>
               <FormLabel>${item.label}</FormLabel>
               <FormControl>
-                <InputOTP maxLength={6} disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
+                <InputOTP maxLength={${item.maxLength}} disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field}>
+                  ${renderOTPSlot(item)}
                 </InputOTP>
               </FormControl>
               <FormDescription>
@@ -205,8 +247,8 @@ export const generateCodeField = (item: FormItemType): string => {
                 />
               </FormControl>
               <FormDescription>
-               <span>{\`Selected value is \${field.value ?? 0}, minimum values is ${item.min}, maximum values is ${item.max}, step size is ${item.step}\`}</span>
-                ${item.description}
+               <span >{\`Selected value is \${field.value ?? 0}, minimum values is ${item.min}, maximum values is ${item.max}, step size is ${item.step}\`}</span>
+                <p className="block">${item.description}</p>
               </FormDescription>
               <FormMessage />
             </FormItem>

@@ -38,7 +38,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { format } from "date-fns/format";`);
+import { format } from "date-fns/format";
+import { CalendarIcon } from "lucide-react";`);
         break;
       case FieldTypeEnum.SELECT:
         importSet.add(`import {
@@ -57,6 +58,7 @@ SelectValue,
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
+  InputOTPSeparator,
 } from "@/components/ui/input-otp"`);
         break;
       case FieldTypeEnum.SLIDER:

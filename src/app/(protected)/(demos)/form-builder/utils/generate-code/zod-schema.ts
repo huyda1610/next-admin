@@ -66,7 +66,7 @@ const zodSchemaToString = (
   }
 
   if (schema instanceof z.ZodNumber) {
-    return "z.number().optional()" + requiredRefine;
+    return "z.coerce.number().optional()" + requiredRefine;
   }
 
   if (schema instanceof z.ZodString) {

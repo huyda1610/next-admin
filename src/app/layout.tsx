@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";

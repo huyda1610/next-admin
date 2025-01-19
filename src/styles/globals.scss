@@ -1,10 +1,9 @@
+@use "utils/_loading.scss";
+@use "utils/_scroll.scss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "utils/_loading.scss";
-@import "utils/_scroll.scss";
-
 
 @layer base {
   :root {

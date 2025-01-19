@@ -37,7 +37,8 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"`);
+} from "@/components/ui/popover";
+import { format } from "date-fns/format";`);
         break;
       case FieldTypeEnum.SELECT:
         importSet.add(`import {

@@ -1,5 +1,6 @@
 import { FormItemType } from "@/app/(protected)/(demos)/form-builder/type/type";
 import { FieldTypeEnum } from "../../enum/FieldTypeEnum.enum";
+import { FieldControlsEnum } from "@/app/(protected)/(demos)/form-builder/enum/FieldControlsEnum.enum";
 
 export const generateCodeField = (item: FormItemType): string => {
   switch (item.type) {
@@ -11,10 +12,11 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem>
               <FormLabel>${item.label}</FormLabel>
               <FormControl>
-                <Input placeholder={${item.placeholder}} {...field} />
+                <Input placeholder="${item.placeholder}" disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field}
+                 />
               </FormControl>
               <FormDescription>
-                {${item.description}}
+                ${item.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -29,13 +31,14 @@ export const generateCodeField = (item: FormItemType): string => {
              <FormLabel>${item.label}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder={${item.placeholder}}
+                  placeholder="${item.placeholder}"
                   className="resize-none"
+                  disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}}
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                 {${item.description}}
+                 ${item.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -49,10 +52,10 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem>
               <FormLabel>${item.label}</FormLabel>
               <FormControl>
-                <Input placeholder={${item.placeholder}} type="number" {...field} />
+                <Input placeholder="${item.placeholder}" type="number" disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field} />
               </FormControl>
               <FormDescription>
-                {${item.description}}
+                ${item.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -66,7 +69,7 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem className="flex flex-col">
               <FormLabel>${item.label}</FormLabel>
               <Popover>
-                <PopoverTrigger asChild>
+                <PopoverTrigger asChild disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}}>
                   <FormControl>
                     <Button
                       variant={"outline"}
@@ -86,10 +89,11 @@ export const generateCodeField = (item: FormItemType): string => {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
+                    initialFocus
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                      disabled={(date) =>{
+                    disabled={(date) =>{
                       const minDate = ${item.dateDisabledRange?.from};
                       const maxDate = ${item.dateDisabledRange?.to};
                       
@@ -99,13 +103,12 @@ export const generateCodeField = (item: FormItemType): string => {
                       if (minDate) return date < minDate;
                       if (maxDate) return date > maxDate;
                       return false;
-                    }
-                    initialFocus
+                    }}
                   />
                 </PopoverContent>
               </Popover>
               <FormDescription>
-                {${item.description}}
+                ${item.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -119,7 +122,7 @@ export const generateCodeField = (item: FormItemType): string => {
           render={({ field }) => (
             <FormItem>
                <FormLabel>${item.label}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a verified email to display" />
@@ -148,6 +151,7 @@ export const generateCodeField = (item: FormItemType): string => {
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={field.onChange}
+                  disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}}
                 />
               </FormControl>
               <div className="space-y-1 leading-none">
@@ -167,7 +171,7 @@ export const generateCodeField = (item: FormItemType): string => {
             <FormItem>
               <FormLabel>${item.label}</FormLabel>
               <FormControl>
-                <InputOTP maxLength={6} {...field}>
+                <InputOTP maxLength={6} disabled={${item.controls === FieldControlsEnum.DISABLED ? "true" : "false"}} {...field}>
                   <InputOTPGroup>
                     <InputOTPSlot index={0} />
                     <InputOTPSlot index={1} />
@@ -202,7 +206,7 @@ export const generateCodeField = (item: FormItemType): string => {
               </FormControl>
               <FormDescription>
                <span>{\`Selected value is \${field.value ?? 0}, minimum values is ${item.min}, maximum values is ${item.max}, step size is ${item.step}\`}</span>
-                {${item.description}}
+                ${item.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
